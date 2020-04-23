@@ -23,13 +23,11 @@ variable "region" {
 variable "tenancy_id" {
   description = "tenancy id where to create the sources"
   type        = string
-  default     = ""
 }
 
 variable "user_id" {
   description = "id of user that terraform will use to create the resources"
   type        = string
-  default     = ""
 }
 
 # general oci parameters
@@ -48,8 +46,7 @@ variable "label_prefix" {
 
 variable "freeform_tags" {
   description = "simple key-value pairs to tag the resources created"
-  type        = map(any)
-  default     = null
+  type = map(any)
 }
 
 variable "internet_gateway_enabled" {
@@ -78,7 +75,7 @@ variable "vcn_cidr" {
 
 variable "vcn_dns_label" {
   description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
-  type        = string
+  type = string
 }
 
 variable "vcn_name" {

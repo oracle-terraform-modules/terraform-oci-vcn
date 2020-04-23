@@ -1,0 +1,102 @@
+= Quickstart
+
+:idprefix:
+:idseparator: -
+:sectlinks:
+
+
+:uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
+:uri-rel-file-base: link:{uri-repo}/blob/master
+:uri-rel-tree-base: link:{uri-repo}/tree/master
+:uri-docs: {uri-rel-file-base}/docs
+:uri-instructions: {uri-docs}/instructions.adoc
+:uri-oci-keys: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm
+:uri-oci-ocids: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#five
+:uri-oci-okepolicy: https://docs.cloud.oracle.com/iaas/Content/ContEng/Concepts/contengpolicyconfig.htm#PolicyPrerequisitesService
+:uri-terraform: https://www.terraform.io
+:uri-terraform-oci: https://www.terraform.io/docs/providers/oci/index.html
+:uri-terraform-options: {uri-docs}/terraformoptions.adoc
+:uri-topology: {uri-docs}/topology.adoc
+:uri-variables: {uri-rel-file-base}/variables.tf
+
+. link:#assumptions[Assumptions]
+. link:#pre-requisites[Pre-requisites]
+. link:#instructions[Instructions]
+. link:#related-documentation[Related documentation]
+
+=== Assumptions
+
+1. You have setup the {uri-oci-keys}[required keys]
+2. You know the {uri-oci-ocids}[required OCIDs]
+3. You have the necessary permissions
+
+=== Pre-requisites
+
+1. git is installed
+2. ssh client is installed
+3. Terraform 0.12.24+ is installed
+
+=== Provisioning using this git repo
+
+. Clone the repo:
+
++
+[source,bash]
+----
+git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git tfvcn
+
+cd tfvcn
+cp terraform.tfvars.example terraform.tfvars
+----
+
+. Create a provider.tf file and add the following:
+
++
+----
+provider "oci" {
+  tenancy_ocid         = var.tenancy_id
+  user_ocid            = var.user_id
+  fingerprint          = var.api_fingerprint
+  private_key_path     = var.api_private_key_path
+  region               = var.region
+}
+----
+
+. Set mandatory provider parameters:
+
+* api_fingerprint
+* api_private_key_path
+* region
+* tenancy_id
+* user_id
+
+
+
+. Override other parameters:
+
+* compartment_id
+* label_prefix
+* vcn_dns_label
+* vcn_name
+
+. Optional parameters to override:
+* internet_gateway_enabled
+* nat_gateway_enabled
+* service_gateway_enabled 
+* freeform_tags
+
+. Run Terraform:
+
++
+[source,bash]
+----
+terraform init
+terraform plan
+terraform apply
+----
+
+=== Related documentation:
+
+* {uri-instructions}[Detailed Instructions]
+
+* {uri-terraform-options}[All Terraform configuration options] for {uri-repo}[this project]
