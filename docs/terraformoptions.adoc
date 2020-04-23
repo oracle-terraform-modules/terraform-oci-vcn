@@ -1,0 +1,132 @@
+= Terraform Options
+:idprefix:
+:idseparator: -
+:sectlinks:
+:sectnums:
+:uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
+
+:uri-rel-file-base: link:{uri-repo}/blob/master
+:uri-rel-tree-base: link:{uri-repo}/tree/master
+
+:uri-docs: {uri-rel-file-base}/docs
+:uri-oci-region: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm
+:uri-terraform-cidrsubnet: https://www.terraform.io/docs/configuration/functions/cidrsubnet.html
+
+Configuration Terraform Options:
+
+. link:#provider-and-identity[Provider and Identity]
+. link:#general-oci[General OCI]
+. link:#oci-networking[VCN]
+
+Ensure you review the {uri-terraform-dependencies}[dependencies].
+
+== Provider and Identity
+
+[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+|===
+|Parameter
+|Description
+|Values
+|Default
+
+|`api_fingerprint`
+|ssl fingerprint of api public key. *Required when configuring provider*.
+|
+|None
+
+|`api_private_key_path`
+|path to api private key. *Required when configuring provider*.
+|
+|None
+
+|`region`
+|Region where to provision the OKE cluster. {uri-oci-region}[List of regions]. *Required when configuring provider*.
+|
+|None
+
+|`tenancy_id`
+|Tenancy id of the user. *Required when configuring provider*.
+|
+|None
+
+|`user_id`
+|User's id. *Required when configuring provider*.
+|
+|None
+
+|===
+
+== General OCI
+
+[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+|===
+|Parameter
+|Description
+|Values
+|Default
+
+|`compartment_id`
+|Compartment id where the VCN Cluster will be provisioned. *Required*.
+|
+|None
+
+|`label_prefix`
+|a string to be prepended to the name of resources. *Required*.
+|
+|None
+
+
+|===
+
+== VCN
+
+[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+|===
+|Parameter
+|Description
+|Values
+|Default
+
+|`tags`
+|simple key-value pairs to tag the resources created specified in the form of a map
+| e.g.
+[source]
+----
+tags = {
+  environment = "dev"
+  lob = "finance"
+}
+----
+|None
+
+|`internet_gateway_enabled`
+|Whether to create an internet gateway.
+|true/false
+|false
+
+|`nat_gateway_enabled`
+|Whether to create a NAT gateway. 
+|true/false
+|false
+
+|`service_gateway_enabled`
+|Whether to create a Service Gateway to use Oracle Services.
+|true/false
+|false
+
+|`vcn_cidr`
+|The VCN's CIDR block. The CIDR block specified for the VCN must not overlap with the CIDR block of another network.
+|
+|10.0.0.0/16
+
+|`vcn_dns_label`
+|The internal DNS domain for resources created and prepended to "oraclevcn.com" which is the VCN-internal domain name. *Required*
+|
+|None
+
+|`vcn_name`
+|The name of the VCN that will be appended to the label_prefix. *Required*
+|
+|None
+
+|===
