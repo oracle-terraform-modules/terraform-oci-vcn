@@ -23,9 +23,10 @@
 :uri-oracle: https://www.oracle.com
 :uri-prereqs: {uri-docs}/prerequisites.adoc
 :uri-quickstart: {uri-docs}/quickstart.adoc
-:uri-reuse-module: {uri-rel-tree-base}/examples/db
+:uri-reuse-module: {uri-rel-tree-base}/examples/
 :uri-terraform: https://www.terraform.io
-:uri-terraform-hashircorp-examples: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
+:uri-terraform-cidrsubnet-deconstructed: http://blog.itsjustcode.net/blog/2017/11/18/terraform-cidrsubnet-deconstructed/
+:uri-terraform-hashicorp-examples: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
 :uri-terraform-oci: https://www.terraform.io/docs/providers/oci/index.html
 :uri-terraform-options: {uri-docs}/terraformoptions.adoc
 :uri-terraform-oci-examples: https://github.com/terraform-providers/terraform-provider-oci/tree/master/examples
@@ -64,7 +65,7 @@ View the {uri-changelog}[CHANGELOG].
 
 == Acknowledgement
 
-Code derived and adapted from {uri-terraform-oci-examples}[Terraform OCI Examples] and Hashicorp's {uri-terraform-hashircorp-examples}[Terraform 0.12 examples]
+Code derived and adapted from {uri-terraform-oci-examples}[Terraform OCI Examples] and Hashicorp's {uri-terraform-hashicorp-examples}[Terraform 0.12 examples]
 
 == Contributors
 
