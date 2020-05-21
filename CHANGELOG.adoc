@@ -7,11 +7,10 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
-== v1.0.0 (April 23,2020)
+== v1.0.0 (May 21,2020)
 
 === Changes
 * First release after split from terraform-oci-base
 * changed most variables to simple types
 * internet gateway now optional
 * updated docs
-

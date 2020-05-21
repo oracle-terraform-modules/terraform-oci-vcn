@@ -1,4 +1,4 @@
-# Copyright 2017, 2019, Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright 2020 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # provider identity parameters
@@ -85,4 +85,3 @@ variable "vcn_name" {
   description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
   type        = string
 }
-

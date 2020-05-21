@@ -7,29 +7,4 @@ OWNERS # have admin access and can merge code to master:
 
 CONTRIBUTORS
 
-- @scross01
-- @craigcarl-oracle
-- @j0nr33v3
-- @mikeraab
-- @jeevanjoseph
-- @rajesh-chawla
-- @cameronsenese
-- @AmedeeBulle
 - @karthicgit
-- @cawilliamson
-- @orajhan
-- @kristenjacobs
-- @CaptTofu
-- @mikarinneoracle
-- @kapmani
-- @briangustafson
-- @sahitgollapudi
-- @priteshkp
-
-Others:
-
-- Arjav Desai
-- Jeet Jagasia
-- Karsten Terp-Nielsen
-- Erno Venalainen
-- Tim Sheppard
