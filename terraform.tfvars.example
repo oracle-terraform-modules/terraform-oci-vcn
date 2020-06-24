@@ -3,15 +3,7 @@
 
 # provider identity parameters
 
-api_fingerprint = ""
-
-api_private_key_path = ""
-
 region = "us-phoenix-1"
-
-tenancy_id = ""
-
-user_id = ""
 
 # general oci parameters
 
@@ -33,6 +25,6 @@ vcn_dns_label = "vcn"
 vcn_name = "vcn"
 
 tags = {
+  department = "finance"  
   environment = "dev"
-  lob = "finance"
 }
