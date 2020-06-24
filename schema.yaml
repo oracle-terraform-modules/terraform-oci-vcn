@@ -1,0 +1,53 @@
+schemaVersion: 1.1.0
+version: "20190304"
+locale: "en"
+groupings:
+  - title: "Create A VCN with optional gateways"
+    variables:
+    - region
+    - compartment_id
+    - vcn_cidr
+    - vcn_name
+    - vcn_dns_label
+    
+ 
+variables:
+  region:
+    type: oci:identity:region:name
+    title: Region
+    description: The OCI region where resources will be created
+    required: true
+ 
+  compartment_id:
+    type: oci:identity:compartment:id
+    title: Target Compartment
+    description: The target compartment id where to create all resources
+    required: true
+
+  label_prefix:
+    type: string
+    title: Label Prefix
+    description: a string that will be prepended to all resources
+    required: false
+    default: dev
+
+  vcn_cidr:
+    type: string
+    title: VCN CIDR
+    default: 10.0.0.0/16
+    required: true
+
+  vcn_name:
+    type: string
+    title: VCN Name
+    required: true
+    default: vcn
+
+  vcn_dns_label:
+    type: string
+    required: true
+    default: vcn
+
+  tags:
+    type: map
+    visible: false
