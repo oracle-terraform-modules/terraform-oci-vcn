@@ -4,7 +4,7 @@
 # provider identity parameters
 variable "region" {
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
-  description = "the oci region where resources will be created"
+  description = "the OCI region where resources will be created"
   type        = string
 }
 
@@ -43,7 +43,9 @@ variable "service_gateway_enabled" {
 variable "tags" {
   description = "simple key-value pairs to tag the resources created"
   type        = map(any)
-  default     = {"Environment" = "Dev"}
+  default = {
+    "environment" = "dev"
+  }
 }
 
 variable "vcn_cidr" {
