@@ -4,7 +4,7 @@
 resource "oci_core_vcn" "vcn" {
   cidr_block     = var.vcn_cidr
   compartment_id = var.compartment_id
-  display_name   = "${var.label_prefix}-${var.vcn_name}"
+  display_name   = var.label_prefix == "none" ? var.vcn_name : "${var.label_prefix}-${var.vcn_name}"
   dns_label      = var.vcn_dns_label
 
   freeform_tags  = var.tags
@@ -12,7 +12,7 @@ resource "oci_core_vcn" "vcn" {
 
 resource "oci_core_internet_gateway" "ig" {
   compartment_id = var.compartment_id
-  display_name   = "${var.label_prefix}-ig-gw"
+  display_name   = var.label_prefix == "none" ? "internet-gateway" : "${var.label_prefix}-internet-gateway"
 
   freeform_tags = var.tags
 
@@ -23,7 +23,7 @@ resource "oci_core_internet_gateway" "ig" {
 
 resource "oci_core_route_table" "ig" {
   compartment_id = var.compartment_id
-  display_name   = "${var.label_prefix}-ig"
+  display_name   = var.label_prefix == "none" ? "internet-route" : "${var.label_prefix}-internet-route"
 
   freeform_tags = var.tags
 

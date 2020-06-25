@@ -26,22 +26,23 @@ variables:
   
   vcn_cidr:
     type: string
-    title: Vcn CIDR
+    title: VCN CIDR
     default: 10.0.0.0/16
     required: true
 
   vcn_name:
     type: string
-    title: Vcn Name
+    title: VCN Name
     required: true
     default: TestVcn
 
   label_prefix:
+    title: Label Prefix
     type: string
     required: false
-    default: dev
 
   vcn_dns_label:
+    title: VCN DNS Label
     type: string
     required: true
     default: vcn
