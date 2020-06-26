@@ -24,6 +24,7 @@
 :uri-prereqs: {uri-docs}/prerequisites.adoc
 :uri-quickstart: {uri-docs}/quickstart.adoc
 :uri-reuse-module: {uri-rel-tree-base}/examples/
+:uri-rm: {uri-docs}/resourcemanager.adoc
 :uri-terraform: https://www.terraform.io
 :uri-terraform-cidrsubnet-deconstructed: http://blog.itsjustcode.net/blog/2017/11/18/terraform-cidrsubnet-deconstructed/
 :uri-terraform-hashicorp-examples: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
@@ -48,6 +49,7 @@ This module is primarily meant to be reusable to create more advanced infrastruc
 
 * Instructions
 ** {uri-quickstart}[Quickstart]
+** {uri-rm}[Resource Manager]
 ** {uri-reuse-module}[Reusing as a Terraform module]
 * {uri-terraform-options}[Terraform Options]
 

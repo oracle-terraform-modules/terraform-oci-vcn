@@ -1,0 +1,50 @@
+= Resource Manager
+
+:idprefix:
+:idseparator: -
+:sectlinks:
+
+
+:uri-rm: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm
+:uri-rm-stack: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm
+
+
+. link:uri-rm:[Overview]
+. link:uri-createstack[Create Stack]
+. Step by Step Instructions
+
+
++
+[source,bash]
+----
+git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git
+
+
+zip terraform-oci-vcn.zip *.tf schema.yaml -x main.tf
+
+----
+
+
+.Create Stack
+image::images/createstack.png[align="center"]
+
+
+.Upload zip file and select 0.12.x for terraform version
+image::images/uploadzip.png[align="center"]
+
+.Configure variable as per your need
+image::images/variable1.png[align="center"]
+
+
+.Check the boxes if you need gateways
+image::images/variable2.png[align="center"]
+
+.Stack Review
+image::images/review.png[align="center"]
+
+.Terraform plan and then apply to create resource
+image::images/tfplan.png[align="center"]
+
+.Logs
+image::images/planlogs.png[align="center"]
+

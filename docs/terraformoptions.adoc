@@ -97,7 +97,7 @@ tags = {
   lob = "finance"
 }
 ----
-|None
+|{"Environment" = "Dev"}
 
 |`internet_gateway_enabled`
 |Whether to create an internet gateway.
