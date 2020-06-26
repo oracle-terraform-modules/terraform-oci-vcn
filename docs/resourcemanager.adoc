@@ -3,14 +3,15 @@
 :idprefix:
 :idseparator: -
 :sectlinks:
+:bl: pass:[ +]
 
 
-:uri-rm: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm
+:uri-rm-overview: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm
 :uri-rm-stack: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm
 
 
-. link:uri-rm:[Overview]
-. link:uri-createstack[Create Stack]
+. {uri-rm-overview}[Overview]
+. {uri-rm-stack}[Create Stack]
 . Step by Step Instructions
 
 
@@ -26,25 +27,34 @@ zip terraform-oci-vcn.zip *.tf schema.yaml -x main.tf
 
 
 .Create Stack
-image::images/createstack.png[align="center"]
+image::images/createstack.PNG[align="center",width=640,height=480]
 
+{bl}
 
-.Upload zip file and select 0.12.x for terraform version
-image::images/uploadzip.png[align="center"]
+.Upload zip file and select 0.12.x for Terraform version
+image::images/uploadzip.PNG[align="center",width=640,height=480]
 
-.Configure variable as per your need
-image::images/variable1.png[align="center"]
+{bl}
 
+.Configure variables as per your need
+image::images/variable1.PNG[align="center",width=640,height=480]
+
+{bl}
 
 .Check the boxes if you need gateways
-image::images/variable2.png[align="center"]
+image::images/variable2.PNG[align="center",width=640,height=480]
+
+{bl}
 
 .Stack Review
-image::images/review.png[align="center"]
+image::images/review.PNG[align="center",width=640,height=480]
+
+{bl}
 
 .Terraform plan and then apply to create resource
-image::images/tfplan.png[align="center"]
+image::images/tfplan.PNG[align="center",width=640,height=480]
+
+{bl}
 
 .Logs
-image::images/planlogs.png[align="center"]
-
+image::images/planlogs.PNG[align="center",width=640,height=480]
