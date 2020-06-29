@@ -44,7 +44,7 @@ variable "service_gateway_enabled" {
 variable "tags" {
   description = "simple key-value pairs to tag the resources created"
   type        = map(any)
-  default     = {"Environment" = "Dev"}
+  default     = {"environment" = "dev"}
 }
 
 variable "vcn_cidr" {
