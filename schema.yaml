@@ -41,9 +41,10 @@ variables:
     type: string
     title: VCN Name
     required: true
-    default: vcn
+    default: Test VCN
 
   vcn_dns_label:
+    title: VCN DNS Label
     type: string
     required: true
     default: vcn

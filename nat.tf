@@ -3,7 +3,7 @@
 
 resource "oci_core_nat_gateway" "nat_gateway" {
   compartment_id = var.compartment_id
-  display_name   = "${var.label_prefix}-nat-gw"
+  display_name   = var.label_prefix == "none" ? "nat-gateway" : "${var.label_prefix}-nat-gateway"
 
   freeform_tags  = var.tags
 
@@ -14,7 +14,7 @@ resource "oci_core_nat_gateway" "nat_gateway" {
 
 resource "oci_core_route_table" "nat" {
   compartment_id = var.compartment_id
-  display_name   = "${var.label_prefix}-nat"
+  display_name   = var.label_prefix == "none" ? "nat-route" : "${var.label_prefix}-nat-route"
 
   freeform_tags  = var.tags
 
