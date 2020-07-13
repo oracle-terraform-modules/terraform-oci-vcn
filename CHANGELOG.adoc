@@ -7,6 +7,12 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+== v1.0.3 (July 13,2020)
+
+=== Changes
+* Made label_prefix is optional (#5)
+* Added schema for Resource Manager ( #3)
+
 == v1.0.2 (May 21,2020)
 
 === Changes

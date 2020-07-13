@@ -45,7 +45,7 @@ variable "tags" {
   description = "simple key-value pairs to tag the resources created"
   type        = map(any)
   default = {
-    "environment" = "dev"
+    environment = "dev"
   }
 }
 
