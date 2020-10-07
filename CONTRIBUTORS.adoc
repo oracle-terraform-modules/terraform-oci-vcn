@@ -8,3 +8,4 @@ OWNERS # have admin access and can merge code to master:
 CONTRIBUTORS
 
 - @karthicgit
+- @difu
