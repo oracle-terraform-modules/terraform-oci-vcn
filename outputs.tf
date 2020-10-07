@@ -11,6 +11,11 @@ output "nat_gateway_id" {
   value       = join(",", oci_core_nat_gateway.nat_gateway.*.id)
 }
 
+output "internet_gateway_id" {
+  description = "id of internet gateway if it is created"
+  value = join(",", oci_core_internet_gateway.ig.*.id)
+}
+
 output "ig_route_id" {
   description = "id of internet gateway route table"
   value       = join(",", oci_core_route_table.ig.*.id)
