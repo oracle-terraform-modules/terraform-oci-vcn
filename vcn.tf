@@ -7,7 +7,7 @@ resource "oci_core_vcn" "vcn" {
   display_name   = var.label_prefix == "none" ? var.vcn_name : "${var.label_prefix}-${var.vcn_name}"
   dns_label      = var.vcn_dns_label
 
-  freeform_tags  = var.tags
+  freeform_tags = var.tags
 }
 
 resource "oci_core_internet_gateway" "ig" {

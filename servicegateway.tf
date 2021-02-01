@@ -14,7 +14,7 @@ resource "oci_core_service_gateway" "service_gateway" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "service-gateway" : "${var.label_prefix}-service-gateway"
 
-  freeform_tags  = var.tags
+  freeform_tags = var.tags
   services {
     service_id = lookup(data.oci_core_services.all_oci_services[0].services[0], "id")
   }

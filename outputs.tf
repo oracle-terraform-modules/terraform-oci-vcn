@@ -13,7 +13,7 @@ output "nat_gateway_id" {
 
 output "internet_gateway_id" {
   description = "id of internet gateway if it is created"
-  value = join(",", oci_core_internet_gateway.ig.*.id)
+  value       = join(",", oci_core_internet_gateway.ig.*.id)
 }
 
 output "ig_route_id" {

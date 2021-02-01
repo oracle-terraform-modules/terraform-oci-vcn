@@ -6,6 +6,7 @@ variable "region" {
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
   description = "the OCI region where resources will be created"
   type        = string
+  default     = null
 }
 
 # general oci parameters
