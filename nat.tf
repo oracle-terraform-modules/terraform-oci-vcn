@@ -5,18 +5,18 @@ resource "oci_core_nat_gateway" "nat_gateway" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "nat-gateway" : "${var.label_prefix}-nat-gateway"
 
-  freeform_tags  = var.tags
+  freeform_tags = var.tags
 
-  vcn_id         = oci_core_vcn.vcn.id
+  vcn_id = oci_core_vcn.vcn.id
 
-  count         = var.nat_gateway_enabled == true ? 1 : 0
+  count = var.nat_gateway_enabled == true ? 1 : 0
 }
 
 resource "oci_core_route_table" "nat" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "nat-route" : "${var.label_prefix}-nat-route"
 
-  freeform_tags  = var.tags
+  freeform_tags = var.tags
 
   route_rules {
     destination       = local.anywhere

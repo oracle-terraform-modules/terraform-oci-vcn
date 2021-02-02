@@ -7,6 +7,9 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+== unreleased
+* changed input region to be optional (fixes #18)
+
 == v1.0.3 (July 13,2020)
 
 === Changes

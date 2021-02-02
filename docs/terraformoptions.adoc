@@ -30,7 +30,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Default
 
 |`region`
-|Region where to provision the OKE cluster. {uri-oci-region}[List of regions]. *Required when configuring provider*.
+|Region where to provision the vcn. {uri-oci-region}[List of regions]. *Optional*.
 |
 |
 
