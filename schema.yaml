@@ -9,8 +9,8 @@ groupings:
     - vcn_cidr
     - vcn_name
     - vcn_dns_label
-    
- 
+    - default_SL_lockdown
+
 variables:
   region:
     type: oci:identity:region:name
@@ -48,6 +48,12 @@ variables:
     type: string
     required: true
     default: vcn
+
+  default_SL_lockdown:
+    title: Enable VCN Default Security List Lockdown
+    type: string
+    required: false
+    default: true
 
   tags:
     type: map

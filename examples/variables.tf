@@ -82,3 +82,9 @@ variable "vcn_name" {
   description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
   type        = string
 }
+
+variable "default_SL_lockdown" {
+  description = "whether to remove all default security rules from the VCN Default Security List"
+  default     = true
+  type        = bool
+}

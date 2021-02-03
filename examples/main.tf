@@ -25,6 +25,8 @@ module "vcn" {
 
   vcn_name = "vcn"
 
+  default_SL_lockdown = "true"
+
   tags = {
     environment = "dev"
     lob         = "finance"
