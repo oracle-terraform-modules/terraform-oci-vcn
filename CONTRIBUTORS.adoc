@@ -9,3 +9,4 @@ CONTRIBUTORS
 
 - @karthicgit
 - @difu
+- @kral2
