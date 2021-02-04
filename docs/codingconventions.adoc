@@ -1,0 +1,16 @@
+= Coding conventions
+
+This is a list of coding conventions you should observe when contributting code for this project.
+
+Addressed subjects are the following:
+
+- adopting the right case type
+- good names for files and variables
+
+It is not an exhaustive list and it will be updated as we go. In the mean time, your PR reviewer may suggest conventions that are not listed here. Please update.
+
+== Names
+
+- Use snake_case when naming variables and resources
+- If your variable is controlling a behaviour, use imperative style to name it e.g. create_internet_gateway
+- Use simple file names where possible; avoid '-', '' for terraform files. '' is ok for bash/python.

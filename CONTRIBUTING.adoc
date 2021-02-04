@@ -1,6 +1,7 @@
 = CONTRIBUTING
 
 :uri-oracle-oca: https://www.oracle.com/technetwork/community/oca-486395.html
+:uri-coding-conventions: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/codingconventions.adoc
 
 Oracle welcomes contributions to this repository from anyone.
 
@@ -11,7 +12,31 @@ submit your pull request.
 If you have any questions about a possible submission, feel free to open
 an issue too.
 
-== Contributing to the terraform-oci-oke repository
+== Coding conventions
+
+Be sure to check {uri-coding-conventions}[the coding conventions] of this project before starting to develop.
+
+== Documentation you need to update
+
+A code contribution is as valuable as the related documentation that comes with it.
+
+Please update the documentation for the code you propose. The maintainers will love you, and your contribution will probably be accepted faster than if there is no or missing documentation.
+
+This is the actual "touch points" you need to pay attention:
+
+- Update CHANGELOG under the 'unreleased' section. Maintainer will reaffect your entry to another section in the release process
+- If your contribution changes fundamental aspects of the module, update the README introduction section
+- Add documentation for new variable in docs/terraformoptions.adoc
+- Add your GitHub handler to CONTRIBUTORS under the CONTRIBUTORS section
+- examples folder! Try to keep it simple. Update both main.tf and variables.tf
+- Do not forget to also update the example README: it contains `code blocks` that probably need to be updated
+
+Notes:
+
+- We are evaluating options to auto-document as much as possible. Tables on docs/terraformoptions.adoc may be the first point will we address.
+- Any change to README should be reflected on both the markdown and adoc version of the file. We are also evaluating how to reduce friction here.
+
+== How to contribute to this repository
 
 Pull requests can be made under
 {uri-oracle-oca}[The Oracle Contributor Agreement](OCA).
@@ -40,8 +65,9 @@ signed the OCA can be accepted.
 the issue number as part of your branch name, e.g. `1234-fixes`
 . Ensure that any documentation is updated with the changes that are required
 by your fix.
-. Ensure that any samples are updated if the base image has been changed.
+. Ensure that any samples are updated to reflect your new features.
 . Submit the pull request. *Do not leave the pull request blank*. Explain exactly
 what your changes are meant to do and provide simple steps on how to validate
 your changes. Ensure that you reference the issue you created as well.
-We will assign the pull request to 2-3 people for review before it is merged.
+
+We will assign the pull request to 2-3 people for review before it is merged. Please engage with the maintainer if there is a clarification request and change suggestion. Pull Request with no follow-up from the creator will be closed.
