@@ -5,13 +5,13 @@
 // See Issue #22 for the reasoning
 resource "oci_core_default_security_list" "lockdown" {
   // If variable is true, removes all rules from default security list
-  count                      = var.lockdown_default_seclist == true ? 1 : 0
   manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
+
+  count = var.lockdown_default_seclist == true ? 1 : 0
 }
 
 resource "oci_core_default_security_list" "restore_default" {
   // If variable is false, restore all default rules to default security list
-  count                      = var.lockdown_default_seclist == false ? 1 : 0
   manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
 
   egress_security_rules {
@@ -21,7 +21,7 @@ resource "oci_core_default_security_list" "restore_default" {
   }
 
   ingress_security_rules {
-    // SSH for all
+    // allow all SSH
     protocol = "6"
     source   = "0.0.0.0/0"
     tcp_options {
@@ -31,7 +31,7 @@ resource "oci_core_default_security_list" "restore_default" {
   }
 
   ingress_security_rules {
-    // ICMP for all type 3 code 4
+    // allow ICMP for all type 3 code 4
     protocol = "1"
     source   = "0.0.0.0/0"
 
@@ -42,7 +42,7 @@ resource "oci_core_default_security_list" "restore_default" {
   }
 
   ingress_security_rules {
-    //ICMP for VCN
+    //allow all ICMP from VCN
     protocol = "1"
     source   = var.vcn_cidr
 
@@ -50,4 +50,6 @@ resource "oci_core_default_security_list" "restore_default" {
       type = "3"
     }
   }
+
+  count = var.lockdown_default_seclist == false ? 1 : 0
 }

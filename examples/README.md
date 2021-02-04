@@ -78,7 +78,7 @@ module "vcn" {
   vcn_cidr                 = var.vcn_cidr
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
-  lockdown_default_seclist     = var.lockdown_default_seclist
+  lockdown_default_seclist = var.lockdown_default_seclist
 }
 ```
 

@@ -86,6 +86,11 @@ tags = {
 |true/false
 |false
 
+|`lockdown_default_seclist`
+|whether to remove all default security rules from the VCN Default Security List
+|true/false
+|true
+
 |`nat_gateway_enabled`
 |Whether to create a NAT gateway. 
 |true/false
@@ -110,10 +115,5 @@ tags = {
 |The name of the VCN that will be appended to the label_prefix. *Required*
 |
 |
-
-|`lockdown_default_seclist`
-|whether to remove all default security rules from the VCN Default Security List
-|true/false
-|true
 
 |===

@@ -1,9 +1,9 @@
 # Copyright (c) 2019, 2021, Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
-resource « oci_core_internet_gateway » « ig » {
+resource oci_core_internet_gateway "ig" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == « none » ? « internet-gateway » : « ${var.label_prefix}-internet-gateway »
+  display_name   = var.label_prefix == "none" ? "internet-gateway" : "${var.label_prefix}-internet-gateway"
             
   freeform_tags = var.tags
 
@@ -12,9 +12,9 @@ resource « oci_core_internet_gateway » « ig » {
   count = var.internet_gateway_enabled == true ? 1 : 0
 }
 
-resource « oci_core_route_table » « ig » {
+resource "oci_core_route_table" "ig" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == « none » ? « internet-route » : « ${var.label_prefix}-internet-route »
+  display_name   = var.label_prefix == "none" ? "internet-route" : "${var.label_prefix}-internet-route"
 
   freeform_tags = var.tags
 
@@ -52,9 +52,9 @@ resource "oci_core_service_gateway" "service_gateway" {
   count = var.service_gateway_enabled == true ? 1 : 0
 }
 
-resource « oci_core_nat_gateway » « nat_gateway » {
+resource "oci_core_nat_gateway" "nat_gateway" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == « none » ? « nat-gateway » : « ${var.label_prefix}-nat-gateway »
+  display_name   = var.label_prefix == "none" ? "nat-gateway" : "${var.label_prefix}-nat-gateway"
 
   freeform_tags = var.tags
 

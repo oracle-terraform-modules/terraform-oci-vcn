@@ -30,6 +30,12 @@ variable "internet_gateway_enabled" {
   type        = bool
 }
 
+variable "lockdown_default_seclist" {
+  description = "whether to remove all default security rules from the VCN Default Security List"
+  default     = true
+  type        = bool
+}
+
 variable "nat_gateway_enabled" {
   description = "whether to create a nat gateway in the vcn"
   default     = false
@@ -64,10 +70,4 @@ variable "vcn_dns_label" {
 variable "vcn_name" {
   description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
   type        = string
-}
-
-variable "lockdown_default_seclist" {
-  description = "whether to remove all default security rules from the VCN Default Security List"
-  default     = true
-  type        = bool
 }

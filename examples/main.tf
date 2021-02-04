@@ -15,6 +15,8 @@ module "vcn" {
   # vcn parameters
   internet_gateway_enabled = false
 
+  lockdown_default_seclist = true
+
   nat_gateway_enabled = false
 
   service_gateway_enabled = false
@@ -24,8 +26,6 @@ module "vcn" {
   vcn_dns_label = "vcn"
 
   vcn_name = "vcn"
-
-  lockdown_default_seclist = true
 
   tags = {
     environment = "dev"
