@@ -1,4 +1,4 @@
-# Copyright (c) 2019, 2020 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2019, 2021, Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # provider identity parameters
@@ -83,7 +83,7 @@ variable "vcn_name" {
   type        = string
 }
 
-variable "default_SL_lockdown" {
+variable "lockdown_default_seclist" {
   description = "whether to remove all default security rules from the VCN Default Security List"
   default     = true
   type        = bool

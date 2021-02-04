@@ -111,4 +111,9 @@ tags = {
 |
 |
 
+|`lockdown_default_seclist`
+|whether to remove all default security rules from the VCN Default Security List
+|true/false
+|true
+
 |===

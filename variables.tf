@@ -66,7 +66,7 @@ variable "vcn_name" {
   type        = string
 }
 
-variable "default_SL_lockdown" {
+variable "lockdown_default_seclist" {
   description = "whether to remove all default security rules from the VCN Default Security List"
   default     = true
   type        = bool

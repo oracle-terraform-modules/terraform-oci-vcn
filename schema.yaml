@@ -9,7 +9,7 @@ groupings:
     - vcn_cidr
     - vcn_name
     - vcn_dns_label
-    - default_SL_lockdown
+    - lockdown_default_seclist
 
 variables:
   region:
@@ -49,7 +49,7 @@ variables:
     required: true
     default: vcn
 
-  default_SL_lockdown:
+  lockdown_default_seclist:
     title: Enable VCN Default Security List Lockdown
     type: string
     required: false
