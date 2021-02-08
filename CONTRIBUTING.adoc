@@ -1,6 +1,14 @@
 = CONTRIBUTING
 
 :uri-oracle-oca: https://www.oracle.com/technetwork/community/oca-486395.html
+:uri-coding-conventions: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/codingconventions.adoc
+:uri-changelog: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CHANGELOG.adoc
+:uri-terraformoptions: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/terraformoptions.adoc
+:uri-readme-md: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/README.md
+:uri-readme-adoc: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/README.adoc
+:uri-examples-readme: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/examples/README.md
+:uri-contributors: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CONTRIBUTORS.adoc
+:contributing: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CONTRIBUTING.adoc
 
 Oracle welcomes contributions to this repository from anyone.
 
@@ -11,10 +19,35 @@ submit your pull request.
 If you have any questions about a possible submission, feel free to open
 an issue too.
 
-== Contributing to the terraform-oci-oke repository
+== Coding conventions
+
+Be sure to check {uri-coding-conventions}[the coding conventions] of this project before starting to develop.
+
+== Required documentation updates
+
+The documentation for your contribution is as valuable as the code you contribute.
+
+Please ensure the documentation is updated to include any new feature, functionality or fix you contribute. Including documentation changes will make the contribution process far quicker and easier (and the maintainers will love you!).
+
+You should ensure that your documentation changes include the following:
+
+- Update {uri-changelog}[CHANGELOG] under the 'Unreleased' section. The maintainers will include this to the appropriate version section during the release process for that version
+- If your contribution provision new resources, update the README introduction section
+- If your contribution adds any new variables, upate {uri-terraformoptions}[docs/terraformoptions.adoc] with the variable requirements
+- Add your GitHub handler to {uri-contributors}[CONTRIBUTORS] under the *CONTRIBUTORS* section
+- 
+- Don't forget how important the documentation is, especially for examples: we would love it if you updated the `main.tf` and `variables.tf` in the `examples/` folder. A simple example is fine.
+- You should also update the code examples in {uri-examples-readme}[examples/README]: it contains sample code blocks that probably needs to be updated to reflect your changes
+
+*Notes:*
+
+- We are evaluating options to auto-document as much as possible. Tables on {uri-terraformoptions}[docs/terraformoptions] may be the first point will we address.
+- Any changes made to {uri-readme-md}[README.md] must be done in {uri-readme-adoc}[README.adoc] and vice-versa. We are also evaluating how to reduce friction here.
+
+== How to contribute to this repository
 
 Pull requests can be made under
-{uri-oracle-oca}[The Oracle Contributor Agreement](OCA).
+{uri-oracle-oca}[The Oracle Contributor Agreement (OCA)].
 
 For pull requests to be accepted, the bottom of your commit message must have
 the following line using your name and e-mail address as it appears in the
@@ -40,8 +73,9 @@ signed the OCA can be accepted.
 the issue number as part of your branch name, e.g. `1234-fixes`
 . Ensure that any documentation is updated with the changes that are required
 by your fix.
-. Ensure that any samples are updated if the base image has been changed.
+. Ensure that any samples are updated to reflect your new features.
 . Submit the pull request. *Do not leave the pull request blank*. Explain exactly
 what your changes are meant to do and provide simple steps on how to validate
 your changes. Ensure that you reference the issue you created as well.
-We will assign the pull request to 2-3 people for review before it is merged.
+
+We will assign the pull request to 2-3 people for review before it is merged. Please engage with the maintainer if there is a clarification request and change suggestion. Pull Request with no follow-up from the creator will be closed.

@@ -1,0 +1,28 @@
+= Coding conventions
+
+:uri-terraform-standard-module-structure: https://www.terraform.io/docs/language/modules/develop/structure.html
+
+This is a list of coding conventions you should observe when contributing code for this project.
+
+Current conventions:
+
+- module structure
+- adopting the right case type
+- good names for files and terraform objects (resources, variables, outputs)
+
+It is not an exhaustive list and it will be updated as we go. In the mean time, your PR reviewer may suggest conventions that are not listed here.
+
+== Module Structure
+
+- We adhere to the {uri-terraform-standard-module-structure}[Terraform Standard Module Structure]
+- Any nested module calls should be in the main file: `main.tf` is the primary entrypoint of the module
+- All variables and ouputs declarations should be in `variables.tf` and `outputs.tf`
+- All variables and outputs should have descriptions
+- Nested modules should exist under the `modules/` folder
+- Examples of using the module should exist under the `examples/` folder and have a README to explain the goal and usage of the example
+
+== Case type and Names
+
+- Use `snake_case` when naming Terraform files, variables and resources
+- If you need a new .tf file at the root of the module for better clarity, use this naming scheme: `<module_name>_<resources_group>`: e.g. `vcn_gateways.tf`, `vcn_defaultresources.tf`
+- If your variable is controlling a behaviour, use imperative style to name it: e.g. `create_internet_gateway`

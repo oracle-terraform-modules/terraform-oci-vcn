@@ -1,12 +1,14 @@
 == GitHub userids of contributors
 
-OWNERS # have admin access and can merge code to master:
+=== OWNERS
 
-- @hyder
-- @markxnelson
+_Owners have admin access and can merge code to master_
 
-CONTRIBUTORS
+- https://github.com/hyder[@hyder]
+- https://github.com/markxnelson[@markxnelson]
 
-- @karthicgit
-- @difu
-- @kral2
+=== CONTRIBUTORS
+
+- https://github.com/karthicgit[@karthicgit]
+- https://github.com/difu[@difu]
+- https://github.com/kral2[@kral2]

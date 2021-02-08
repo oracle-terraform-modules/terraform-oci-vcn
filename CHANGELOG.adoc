@@ -7,9 +7,11 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
-== unreleased
+== Unreleased
 * changed input region to be optional (fixes #18)
 * added a new parameter to lockdown the VCN Default Security List and option to revert to original state (fixes #22)
+* update CONTRIBUTING guide
+* fix typo on resource oci_core_internet_gateway.ig
 
 == v1.0.3 (July 13,2020)
 
