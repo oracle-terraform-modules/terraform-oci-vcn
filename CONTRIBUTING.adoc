@@ -2,6 +2,13 @@
 
 :uri-oracle-oca: https://www.oracle.com/technetwork/community/oca-486395.html
 :uri-coding-conventions: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/codingconventions.adoc
+:uri-changelog: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CHANGELOG.adoc
+:uri-terraformoptions: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/terraformoptions.adoc
+:uri-readme-md: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/README.md
+:uri-readme-adoc: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/README.adoc
+:uri-examples-readme: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/examples/README.md
+:uri-contributors: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CONTRIBUTORS.adoc
+:contributing: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CONTRIBUTING.adoc
 
 Oracle welcomes contributions to this repository from anyone.
 
@@ -16,30 +23,31 @@ an issue too.
 
 Be sure to check {uri-coding-conventions}[the coding conventions] of this project before starting to develop.
 
-== Documentation you need to update
+== Required documentation updates
 
-A code contribution is as valuable as the related documentation that comes with it.
+The documentation for your contribution is as valuable as the code you contribute.
 
-Please update the documentation for the code you propose. The maintainers will love you, and your contribution will probably be accepted faster than if there is no or missing documentation.
+Please ensure the documentation is updated to include any new feature, functionality or fix you contribute. Including documentation changes will make the contribution process far quicker and easier (and the maintainers will love you!).
 
-This is the actual "touch points" you need to pay attention:
+You should ensure that your documentation changes include the following:
 
-- Update CHANGELOG under the 'unreleased' section. Maintainer will reaffect your entry to another section in the release process
-- If your contribution changes fundamental aspects of the module, update the README introduction section
-- Add documentation for new variable in docs/terraformoptions.adoc
-- Add your GitHub handler to CONTRIBUTORS under the CONTRIBUTORS section
-- examples folder! Try to keep it simple. Update both main.tf and variables.tf
-- Do not forget to also update the example README: it contains `code blocks` that probably need to be updated
+- Update {uri-changelog}[CHANGELOG] under the 'Unreleased' section. The maintainers will include this to the appropriate version section during the release process for that version
+- If your contribution provision new resources, update the README introduction section
+- If your contribution adds any new variables, upate {uri-terraformoptions}[docs/terraformoptions.adoc] with the variable requirements
+- Add your GitHub handler to {uri-contributors}[CONTRIBUTORS] under the *CONTRIBUTORS* section
+- 
+- Don't forget how important the documentation is, especially for examples: we would love it if you updated the `main.tf` and `variables.tf` in the `examples/` folder. A simple example is fine.
+- You should also update the code examples in {uri-examples-readme}[examples/README]: it contains sample code blocks that probably needs to be updated to reflect your changes
 
-Notes:
+*Notes:*
 
-- We are evaluating options to auto-document as much as possible. Tables on docs/terraformoptions.adoc may be the first point will we address.
-- Any change to README should be reflected on both the markdown and adoc version of the file. We are also evaluating how to reduce friction here.
+- We are evaluating options to auto-document as much as possible. Tables on {uri-terraformoptions}[docs/terraformoptions] may be the first point will we address.
+- Any changes made to {uri-readme-md}[README.md] must be done in {uri-readme-adoc}[README.adoc] and vice-versa. We are also evaluating how to reduce friction here.
 
 == How to contribute to this repository
 
 Pull requests can be made under
-{uri-oracle-oca}[The Oracle Contributor Agreement](OCA).
+{uri-oracle-oca}[The Oracle Contributor Agreement (OCA)].
 
 For pull requests to be accepted, the bottom of your commit message must have
 the following line using your name and e-mail address as it appears in the

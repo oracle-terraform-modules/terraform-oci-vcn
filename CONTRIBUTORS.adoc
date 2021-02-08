@@ -4,11 +4,11 @@
 
 _Owners have admin access and can merge code to master_
 
-- @hyder
-- @markxnelson
+- https://github.com/hyder[@hyder]
+- https://github.com/markxnelson[@markxnelson]
 
 === CONTRIBUTORS
 
-- @karthicgit
-- @difu
-- @kral2
+- https://github.com/karthicgit[@karthicgit]
+- https://github.com/difu[@difu]
+- https://github.com/kral2[@kral2]
