@@ -20,6 +20,9 @@ compartment_id = ""
 label_prefix = "dev"
 
 # vcn parameters
+
+create_drg = false
+
 internet_gateway_enabled = false
 
 nat_gateway_enabled = false

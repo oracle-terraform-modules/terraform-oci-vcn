@@ -1,14 +1,13 @@
 = Pre-requisites
-
 :idprefix:
 :idseparator: -
 :sectlinks:
+:toc:
+:toc-placement!:
 
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
-
 :uri-rel-file-base: link:{uri-repo}/blob/master
 :uri-rel-tree-base: link:{uri-repo}/tree/master
-
 :uri-docs: {uri-rel-file-base}/docs
 
 :uri-oci: https://cloud.oracle.com/cloud-infrastructure
@@ -16,32 +15,21 @@
 :uri-oci-ocids: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#five
 :uri-oci-documentation: https://docs.cloud.oracle.com/iaas/Content/home.htm
 :uri-oci-keys: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#two
-:uri-quickstart: {uri-docs}/quickstart.adoc
 :uri-terraform: https://www.terraform.io
 :uri-terraform-download: https://www.terraform.io/downloads.html
+:uri-hashicorp-brew-tap-announcement: https://www.hashicorp.com/blog/announcing-hashicorp-homebrew-tap
 
 This section will guide you through the pre-requisites before you can use this project.
 
-You can proceed to the {uri-quickstart}[Quick Start guide] if you have already done these.
+You can proceed to the xref:docs/quickstart.adoc[Quick Start guide] if you have already done these steps.
 
-. link:#install-terraform[Install Terraform]
-.. link:#install-terraform-on-oracle-linux[Install Terraform on Oracle Linux]
-.. link:#install-terraform-on-macos[Install Terraform on macOS]
-.. link:#manual-installation[Manual Installation]
-... link:#configure-path-on-linuxmacos[Configure path on Linux/macOS]
-... link:#configure-path-on-windows[Configure path on Windows]
-.. link:#testing-terraform-installation[Testing Terraform installation]
-. link:#generate-and-upload-your-oci-api-keys[Generate and upload your OCI API keys]
-. link:#create-an-oci-compartment[Create an OCI Compartment]
-. link:#obtain-the-necessary-ocids[Obtain the necessary OCIDs]
-. link:#identity-and-access-management-rights[Identity and Access Management Rights]
-. link:#using-autonomous-linux[Using Autonomous Linux]
+toc::[]
 
-=== Install Terraform
+== Install Terraform
 
 Start by installing Terraform and configuring your path.
 
-==== Installing Terraform on Oracle Linux
+=== Installing Terraform on Oracle Linux
 
 If you are using Oracle Linux, you can install Terraform as follows:
 
@@ -50,16 +38,18 @@ If you are using Oracle Linux, you can install Terraform as follows:
 yum -y install oraclelinux-developer-release-el7 && yum -y install terraform
 ----
 
-==== Installing Terraform on macOS
+=== Installing Terraform on macOS
 
 If you are using a Mac, you can install Terraform as follows:
 
 [source,bash]
 ----
-brew install terraform
+brew install hashicorp/tap/terraform
 ----
 
-==== Manual Installation
+This will install Terraform using the official Hashicorp homebrew tap. For more details between the differences and benefits to use the community maintained or the official homebrew tap, see {uri-hashicorp-brew-tap-announcement}[Hashicorp's announcement]
+
+=== Manual Installation
 
 If you prefer to install Terraform manually, you can follow these instructions:
 
@@ -71,7 +61,7 @@ If you prefer to install Terraform manually, you can follow these instructions:
 
 . You will also need to configure your path.
 
-===== Configure path on Linux/macOS
+==== Configure path on Linux/macOS
 
 Open a terminal and type the following:
 
@@ -80,7 +70,7 @@ Open a terminal and type the following:
 sudo mv /path/to/terraform /usr/local/bin
 ----
 
-===== Configure path on Windows
+==== Configure path on Windows
 Follow the steps below to configure your path on Windows:
 
 . Click on 'Start', type 'Control Panel' and open it
@@ -90,27 +80,29 @@ Follow the steps below to configure your path on Windows:
 . Close all open windows by clicking 'OK'
 . Open a new terminal and verify terraform has been properly installed
 
-==== Testing Terraform installation
+=== Testing Terraform installation
 
-Open a terminal and test:
+Open a terminal type this command:
 
 [source,bash]
 ----
-terraform -v
-Terraform v0.12.24
+> terraform -v
 ----
 
-=== Generate and upload your OCI API keys
+The first line of the output should be `Terraform vX.X.X` with your installed version.
+You will also see below any provider that is accessible to Terraform in the current folder.
+
+== Generate and upload your OCI API keys
 
 Follow the documentation for {uri-oci-keys}[generating and uploading your api keys].
 
 Note the key fingerprint.
 
-=== Create an OCI compartment
+== Create an OCI compartment
 
 Follow the documentation for {uri-oci-compartment}[creating a compartment].
 
-=== Obtain the necessary OCIDs
+== Obtain the necessary OCIDs
 
 The following OCIDs are required:
 
@@ -124,4 +116,4 @@ To obtain the compartment OCID:
 
 1. Navigate to Identity > Compartments
 2. Click on your Compartment
-3. Locate OCID on the page and click on 'Copy'
+3. Locate OCID on the page and click on `Copy`

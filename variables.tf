@@ -2,6 +2,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # provider identity parameters
+
 variable "region" {
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
   description = "the OCI region where resources will be created"
@@ -14,6 +15,7 @@ variable "region" {
 variable "compartment_id" {
   description = "compartment id where to create all resources"
   type        = string
+  # no default value, asking user to explicitly set this variable's value. see codingconventions.adoc
 }
 
 variable "label_prefix" {
@@ -22,10 +24,27 @@ variable "label_prefix" {
   default     = "none"
 }
 
+variable "tags" {
+  #! Deprecation notice: will be renamed to freeform_tags at next major release
+  description = "simple key-value pairs to tag the resources created using freeform tags."
+  type        = map(any)
+  default = {
+    terraformed = "yes"
+    module      = "oracle-terraform-modules/vcn/oci"
+  }
+}
+
 # vcn parameters
 
+variable "create_drg" {
+  description = "whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway and attach it to the vcn."
+  type        = bool
+  default     = false
+}
+
 variable "internet_gateway_enabled" {
-  description = "whether to create the internet gateway"
+  #! Deprecation notice: will be renamed to create_internet_gateway at next major release
+  description = "whether to create the internet gateway in the vcn. If set to true, creates an Internet Gateway."
   default     = false
   type        = bool
 }
@@ -37,23 +56,17 @@ variable "lockdown_default_seclist" {
 }
 
 variable "nat_gateway_enabled" {
-  description = "whether to create a nat gateway in the vcn"
+  #! Deprecation notice: will be renamed to create_nat_gateway at next major release
+  description = "whether to create a nat gateway in the vcn. If set to true, creates a nat gateway."
   default     = false
   type        = bool
 }
 
 variable "service_gateway_enabled" {
-  description = "whether to create a service gateway"
+  #! Deprecation notice: will be renamed to create_service_gateway at next major release
+  description = "whether to create a service gateway. If set to true, creates a service gateway."
   default     = false
   type        = bool
-}
-
-variable "tags" {
-  description = "simple key-value pairs to tag the resources created"
-  type        = map(any)
-  default = {
-    environment = "dev"
-  }
 }
 
 variable "vcn_cidr" {
@@ -70,4 +83,12 @@ variable "vcn_dns_label" {
 variable "vcn_name" {
   description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
   type        = string
+}
+
+# gateways parameters
+
+variable "drg_display_name" {
+  description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
+  type        = string
+  default     = null
 }
