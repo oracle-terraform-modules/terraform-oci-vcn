@@ -33,14 +33,12 @@ Use PR comments and the GitHub suggestion feature to agree on the final result.
 
 == Documentation format
 
-We use https://asciidoc.org/[AsciiDoc] with the `*.adoc` file extension. The only exception is for the README files that need to be displayed on the Terraform Registry.
+We use https://asciidoc.org/[AsciiDoc] with the `*.adoc` file extension. The only exception is for the README files that need to be displayed on the Terraform Registry: as the Terraform Registry does not support AsciiDoc, the `README` and certain other documentation must be available in Markdown format.
 
 [NOTE]
 ====
 As GitHub renders AsciiDoc files using https://asciidoctor.org/[AsciiDoctor], it is the current reference regarding AsciiDoc syntax we use in the documentation.
 ====
-
-Terraform Registry currently do not support AsciiDoc,so documentation content such as `README` files must be in Markdown format.
 
 === Internal links
 
@@ -62,7 +60,7 @@ For external links, we use https://docs.asciidoctor.org/asciidoc/latest/macros/a
 
 [TIP]
 ====
-If a link is used mutiple times, prefer to add the link in the header with a reference in the format `:uri-xxx:`. This will facilitate updates in link destination is to be modified.
+Links that are used multiple times must be defined in the header using the `:uri-xxx:` reference format. This makes any future updates to the URI much simpler.
 
 . Defining a link in the document header
 . Calling the reference
@@ -75,7 +73,7 @@ If a link is used mutiple times, prefer to add the link in the header with a ref
 
 ====
 
-===  Terraform registry specificities
+===  Terraform registry requirements
 
 - README files must be in Markdown format
 - All links must use absolute path, relative links are not supported

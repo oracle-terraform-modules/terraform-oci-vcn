@@ -18,7 +18,7 @@ Given a version number MAJOR.MINOR.PATCH:
 
 === New features
 * added a new parameter to create a DRG and attach it to VCN (fixes #16)
-* added gateway custom display names: drg (related to Issue #30)
+* added gateway custom display names: drg (related to issue #30)
 
 === Changes
 * module examples
@@ -34,7 +34,7 @@ Given a version number MAJOR.MINOR.PATCH:
 
 === Deprecation notice
 
-The folowwing variables will be renamed at the next major release of this module (related to Issue #24):
+The folowwing variables will be renamed at the next major release of this module (related to issue #24):
 
 * var.internet_gateway_enabled --> var.create_internet_gateway
 * var.nat_gateway_enabled --> var.create_nat_gateway

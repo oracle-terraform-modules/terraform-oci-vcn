@@ -8,7 +8,7 @@ It creates the following resources:
 * An optional internet gateway
 * An optional NAT gateway
 * An optional service gateway
-* An optional Dynamic Routing Gateway
+* An optional dynamic routing gateway
 
 It also controls the Default Security List, with a *Lockdown mode* that can be enabled or disabled.
 

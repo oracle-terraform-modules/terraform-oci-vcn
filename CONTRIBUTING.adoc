@@ -8,7 +8,7 @@ ifdef::env-github[]
 endif::[]
 :toc:
 
-:uri-oracle-oca: https://www.oracle.com/technetwork/community/oca-486395.html
+:uri-oracle-oca: https://oca.opensource.oracle.com/
 
 Oracle welcomes contributions to this repository from anyone.
 
@@ -31,7 +31,7 @@ Please ensure the documentation is updated to include any new feature, functiona
 
 You should ensure that your documentation changes include the following:
 
-- Update xref:CHANGELOG.adoc[CHANGELOG] under the 'Unreleased' section. The maintainers will include this to the appropriate version section during the release process for that version
+- Add an entry that explains your fix or enhancement to the list of unreleased items in xref:CHANGELOG.adoc[CHANGELOG]. The maintainers will move your entry to the appropriate version during the release process for that version.
 - If your contribution provision new resources, update the README introduction section
 - If your contribution adds any new variables, update xref:docs/terraformoptions.adoc[docs/terraformoptions] with the variable requirements
 - Add your GitHub handler to xref:CONTRIBUTORS.adoc[CONTRIBUTORS] under the *CONTRIBUTORS* section
