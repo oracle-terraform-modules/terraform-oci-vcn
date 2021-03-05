@@ -24,8 +24,8 @@
 
 == Pre-requisites
 
-1. git is installed
-2. ssh client is installed
+1. Git is installed
+2. SSH client is installed
 3. Terraform 0.12.24+ is installed
 
 == Instructions

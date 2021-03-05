@@ -1,4 +1,11 @@
 = Pre-requisites
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 :idprefix:
 :idseparator: -
 :sectlinks:
@@ -18,6 +25,8 @@
 :uri-terraform: https://www.terraform.io
 :uri-terraform-download: https://www.terraform.io/downloads.html
 :uri-hashicorp-brew-tap-announcement: https://www.hashicorp.com/blog/announcing-hashicorp-homebrew-tap
+:uri-homebrew: https://brew.sh/
+:uri-chocolatey: https://chocolatey.org/
 
 This section will guide you through the pre-requisites before you can use this project.
 
@@ -27,74 +36,57 @@ toc::[]
 
 == Install Terraform
 
-Start by installing Terraform and configuring your path.
+Start by installing Terraform wth the proper package for your operating system and architecture. 
 
 === Installing Terraform on Oracle Linux
 
-If you are using Oracle Linux, you can install Terraform as follows:
+On Oracle Linux, you can install Terraform using from your distribution's package repository.
+
+For Oracle Linux 7:
 
 [source,bash]
 ----
 yum -y install oraclelinux-developer-release-el7 && yum -y install terraform
 ----
 
+For Oracle Linux 8:
+
+[source,bash]
+----
+dnf -y install oraclelinux-developer-release-el8 && dnf -y install terraform
+----
+
 === Installing Terraform on macOS
 
-If you are using a Mac, you can install Terraform as follows:
+On macOS, you can install Terraform using {uri-homebrew}[Homebrew].
 
 [source,bash]
 ----
 brew install hashicorp/tap/terraform
 ----
 
-This will install Terraform using the official Hashicorp homebrew tap. For more details between the differences and benefits to use the community maintained or the official homebrew tap, see {uri-hashicorp-brew-tap-announcement}[Hashicorp's announcement]
+This will install Terraform using the official HashiCorp Homebrew tap. For more details about the differences and benefits to use the community maintained or the official Homebrew tap, see {uri-hashicorp-brew-tap-announcement}[HashiCorp's announcement]
 
-=== Manual Installation
+NOTE: If Homebrew is not already installed on your system, start by installing it following the installation instructions at https://brew.sh
 
-If you prefer to install Terraform manually, you can follow these instructions:
+=== Installing Terraform on Windows
 
-. Open your browser and navigate to the {uri-terraform-download}[Terraform download page]. You need version 0.12.24+.
+On Windows, you can install Terraform using {uri-chocolatey}[Chocolatey].
 
-. Download the appropriate version for your operating system.
-
-. Extract the the contents of compressed file and copy the terraform binary to a location that is in your path (see next section below).
-
-. You will also need to configure your path.
-
-==== Configure path on Linux/macOS
-
-Open a terminal and type the following:
-
-[source,bash]
+[source,powershell]
 ----
-sudo mv /path/to/terraform /usr/local/bin
+choco install terraform
 ----
 
-==== Configure path on Windows
-Follow the steps below to configure your path on Windows:
+NOTE: If Chocolatey is not already installed on your system, start by installing it following the installation instructions on https://chocolatey.org/
 
-. Click on 'Start', type 'Control Panel' and open it
-. Select System > Advanced System Settings > Environment Variables
-. Select System variables > PATH and click 'Edit'
-. Click New and paste the location of the directory where you have extracted the terraform.exe
-. Close all open windows by clicking 'OK'
-. Open a new terminal and verify terraform has been properly installed
+=== Manual installation
 
-=== Testing Terraform installation
-
-Open a terminal type this command:
-
-[source,bash]
-----
-> terraform -v
-----
-
-The first line of the output should be `Terraform vX.X.X` with your installed version.
-You will also see below any provider that is accessible to Terraform in the current folder.
+For manual installation, follow the instructions on {uri-terraform-download}[Terraform download page].
 
 == Generate and upload your OCI API keys
 
-Follow the documentation for {uri-oci-keys}[generating and uploading your api keys].
+Follow the documentation for {uri-oci-keys}[generating and uploading your API keys].
 
 Note the key fingerprint.
 

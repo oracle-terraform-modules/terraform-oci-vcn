@@ -1,8 +1,8 @@
+# Example reusing terraform-oci-vcn and extending to create other network resources
+
 [rootvariables]:https://github.com/oracle/terraform-oci-vcn/blob/master/examples/db/variables.tf
 [rootlocals]:https://github.com/oracle/terraform-oci-vcn/blob/master/examples/db/locals.tf
 [terraformoptions]:https://github.com/oracle/terraform-oci-vcn/blob/master/docs/terraformoptions.adoc
-
-Example reusing terraform-oci-vcn and extending to create other network resources.
 
 __Note: This is an example to demonstrate reusing this Terraform module to create additional network resources. Ensure you evaluate your own security needs when creating security lists, network security groups etc.__
 
@@ -90,7 +90,7 @@ module "vcn" {
 
 1. Create your own module e.g. subnets. In modules directory, create a subnets directory:
 
-```Shell
+```shell
 mkdir subnets
 ```
 
