@@ -3,6 +3,7 @@
 :idseparator: -
 :sectlinks:
 :sectnums:
+:toc:
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
 
 :uri-rel-file-base: link:{uri-repo}/blob/master
@@ -11,14 +12,6 @@
 :uri-docs: {uri-rel-file-base}/docs
 :uri-oci-region: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm
 :uri-terraform-cidrsubnet: https://www.terraform.io/docs/configuration/functions/cidrsubnet.html
-
-Configuration Terraform Options:
-
-. link:#provider[Provider]
-. link:#general-oci[General OCI]
-. link:#oci-networking[VCN]
-
-Ensure you review the {uri-terraform-dependencies}[dependencies].
 
 == Provider
 
@@ -116,4 +109,15 @@ tags = {
 |
 |
 
+|`create_drg`
+|whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.
+|true/false
+|false
+
+|`drg_display_name`
+|(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique.
+|
+|
+
 |===
+

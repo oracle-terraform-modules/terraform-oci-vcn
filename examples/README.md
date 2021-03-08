@@ -1,8 +1,8 @@
+# Example reusing terraform-oci-vcn and extending to create other network resources
+
 [rootvariables]:https://github.com/oracle/terraform-oci-vcn/blob/master/examples/db/variables.tf
 [rootlocals]:https://github.com/oracle/terraform-oci-vcn/blob/master/examples/db/locals.tf
 [terraformoptions]:https://github.com/oracle/terraform-oci-vcn/blob/master/docs/terraformoptions.adoc
-
-Example reusing terraform-oci-vcn and extending to create other network resources.
 
 __Note: This is an example to demonstrate reusing this Terraform module to create additional network resources. Ensure you evaluate your own security needs when creating security lists, network security groups etc.__
 
@@ -23,7 +23,7 @@ additional network resources in the VCN. The steps required are the following:
 
 3. Define the oci provider
 
-```
+```HCL
 provider "oci" {
   tenancy_ocid         = var.tenancy_id
   user_ocid            = var.user_id
@@ -36,14 +36,14 @@ provider "oci" {
 
 4. Create the modules directory
 
-```
+```shell
 mkdir modules
 cd modules
 ```
 
 5. Add the terraform-oci-vcn module
 
-```
+```shell
 git clone https://github.com/oracle/terraform-oci-vcn.git vcn
 ```
 
@@ -62,7 +62,7 @@ See [`variables.tf`][rootvariables] in this directory.
 
 1. Define the vcn module in root `main.tf`
 
-```
+```HCL
 module "vcn" {
   source = "./modules/vcn"
   
@@ -74,6 +74,8 @@ module "vcn" {
   internet_gateway_enabled = var.internet_gateway_enabled
   nat_gateway_enabled      = var.nat_gateway_enabled
   service_gateway_enabled  = var.service_gateway_enabled
+  create_drg               = var.create_drg
+  drg_display_name         = var.drg_display_name
   tags                     = var.tags
   vcn_cidr                 = var.vcn_cidr
   vcn_dns_label            = var.vcn_dns_label
@@ -88,13 +90,13 @@ module "vcn" {
 
 1. Create your own module e.g. subnets. In modules directory, create a subnets directory:
 
-```
+```shell
 mkdir subnets
 ```
 
 2. Define the additional variables(e.g. subnet masks) in the root and module variable file (`variables.tf`) e.g. 
 
-```
+```HCL
 variable "netnum" {
   description = "zero-based index of the subnet when the network is masked with the newbit. use as netnum parameter for cidrsubnet function"
   default = {
@@ -116,7 +118,7 @@ variable "newbits" {
 
 3. Create the security lists and subnets in `security.tf` and `subnets.tf` respectively in the subnets module:
 
-```
+```HCL
 resource "oci_core_security_list" "bastion" {
   compartment_id = var.compartment_id
   display_name   = "${var.label_prefix}-bastion"
@@ -184,9 +186,10 @@ resource "oci_core_subnet" "web" {
   vcn_id                     = var.vcn_id
 }
 ```
+
 4. Add the subnets module in the `main.tf`
 
-```
+```HCL
 module "subnets" {
   source = "./modules/subnets"
   
@@ -202,7 +205,7 @@ module "subnets" {
 
 5. Update your terraform variable file and add the database parameters:
 
-```
+```HCL
 # subnets
 
 netnum = {

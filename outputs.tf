@@ -6,6 +6,11 @@ output "vcn_id" {
   value       = oci_core_vcn.vcn.id
 }
 
+output "drg_id" {
+  description = "id of drg if it is created"
+  value       = join(",", oci_core_drg.drg.*.id)
+}
+
 output "nat_gateway_id" {
   description = "id of nat gateway if it is created"
   value       = join(",", oci_core_nat_gateway.nat_gateway.*.id)

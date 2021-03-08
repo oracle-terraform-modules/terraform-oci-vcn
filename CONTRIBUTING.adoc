@@ -1,14 +1,14 @@
 = CONTRIBUTING
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+:toc:
 
-:uri-oracle-oca: https://www.oracle.com/technetwork/community/oca-486395.html
-:uri-coding-conventions: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/codingconventions.adoc
-:uri-changelog: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CHANGELOG.adoc
-:uri-terraformoptions: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/terraformoptions.adoc
-:uri-readme-md: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/README.md
-:uri-readme-adoc: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/README.adoc
-:uri-examples-readme: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/examples/README.md
-:uri-contributors: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CONTRIBUTORS.adoc
-:contributing: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CONTRIBUTING.adoc
+:uri-oracle-oca: https://oca.opensource.oracle.com/
 
 Oracle welcomes contributions to this repository from anyone.
 
@@ -21,7 +21,7 @@ an issue too.
 
 == Coding conventions
 
-Be sure to check {uri-coding-conventions}[the coding conventions] of this project before starting to develop.
+Be sure to check xref:docs/codingconventions.adoc[the coding conventions] of this project before starting to develop.
 
 == Required documentation updates
 
@@ -31,18 +31,18 @@ Please ensure the documentation is updated to include any new feature, functiona
 
 You should ensure that your documentation changes include the following:
 
-- Update {uri-changelog}[CHANGELOG] under the 'Unreleased' section. The maintainers will include this to the appropriate version section during the release process for that version
+- Add an entry that explains your fix or enhancement to the list of unreleased items in xref:CHANGELOG.adoc[CHANGELOG]. The maintainers will move your entry to the appropriate version during the release process for that version.
 - If your contribution provision new resources, update the README introduction section
-- If your contribution adds any new variables, upate {uri-terraformoptions}[docs/terraformoptions.adoc] with the variable requirements
-- Add your GitHub handler to {uri-contributors}[CONTRIBUTORS] under the *CONTRIBUTORS* section
+- If your contribution adds any new variables, update xref:docs/terraformoptions.adoc[docs/terraformoptions] with the variable requirements
+- Add your GitHub handler to xref:CONTRIBUTORS.adoc[CONTRIBUTORS] under the *CONTRIBUTORS* section
 - 
 - Don't forget how important the documentation is, especially for examples: we would love it if you updated the `main.tf` and `variables.tf` in the `examples/` folder. A simple example is fine.
-- You should also update the code examples in {uri-examples-readme}[examples/README]: it contains sample code blocks that probably needs to be updated to reflect your changes
+- You should also update the code examples in link:examples/README.md[examples/README]: it contains sample code blocks that probably needs to be updated to reflect your changes
 
 *Notes:*
 
-- We are evaluating options to auto-document as much as possible. Tables on {uri-terraformoptions}[docs/terraformoptions] may be the first point will we address.
-- Any changes made to {uri-readme-md}[README.md] must be done in {uri-readme-adoc}[README.adoc] and vice-versa. We are also evaluating how to reduce friction here.
+- We are evaluating options to auto-document as much as possible. Tables on xref:docs/terraformoptions.adoc[docs/terraformoptions] may be the first point will we address.
+- Any changes made to link:README.md[README.md] must be done in xref:README.adoc[README.adoc] and vice-versa. We are also evaluating how to reduce friction here.
 
 == How to contribute to this repository
 

@@ -1,10 +1,14 @@
 # Copyright (c) 2019, 2021, Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
+########################
+# Internet Gateway (IGW)
+########################
+
 resource "oci_core_internet_gateway" "ig" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "internet-gateway" : "${var.label_prefix}-internet-gateway"
-            
+
   freeform_tags = var.tags
 
   vcn_id = oci_core_vcn.vcn.id
@@ -28,7 +32,9 @@ resource "oci_core_route_table" "ig" {
   count = var.internet_gateway_enabled == true ? 1 : 0
 }
 
-
+#######################
+# Service Gateway (SGW)
+#######################
 data "oci_core_services" "all_oci_services" {
   filter {
     name   = "name"
@@ -52,6 +58,9 @@ resource "oci_core_service_gateway" "service_gateway" {
   count = var.service_gateway_enabled == true ? 1 : 0
 }
 
+###################
+# NAT Gateway (NGW)
+###################
 resource "oci_core_nat_gateway" "nat_gateway" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "nat-gateway" : "${var.label_prefix}-nat-gateway"
@@ -88,4 +97,24 @@ resource "oci_core_route_table" "nat" {
   vcn_id = oci_core_vcn.vcn.id
 
   count = var.nat_gateway_enabled == true ? 1 : 0
+}
+
+###############################
+# Dynamic Routing Gateway (DRG)
+###############################
+
+resource "oci_core_drg" "drg" {
+  compartment_id = var.compartment_id
+  display_name   = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-drg"
+
+  freeform_tags = var.tags
+
+  count = var.create_drg == true ? 1 : 0
+}
+
+resource "oci_core_drg_attachment" "drg" {
+  drg_id = oci_core_drg.drg[count.index].id
+  vcn_id = oci_core_vcn.vcn.id
+
+  count = var.create_drg == true ? 1 : 0
 }
