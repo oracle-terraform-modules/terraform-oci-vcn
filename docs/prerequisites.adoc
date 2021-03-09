@@ -30,7 +30,7 @@ endif::[]
 
 This section will guide you through the pre-requisites before you can use this project.
 
-You can proceed to the xref:docs/quickstart.adoc[Quick Start guide] if you have already done these steps.
+You can proceed to the xref:quickstart.adoc[Quick Start guide] if you have already done these steps.
 
 toc::[]
 
