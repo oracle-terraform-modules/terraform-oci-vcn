@@ -92,4 +92,4 @@ If you need to create a routing rule with a target gateway created outside of th
 
 == Examples
 
-For example configuration using this option, see link:examples/custom_route_rules/README.md[examples/custom_route_rules]
+For example configuration using this option, see link:../examples/custom_route_rules/README.md[examples/custom_route_rules]
