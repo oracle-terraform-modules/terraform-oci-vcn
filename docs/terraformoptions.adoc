@@ -79,6 +79,28 @@ tags = {
 |true/false
 |false
 
+|`internet_gateway_route_rules`
+|(Updatable) List of routing rules to add to Internet Gateway Route Table.
+| e.g.
+[source]
+----
+  [
+    {
+      destination       = "203.0.113.0/24"
+      destination_type  = "CIDR_BLOCK"
+      network_entity_id = "internet_gateway"
+      description       = "some comment"
+    },
+    {
+      destination       = "192.168.1.0/24"
+      destination_type  = "CIDR_BLOCK"
+      network_entity_id = oci_core_local_peering_gateway.lpg.id
+      description       = "some comment"
+    },
+  ]
+----
+|null
+
 |`lockdown_default_seclist`
 |whether to remove all default security rules from the VCN Default Security List
 |true/false
@@ -89,8 +111,30 @@ tags = {
 |true/false
 |false
 
+|`nat_gateway_route_rules`
+|(Updatable) List of routing rules to add to NAT Gateway Route Table
+|e.g.
+[source]
+----
+  [
+    {
+      destination       = "203.0.113.0/24"
+      destination_type  = "CIDR_BLOCK"
+      network_entity_id = "nat_gateway"
+      description       = "some comment"
+    },
+    {
+      destination       = "192.168.1.0/24"
+      destination_type  = "CIDR_BLOCK"
+      network_entity_id = oci_core_local_peering_gateway.lpg.id
+      description       = "some comment"
+    },
+  ]
+----
+|null
+
 |`service_gateway_enabled`
-|Whether to create a Service Gateway to use Oracle Services.
+|Whether to create a service gateway to use Oracle Services. 
 |true/false
 |false
 
@@ -120,4 +164,3 @@ tags = {
 |
 
 |===
-

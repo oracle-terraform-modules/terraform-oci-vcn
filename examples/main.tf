@@ -24,12 +24,12 @@ module "vcn" {
   tags           = var.tags
 
   # vcn parameters
-  create_drg               = var.create_drg
-  internet_gateway_enabled = var.internet_gateway_enabled
-  lockdown_default_seclist = var.lockdown_default_seclist
-  nat_gateway_enabled      = var.nat_gateway_enabled
-  service_gateway_enabled  = var.service_gateway_enabled
-  vcn_cidr                 = var.vcn_cidr
+  create_drg               = var.create_drg               # boolean: true or false
+  internet_gateway_enabled = var.internet_gateway_enabled # boolean: true or false
+  lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
+  nat_gateway_enabled      = var.nat_gateway_enabled      # boolean: true or false
+  service_gateway_enabled  = var.service_gateway_enabled  # boolean: true or false
+  vcn_cidr                 = var.vcn_cidr                 # VCN CIDR
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
 
@@ -42,6 +42,10 @@ module "vcn" {
 output "module_vcn" {
   description = "vcn and gateways information"
   value = {
-    vcn_id = module.vcn.vcn_id
+    drg_id              = module.vcn.drg_id
+    internet_gateway_id = module.vcn.internet_gateway_id
+    nat_gateway_id      = module.vcn.nat_gateway_id
+    service_gateway_id  = module.vcn.service_gateway_id
+    vcn_id              = module.vcn.vcn_id
   }
 }

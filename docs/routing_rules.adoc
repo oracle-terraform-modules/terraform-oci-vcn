@@ -1,0 +1,95 @@
+= Routing rules
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+:idprefix:
+:idseparator: -
+:sectlinks:
+:toc:
+
+:uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
+:uri-rel-file-base: link:{uri-repo}/blob/master
+:uri-rel-tree-base: link:{uri-repo}/tree/master
+:uri-docs: {uri-rel-file-base}/docs
+:uri-tf-namedvalues: https://www.terraform.io/docs/language/expressions/references.html
+:uri-oci-lpg: https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_local_peering_gateway
+
+When you create an Internet or a NAT gateway, terraform-oci-vcn modules automatically creates a dedicated route table for each gateway.
+
+- `<label_prefix>-internet-route` route table is created if `internet_gateway_enabled = true`
+- `<label_prefix>-nat-route` route table is created if `nat_gateway_enabled = true`
+
+These automatically created route tables comes with automatic rules, that cannot be controlled by the module user.
+
+== internet-route route table
+
+internet-route is meant to be attached to public subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the Internet Gateway created by this module: `0.0.0.0/0 --> Internet Gateway`.
+
+== nat-route route table
+
+nat-route table is meant to be attached to private subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the NAT Gateway created by this module: `0.0.0.0/0 --> NAT Gateway`.
+
+If a Service Gateway is also created by the module with `service_gateway_enabled = true`, a second rule is added to redirect all Oracle Network Services traffic to the Service Gateway created by this module: `All <REGION> services in OSN --> Service Gateway`
+
+== Custom routes
+
+terraform-oci-vcn modules have two optional Input Variables to inject user defined route rules into `internet-route` route table and `nat-route` route table using respectively:
+
+- `internet_gateway_route_rules` with the following schema:
+
+[source,hcl]
+----
+variable "internet_gateway_route_rules" {
+  description = "(Updatable) List of routing rules to add to NAT Gateway Routing Table"
+  type = list(object({
+    destination       = string
+    destination_type  = string
+    network_entity_id = string
+    description       = string
+  }))
+  default = null
+}
+----
+
+- `nat_gateway_route_rules` with the following schema:
+
+[source,hcl]
+----
+variable "nat_gateway_route_rules" {
+  description = "(Updatable) List of routing rules to add to NAT Gateway Routing Table"
+  type = list(object({
+    destination       = string
+    destination_type  = string
+    network_entity_id = string
+    description       = string
+  }))
+  default = null
+}
+----
+
+They share the same schema but each Input Variable controls the associated route table:
+
+- `destination` accept string value and represent the CIDR that will be affected by the rule,
+- `destination_type` accept string value, with `CIDR_BLOCK` or `SERVICE_CIDR_BLOCK` as valid values,
+- `network_entity_id` accept string value and represent the gateway to be the target of the rule,
+- `description` accept arbitrary string value and give context about the goal of the rule.
+
+=== special values for `network_entity_id`
+
+For routing rules targeting a Gateway created by the module, `network_entity_id` accepts some special strings to automatically retrieve the gateway ocid.
+
+- `internet_gateway_route_rules` and `nat_gateway_route_rules` recognise the `"drg"` string and resolve it to the DRG ocid created by the module,
+- `internet_gateway_route_rules` recognise the `"internet_gateway"` string and resolve it to the Internet Gateway ocid created by the module,
+- `nat_gateway_route_rules` recognise the `"nat_gateway"` string and resolve it to the NAT Gateway ocid created by the module.
+
+=== generic values for `network_entity_id`
+
+If you need to create a routing rule with a target gateway created outside of the module, you simply have to pass the gateway OCID using any valid Terraform method (any {uri-tf-namedvalues}[Named Value]). This is particularly useful for route rules targeting {uri-oci-lpg}[Local Peering Gateways], as they are currently not supported by terraform-oci-vcn modules.
+
+== Examples
+
+For example configuration using this option, see link:examples/custom_route_rules/README.md[examples/custom_route_rules]

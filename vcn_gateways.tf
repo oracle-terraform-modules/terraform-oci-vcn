@@ -23,8 +23,52 @@ resource "oci_core_route_table" "ig" {
   freeform_tags = var.tags
 
   route_rules {
+    # * With this route table, Internet Gateway is always declared as the default gateway
     destination       = local.anywhere
     network_entity_id = oci_core_internet_gateway.ig[0].id
+    description       = "Terraformed - Auto-generated at Internet Gateway creation: Internet Gateway as default gateway"
+  }
+
+  dynamic "route_rules" {
+    # * filter var.internet_gateway_route_rules for routes with "drg" as destination
+    # * and steer traffic to the module created DRG
+    for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
+    if v.network_entity_id == "drg" } : {}
+
+    content {
+      destination       = route_rules.value.destination
+      destination_type  = route_rules.value.destination_type
+      network_entity_id = oci_core_drg.drg[0].id
+      description       = route_rules.value.description
+    }
+  }
+
+  dynamic "route_rules" {
+    # * filter var.internet_gateway_route_rules for routes with "internet_gateway" as destination
+    # * and steer traffic to the module created Internet Gateway
+    for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
+    if v.network_entity_id == "internet_gateway" } : {}
+
+    content {
+      destination       = route_rules.value.destination
+      destination_type  = route_rules.value.destination_type
+      network_entity_id = oci_core_internet_gateway.ig[0].id
+      description       = route_rules.value.description
+    }
+  }
+
+  dynamic "route_rules" {
+    # * filter var.internet_gateway_route_rules for generic routes
+    # * can take a string, a variable, a local, a data source, a resource, a module output ...
+    for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
+    if contains(["drg", "internet_gateway"], v.network_entity_id) == false } : {}
+
+    content {
+      destination       = route_rules.value.destination
+      destination_type  = route_rules.value.destination_type
+      network_entity_id = route_rules.value.network_entity_id
+      description       = route_rules.value.description
+    }
   }
 
   vcn_id = oci_core_vcn.vcn.id
@@ -39,6 +83,15 @@ data "oci_core_services" "all_oci_services" {
   filter {
     name   = "name"
     values = ["All .* Services In Oracle Services Network"]
+    regex  = true
+  }
+  count = var.service_gateway_enabled == true ? 1 : 0
+}
+
+data "oci_core_services" "object_storage" {
+  filter {
+    name   = "name"
+    values = [".* Object Storage"]
     regex  = true
   }
   count = var.service_gateway_enabled == true ? 1 : 0
@@ -79,18 +132,64 @@ resource "oci_core_route_table" "nat" {
   freeform_tags = var.tags
 
   route_rules {
+    # * With this route table, NAT Gateway is always declared as the default gateway
     destination       = local.anywhere
     destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_nat_gateway.nat_gateway[0].id
+    description       = "Terraformed - Auto-generated at NAT Gateway creation: NAT Gateway as default gateway"
   }
 
   dynamic "route_rules" {
+    # * If Service Gateway is created with the module, automatically creates a rule to handle traffic for "all services" through Service Gateway
     for_each = var.service_gateway_enabled == true ? list(1) : []
 
     content {
       destination       = lookup(data.oci_core_services.all_oci_services[0].services[0], "cidr_block")
       destination_type  = "SERVICE_CIDR_BLOCK"
       network_entity_id = oci_core_service_gateway.service_gateway[0].id
+      description       = "Terraformed - Auto-generated at Service Gateway creation: All Services in region to Service Gateway"
+    }
+  }
+
+  dynamic "route_rules" {
+    # * filter var.nat_gateway_route_rules for routes with "drg" as destination
+    # * and steer traffic to the module created DRG
+    for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
+    if v.network_entity_id == "drg" } : {}
+
+    content {
+      destination       = route_rules.value.destination
+      destination_type  = route_rules.value.destination_type
+      network_entity_id = oci_core_drg.drg[0].id
+      description       = route_rules.value.description
+    }
+  }
+
+  dynamic "route_rules" {
+    # * filter var.nat_gateway_route_rules for routes with "nat_gateway" as destination
+    # * and steer traffic to the module created NAT Gateway
+    for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
+    if v.network_entity_id == "nat_gateway" } : {}
+
+    content {
+      destination       = route_rules.value.destination
+      destination_type  = route_rules.value.destination_type
+      network_entity_id = oci_core_nat_gateway.nat_gateway[0].id
+      description       = route_rules.value.description
+    }
+  }
+
+  dynamic "route_rules" {
+    # * filter var.nat_gateway_route_rules for generic routes
+    # * can take a string, a variable, a local, a data source, a resource, a module output ...
+    for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
+    if contains(["drg", "nat_gateway"], v.network_entity_id) == false } : {}
+
+    content {
+      destination       = route_rules.value.destination
+      destination_type  = route_rules.value.destination_type
+      network_entity_id = route_rules.value.network_entity_id
+      description       = route_rules.value.description
     }
   }
 
