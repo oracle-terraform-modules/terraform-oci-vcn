@@ -38,33 +38,8 @@ module "vcn" {
 
   # routing rules
 
-  internet_gateway_route_rules = local.internet_gateway_route_rules # this module input shows how to pass routing information to the vcn module through Local Values.
-  nat_gateway_route_rules = [                                       # this module input shows how to pass routing information to the vcn module inline, directly on the vcn module block
-    {
-      destination       = "192.168.0.0/16" # Route Rule Destination CIDR
-      destination_type  = "CIDR_BLOCK"     # only CIDR_BLOCK is supported at the moment
-      network_entity_id = "drg"            # for nat_gateway_route_rules input variable, you can use special strings "drg", "nat_gateway" or pass a valid OCID using string or any Named Values
-      description       = "Terraformed - User added Routing Rule: To drg created by this module. drg_id is automatically retrieved with keyword drg"
-    },
-    {
-      destination       = "172.16.0.0/16"
-      destination_type  = "CIDR_BLOCK"
-      network_entity_id = module.vcn.drg_id
-      description       = "Terraformed - User added Routing Rule: To drg with drg_id directly passed by user. Useful for gateways created outside of vcn module"
-    },
-    {
-      destination       = "203.0.113.0/24" # rfc5737 (TEST-NET-3)
-      destination_type  = "CIDR_BLOCK"
-      network_entity_id = "nat_gateway"
-      description       = "Terraformed - User added Routing Rule: To NAT Gateway created by this module. nat_gateway_id is automatically retrieved with keyword nat_gateway"
-    },
-    {
-      destination       = "192.168.1.0/24"
-      destination_type  = "CIDR_BLOCK"
-      network_entity_id = oci_core_local_peering_gateway.lpg.id
-      description       = "Terraformed - User added Routing Rule: To lpg with lpg_id directly passed by user. Useful for gateways created outside of vcn module"
-    },
-  ]
+  internet_gateway_route_rules = var.internet_gateway_route_rules # this module input shows how to pass routing information to the vcn module through  Variable Input. Can be initialized in a *.tfvars or *.auto.tfvars file
+  nat_gateway_route_rules      = local.nat_gateway_route_rules    # this module input shows how to pass routing information to the vcn module through Local Values.
 }
 
 resource "oci_core_local_peering_gateway" "lpg" {
@@ -72,37 +47,6 @@ resource "oci_core_local_peering_gateway" "lpg" {
   compartment_id = var.compartment_id
   vcn_id         = module.vcn.vcn_id
   display_name   = "terraform-oci-lpg"
-}
-
-# Locals
-
-locals {
-  internet_gateway_route_rules = [ # this is a local that can be used to pass routing information to vcn module for either route tables
-    {
-      destination       = "192.168.0.0/16" # Route Rule Destination CIDR
-      destination_type  = "CIDR_BLOCK"     # only CIDR_BLOCK is supported at the moment
-      network_entity_id = "drg"            # for internet_gateway_route_rules input variable, you can use special strings "drg", "internet_gateway" or pass a valid OCID using string or any Named Values
-      description       = "Terraformed - User added Routing Rule: To drg created by this module. drg_id is automatically retrieved with keyword drg"
-    },
-    {
-      destination       = "172.16.0.0/16"
-      destination_type  = "CIDR_BLOCK"
-      network_entity_id = module.vcn.drg_id
-      description       = "Terraformed - User added Routing Rule: To drg with drg_id directly passed by user. Useful for gateways created outside of vcn module"
-    },
-    {
-      destination       = "203.0.113.0/24" # rfc5737 (TEST-NET-3)
-      destination_type  = "CIDR_BLOCK"
-      network_entity_id = "internet_gateway"
-      description       = "Terraformed - User added Routing Rule: To Internet Gateway created by this module. internet_gateway_id is automatically retrieved with keyword internet_gateway"
-    },
-    {
-      destination       = "192.168.1.0/24"
-      destination_type  = "CIDR_BLOCK"
-      network_entity_id = oci_core_local_peering_gateway.lpg.id
-      description       = "Terraformed - User added Routing Rule: To lpg with lpg_id directly passed by user. Useful for gateways created outside of vcn module"
-    },
-  ]
 }
 
 # Outputs
@@ -116,4 +60,9 @@ output "module_vcn" {
     service_gateway_id  = module.vcn.service_gateway_id
     vcn_id              = module.vcn.vcn_id
   }
+}
+
+output "local_peering_gateway" {
+  description = "local peering gateways information"
+  value       = oci_core_local_peering_gateway.lpg.id
 }

@@ -59,7 +59,8 @@ resource "oci_core_route_table" "ig" {
 
   dynamic "route_rules" {
     # * filter var.internet_gateway_route_rules for generic routes
-    # * can take a string, a variable, a local, a data source, a resource, a module output ...
+    # * can take any Named Value : String, Input Variable, Local Value, Data Source, Resource, Module Output ...
+    # * useful for gateways that are not managed by the module
     for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
     if contains(["drg", "internet_gateway"], v.network_entity_id) == false } : {}
 
@@ -83,15 +84,6 @@ data "oci_core_services" "all_oci_services" {
   filter {
     name   = "name"
     values = ["All .* Services In Oracle Services Network"]
-    regex  = true
-  }
-  count = var.service_gateway_enabled == true ? 1 : 0
-}
-
-data "oci_core_services" "object_storage" {
-  filter {
-    name   = "name"
-    values = [".* Object Storage"]
     regex  = true
   }
   count = var.service_gateway_enabled == true ? 1 : 0
@@ -141,7 +133,7 @@ resource "oci_core_route_table" "nat" {
 
   dynamic "route_rules" {
     # * If Service Gateway is created with the module, automatically creates a rule to handle traffic for "all services" through Service Gateway
-    for_each = var.service_gateway_enabled == true ? list(1) : []
+    for_each = var.service_gateway_enabled == true ? [1] : []
 
     content {
       destination       = lookup(data.oci_core_services.all_oci_services[0].services[0], "cidr_block")
@@ -180,8 +172,9 @@ resource "oci_core_route_table" "nat" {
   }
 
   dynamic "route_rules" {
-    # * filter var.nat_gateway_route_rules for generic routes
-    # * can take a string, a variable, a local, a data source, a resource, a module output ...
+    # * filter var.internet_gateway_route_rules for generic routes
+    # * can take any Named Value : String, Input Variable, Local Value, Data Source, Resource, Module Output ...
+    # * useful for gateways that are not managed by the module
     for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
     if contains(["drg", "nat_gateway"], v.network_entity_id) == false } : {}
 
