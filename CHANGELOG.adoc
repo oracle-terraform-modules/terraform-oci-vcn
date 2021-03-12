@@ -19,6 +19,7 @@ Given a version number MAJOR.MINOR.PATCH:
 === New features
 * added a new parameter to create a DRG and attach it to VCN (fixes #16)
 * added gateway custom display names: drg (related to issue #30)
+* added new outputs for each provisioned resources: "all_attributes" outputs have full provider coverage and are auto-updating.
 
 === Changes
 * module examples
@@ -31,6 +32,7 @@ Given a version number MAJOR.MINOR.PATCH:
 
 === Fixes
 * added CHANGELOG entry for v2.0.0 (fixes #19)
+* update legacy (attributes only) splat syntax in outputs
 
 === Deprecation notice
 
