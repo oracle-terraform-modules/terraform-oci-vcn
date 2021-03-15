@@ -44,7 +44,7 @@ terraform-oci-vcn modules have two optional Input Variables to inject user defin
 [source,hcl]
 ----
 variable "internet_gateway_route_rules" {
-  description = "(Updatable) List of routing rules to add to NAT Gateway Routing Table"
+  description = "(Updatable) List of routing rules to add to Internet Gateway Routing Table"
   type = list(object({
     destination       = string
     destination_type  = string
