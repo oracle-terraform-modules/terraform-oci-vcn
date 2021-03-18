@@ -18,16 +18,19 @@ Given a version number MAJOR.MINOR.PATCH:
 
 === New features
 * added a new parameter to create a DRG and attach it to VCN (fixes #16)
+* added support for custom routing rules to provisioned route tables (fixes #17)
 * added gateway custom display names: drg (related to issue #30)
 
 === Changes
 * module examples
 ** added Terraform minimum version to 0.13 and OCI provider minimum version to 4.0.0
-** changed module block to use only variables from variables.tf instead of hardcoded values
+** changed module block of the main example to use variables from variables.tf instead of hardcoded values
 ** changed default label prefix to "terraform-oci"
 ** added outputs for cli feedback
+** added a new example config for custom routing rules
 * added oci provider minimum version to 4.0.0
 * documentation update: coding conventions
+* added `service_gateway_id` output
 
 === Fixes
 * added CHANGELOG entry for v2.0.0 (fixes #19)

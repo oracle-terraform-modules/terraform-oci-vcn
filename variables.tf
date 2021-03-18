@@ -92,3 +92,27 @@ variable "drg_display_name" {
   type        = string
   default     = null
 }
+
+# routing rules
+
+variable "internet_gateway_route_rules" {
+  description = "(Updatable) List of routing rules to add to Internet Gateway Route Table"
+  type = list(object({
+    destination       = string
+    destination_type  = string
+    network_entity_id = string
+    description       = string
+  }))
+  default = null
+}
+
+variable "nat_gateway_route_rules" {
+  description = "(Updatable) List of routing rules to add to NAT Gateway Route Table"
+  type = list(object({
+    destination       = string
+    destination_type  = string
+    network_entity_id = string
+    description       = string
+  }))
+  default = null
+}

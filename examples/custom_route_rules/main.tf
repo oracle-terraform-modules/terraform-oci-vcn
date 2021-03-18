@@ -16,7 +16,7 @@ terraform {
 # Resources
 
 module "vcn" {
-  source = "../"
+  source = "../../"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -35,6 +35,18 @@ module "vcn" {
 
   # gateways parameters
   drg_display_name = var.drg_display_name
+
+  # routing rules
+
+  internet_gateway_route_rules = var.internet_gateway_route_rules # this module input shows how to pass routing information to the vcn module through  Variable Input. Can be initialized in a *.tfvars or *.auto.tfvars file
+  nat_gateway_route_rules      = local.nat_gateway_route_rules    # this module input shows how to pass routing information to the vcn module through Local Values.
+}
+
+resource "oci_core_local_peering_gateway" "lpg" {
+  # this is a Local Peering Gateway created to demonstrate how to use a gateway generated outside of the module as a target for a routing rule
+  compartment_id = var.compartment_id
+  vcn_id         = module.vcn.vcn_id
+  display_name   = "terraform-oci-lpg"
 }
 
 # Outputs
@@ -48,4 +60,9 @@ output "module_vcn" {
     service_gateway_id  = module.vcn.service_gateway_id
     vcn_id              = module.vcn.vcn_id
   }
+}
+
+output "local_peering_gateway" {
+  description = "local peering gateways information"
+  value       = oci_core_local_peering_gateway.lpg.id
 }
