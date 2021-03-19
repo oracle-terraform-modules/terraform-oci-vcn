@@ -24,12 +24,12 @@ module "vcn" {
   tags           = var.tags
 
   # vcn parameters
-  create_drg               = var.create_drg
-  internet_gateway_enabled = var.internet_gateway_enabled
-  lockdown_default_seclist = var.lockdown_default_seclist
-  nat_gateway_enabled      = var.nat_gateway_enabled
-  service_gateway_enabled  = var.service_gateway_enabled
-  vcn_cidr                 = var.vcn_cidr
+  create_drg               = var.create_drg               # boolean: true or false
+  internet_gateway_enabled = var.internet_gateway_enabled # boolean: true or false
+  lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
+  nat_gateway_enabled      = var.nat_gateway_enabled      # boolean: true or false
+  service_gateway_enabled  = var.service_gateway_enabled  # boolean: true or false
+  vcn_cidr                 = var.vcn_cidr                 # VCN CIDR
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
 
@@ -48,11 +48,11 @@ output "module_vcn_ids" {
     nat_gateway_id               = module.vcn.nat_gateway_id
     nat_gateway_route_id         = module.vcn.nat_route_id
     service_gateway_id           = module.vcn.service_gateway_id
-    vcn_id                       = module.vcn.vcn_id
     vcn_dns_label                = module.vcn.vcn_all_attributes.dns_label
     vcn_default_security_list_id = module.vcn.vcn_all_attributes.default_security_list_id
     vcn_default_route_table_id   = module.vcn.vcn_all_attributes.default_route_table_id
     vcn_default_dhcp_options_id  = module.vcn.vcn_all_attributes.default_dhcp_options_id
+    vcn_id                       = module.vcn.vcn_id  
   }
 }
 
