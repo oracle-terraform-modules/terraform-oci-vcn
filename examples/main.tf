@@ -52,7 +52,7 @@ output "module_vcn_ids" {
     vcn_default_security_list_id = module.vcn.vcn_all_attributes.default_security_list_id
     vcn_default_route_table_id   = module.vcn.vcn_all_attributes.default_route_table_id
     vcn_default_dhcp_options_id  = module.vcn.vcn_all_attributes.default_dhcp_options_id
-    vcn_id                       = module.vcn.vcn_id  
+    vcn_id                       = module.vcn.vcn_id
   }
 }
 

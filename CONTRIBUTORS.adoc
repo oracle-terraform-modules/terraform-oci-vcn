@@ -1,8 +1,8 @@
 == GitHub userids of contributors
 
-=== OWNERS
+=== Maintainers
 
-_Owners have admin access and can merge code to master_
+_maintainers have admin access and can merge code to main_
 
 - https://github.com/hyder[@hyder]
 - https://github.com/markxnelson[@markxnelson]

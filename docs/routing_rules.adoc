@@ -12,8 +12,8 @@ endif::[]
 :toc:
 
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
-:uri-rel-file-base: link:{uri-repo}/blob/master
-:uri-rel-tree-base: link:{uri-repo}/tree/master
+:uri-rel-file-base: link:{uri-repo}/blob/main
+:uri-rel-tree-base: link:{uri-repo}/tree/main
 :uri-docs: {uri-rel-file-base}/docs
 :uri-tf-namedvalues: https://www.terraform.io/docs/language/expressions/references.html
 :uri-oci-lpg: https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_local_peering_gateway
