@@ -6,8 +6,8 @@
 :toc:
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
 
-:uri-rel-file-base: link:{uri-repo}/blob/master
-:uri-rel-tree-base: link:{uri-repo}/tree/master
+:uri-rel-file-base: link:{uri-repo}/blob/main
+:uri-rel-tree-base: link:{uri-repo}/tree/main
 
 :uri-docs: {uri-rel-file-base}/docs
 :uri-oci-region: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm

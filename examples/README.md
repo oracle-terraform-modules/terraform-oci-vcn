@@ -1,14 +1,14 @@
 # Example reusing terraform-oci-vcn and extending to create other network resources
 
-[rootvariables]:https://github.com/oracle/terraform-oci-vcn/blob/master/examples/db/variables.tf
-[rootlocals]:https://github.com/oracle/terraform-oci-vcn/blob/master/examples/db/locals.tf
-[terraformoptions]:https://github.com/oracle/terraform-oci-vcn/blob/master/docs/terraformoptions.adoc
+[rootvariables]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/examples/variables.tf
+[terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
+[terraform-oci-vcn]:https://registry.terraform.io/modules/oracle-terraform-modules/vcn/oci/latest
 
 __Note: This is an example to demonstrate reusing this Terraform module to create additional network resources. Ensure you evaluate your own security needs when creating security lists, network security groups etc.__
 
 ## Create a new Terraform project
 
-As an example, we’ll be using terraform-oci-vcn to create
+As an example, we’ll be using [terraform-oci-vcn] to create
 additional network resources in the VCN. The steps required are the following:
 
 1. Create a new directory for your project e.g. mynetwork
@@ -44,10 +44,10 @@ cd modules
 5. Add the terraform-oci-vcn module
 
 ```shell
-git clone https://github.com/oracle/terraform-oci-vcn.git vcn
+git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git vcn
 ```
 
-Note: Cloning will be required until the module is published in HashiCorp's registry.
+Note: Cloning is now optional as [the module is published in HashiCorp's registry][terraform-oci-vcn].
 
 ## Define project variables
 

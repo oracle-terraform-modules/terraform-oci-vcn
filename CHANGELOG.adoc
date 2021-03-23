@@ -14,27 +14,25 @@ Given a version number MAJOR.MINOR.PATCH:
 - MINOR version when adding functionality in a backwards compatible manner,
 - PATCH version when making backwards compatible bug fixes.
 
-== v2.2.0 (unreleased)
+== v2.2.0 (March, 23, 2021)
 
 === New features
 * added a new parameter to create a DRG and attach it to VCN (fixes #16)
 * added support for custom routing rules to provisioned route tables (fixes #17)
-* added gateway custom display names: drg (related to issue #30)
-* added new outputs for each provisioned resources: "all_attributes" outputs have full provider coverage and are auto-updating.
+* added new outputs for each provisioned resources: "all_attributes" outputs have full provider coverage and are auto-updating. (fixes #34)
+* added `service_gateway_id` output
 
 === Changes
+* oci provider minimum version to 4.0.0
 * module examples
 ** added Terraform minimum version to 0.13 and OCI provider minimum version to 4.0.0
-** changed module block of the main example to use variables from variables.tf instead of hardcoded values
 ** changed default label prefix to "terraform-oci"
 ** added outputs for cli feedback
 ** added a new example config for custom routing rules
-* added oci provider minimum version to 4.0.0
 * documentation update: coding conventions
-* added `service_gateway_id` output
+* repo: default branch renamed from `master` to `main`
 
 === Fixes
-* added CHANGELOG entry for v2.0.0 (fixes #19)
 * update legacy (attributes only) splat syntax in outputs
 
 === Deprecation notice

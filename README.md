@@ -5,12 +5,14 @@ The [Terraform VCN][repo] for [Oracle Cloud Infrastructure][OCI] provides a reus
 It creates the following resources:
 
 * A VCN with customizable CIDR block
-* An optional internet gateway
+* An optional internet gateway and a route table
 * An optional NAT gateway
 * An optional service gateway
 * An optional dynamic routing gateway
 
 It also controls the Default Security List, with a *Lockdown mode* that can be enabled or disabled.
+
+Custom route rules can be added to the two route tables created by the module.
 
 This module is primarily meant to be reusable to create more advanced infrastructure on [OCI][OCI] either manually in the OCI Console or by extending the Terraform code.
 
@@ -55,21 +57,21 @@ Licensed under the [Universal Permissive License 1.0][license] as shown at
 [https://oss.oracle.com/licenses/upl][canonical_license].
 
 <!-- Links reference section -->
-[changelog]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CHANGELOG.adoc
-[contributing]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CONTRIBUTING.adoc
-[contributors]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/CONTRIBUTORS.adoc
-[docs]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/tree/master/docs
+[changelog]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/CHANGELOG.adoc
+[contributing]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/CONTRIBUTING.adoc
+[contributors]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/CONTRIBUTORS.adoc
+[docs]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/tree/main/docs
 
-[license]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/LICENSE
+[license]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/LICENSE
 [canonical_license]: https://oss.oracle.com/licenses/upl/
 
 [oci]: https://cloud.oracle.com/cloud-infrastructure
 [oci_documentation]: https://docs.cloud.oracle.com/iaas/Content/home.htm
 
 [oracle]: https://www.oracle.com
-[prerequisites]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/prerequisites.adoc
+[prerequisites]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.adoc
 
-[quickstart]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/quickstart.adoc
+[quickstart]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/quickstart.adoc
 [repo]: https://github.com/oracle/terraform-oci-vcn
 [reuse]: https://github.com/oracle/terraform-oci-vcn/examples/db
 [subnets]: https://erikberg.com/notes/networks.html
@@ -77,7 +79,7 @@ Licensed under the [Universal Permissive License 1.0][license] as shown at
 [terraform_cidr_subnet]: http://blog.itsjustcode.net/blog/2017/11/18/terraform-cidrsubnet-deconstructed/
 [terraform_hashircorp_examples]: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
 [terraform_oci]: https://www.terraform.io/docs/providers/oci/index.html
-[terraform_options]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/terraformoptions.adoc
+[terraform_options]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
 [terraform_oci_examples]: https://github.com/terraform-providers/terraform-provider-oci/tree/master/examples
 [terraform_oci_oke]: https://github.com/oracle-terraform-modules/terraform-oci-oke
 <!-- Links reference section -->

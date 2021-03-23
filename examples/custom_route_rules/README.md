@@ -4,9 +4,9 @@
 [Input Variables]:https://www.terraform.io/docs/language/values/variables.html
 [Local Values]:https://www.terraform.io/docs/language/values/locals.html
 [Named Values]:https://www.terraform.io/docs/language/expressions/references.html
-[docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/docs/prerequisites.adoc
-[docs/terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/docs/terraformoptions.adoc
-[docs/routing_rules]:https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/docs/routing_rules.adoc
+[docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.adoc
+[docs/terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
+[docs/routing_rules]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/routing_rules.adoc
 [Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
 
 This example illustrates how to use `terraform-oci-vcn` module to create a vcn with gateways and custom routing rules.
@@ -27,7 +27,7 @@ In addition, a Local Peering Gateway is created at the root of the configuration
 
 This diagram shows what will be created by this example.
 
-![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/docs/images/custom_route_rules.drawio.PNG?raw=true&sanitize=true)
+![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/images/custom_route_rules.drawio.PNG?raw=true&sanitize=true)
 
 ## How to specify module Input Variables values
 

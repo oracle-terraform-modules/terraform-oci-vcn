@@ -5,8 +5,8 @@
 
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
 
-:uri-rel-file-base: link:{uri-repo}/blob/master
-:uri-rel-tree-base: link:{uri-repo}/tree/master
+:uri-rel-file-base: link:{uri-repo}/blob/main
+:uri-rel-tree-base: link:{uri-repo}/tree/main
 
 :uri-docs: {uri-rel-file-base}/docs
 
@@ -37,12 +37,14 @@ The {uri-repo}[Terraform VCN] for {uri-oci}[Oracle Cloud Infrastructure] (OCI) p
 It creates the following resources:
 
 * A VCN with customizable CIDR block
-* An optional internet gateway
-* An optional NAT gateway
+* An optional internet gateway and a route table
+* An optional NAT gateway and a route table
 * An optional service gateway
 * An optional dynamic routing gateway
 
-It also controls the Default Security List, with a *Lockdown mode* that can be enabled or disabled.
+It also controls the Default Security List, with a *Lockdown mode* that can be enabled or disabled
+
+Custom route rules can be added to the two route tables created by the module.
 
 This module is primarily meant to be reusable to create more advanced infrastructure on {uri-oci}[OCI] either manually in the OCI Console or by extending the Terraform code.
 
