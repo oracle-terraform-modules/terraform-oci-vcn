@@ -49,6 +49,12 @@ variable "internet_gateway_enabled" {
   type        = bool
 }
 
+variable "local_peering_gateways" {
+  description = "List of Local Peering Gateways to attach to the VCN."
+  type        = map(any)
+  default     = null
+}
+
 variable "lockdown_default_seclist" {
   description = "whether to remove all default security rules from the VCN Default Security List"
   default     = true
