@@ -22,12 +22,12 @@ Please include a summary of the change and which issue is fixed in the form of f
 If your are running automated testing for this module, we would love to hear from you, and potentially integrate it to the module standard workflow.
 
 <!---
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration.
+Please describe the tests that you ran to verify your changes and provide instructions so we can reproduce. Please also list any relevant details for your test configuration.
 --->
 
 ### Manual testing
 
-If no automated testing is run, please ensure that al least the three steps below are passing without any error.
+If no automated testing is run, please ensure that at least the three steps below are passing without any error.
 
 - [ ] Running `terraform apply` on each examples of this module provision the intended resources without any error
 - [ ] Modifying module Input Variables after initial provisioning act as intended: updatable properties gets updated without a resource recreate
@@ -42,3 +42,5 @@ If no automated testing is run, please ensure that al least the three steps belo
 - [ ] I updated all examples, including their README files and sample code blocks in it
 - [ ] My changes generate no new warnings
 - [ ] Any dependent changes have been merged and published in downstream modules
+
+Note: *If you are not an Oracle employee, to contribute to an Oracle-sponsored open-source project, you need to sign the [Oracle Contributor Agreement (OCA)](https://oca.opensource.oracle.com/).*
