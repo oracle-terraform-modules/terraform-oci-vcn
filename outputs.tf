@@ -59,6 +59,11 @@ output "ig_route_all_attributes" {
   value       = { for k, v in oci_core_route_table.ig : k => v }
 }
 
+output "lpg_all_attributes" {
+  description = "all attributes of created lpg"
+  value       = { for k, v in oci_core_local_peering_gateway.lpg : k => v }
+}
+
 output "nat_gateway_all_attributes" {
   description = "all attributes of created nat gateway"
   value       = { for k, v in oci_core_nat_gateway.nat_gateway : k => v }
