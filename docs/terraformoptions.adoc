@@ -111,6 +111,11 @@ tags = {
 |true/false
 |false
 
+|nat_gateway_public_ip_id
+|OCID of reserved IP address for NAT gateway. If default value "none" is used, then a public IP address is selected from Oracle's public IP pool.
+|
+|none
+
 |`nat_gateway_route_rules`
 |(Updatable) List of routing rules to add to NAT Gateway Route Table
 |e.g.
