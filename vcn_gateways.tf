@@ -112,6 +112,8 @@ resource "oci_core_nat_gateway" "nat_gateway" {
 
   freeform_tags = var.tags
 
+  public_ip_id = var.nat_gateway_public_ip_id != "none" ? var.nat_gateway_public_ip_id : null
+
   vcn_id = oci_core_vcn.vcn.id
 
   count = var.nat_gateway_enabled == true ? 1 : 0

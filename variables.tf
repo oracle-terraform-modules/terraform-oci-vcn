@@ -62,6 +62,12 @@ variable "nat_gateway_enabled" {
   type        = bool
 }
 
+variable "nat_gateway_public_ip_id" {
+  description = "OCID of reserved IP address for NAT gateway. The reserved public IP address needs to be manually created."
+  default     = "none"
+  type        = string
+}
+
 variable "service_gateway_enabled" {
   #! Deprecation notice: will be renamed to create_service_gateway at next major release
   description = "whether to create a service gateway. If set to true, creates a service gateway."

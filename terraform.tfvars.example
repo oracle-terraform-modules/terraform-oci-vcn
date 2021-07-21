@@ -16,6 +16,8 @@ internet_gateway_enabled = false
 
 nat_gateway_enabled = false
 
+nat_gateway_public_ip_id = "none"
+
 service_gateway_enabled = false
 
 vcn_cidr = "10.0.0.0/16"
