@@ -14,6 +14,11 @@ Given a version number MAJOR.MINOR.PATCH:
 - MINOR version when adding functionality in a backwards compatible manner,
 - PATCH version when making backwards compatible bug fixes.
 
+== v2.3.0 (July 21, 2021)
+
+=== New features
+* added a new parameter to support reserved IP address for the NAT gateway (fixes #14)
+
 == v2.2.0 (March, 23, 2021)
 
 === New features
