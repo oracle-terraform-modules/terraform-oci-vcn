@@ -88,7 +88,7 @@ For routing rules targeting a Gateway created by the module, `network_entity_id`
 
 === generic values for `network_entity_id`
 
-If you need to create a routing rule with a target gateway created outside of the module, you simply have to pass the gateway OCID using any valid Terraform method (any {uri-tf-namedvalues}[Named Value]). This is particularly useful for route rules targeting {uri-oci-lpg}[Local Peering Gateways], as they are currently not supported by terraform-oci-vcn modules.
+If you need to create a routing rule with a target gateway created outside of the module, you can simply provide the resource OCID using a valid Terraform method (any {uri-tf-namedvalues}[Named Value]).
 
 == Examples
 

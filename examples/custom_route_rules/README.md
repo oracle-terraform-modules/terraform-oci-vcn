@@ -25,7 +25,7 @@ Two Route Tables also are created by the module:
 
 In addition, a Local Peering Gateway is created at the root of the configuration (not managed by the module) : `terraform-oci-lpg`
 
-This diagram shows what will be created by this example.
+This diagram illustrates what will be created by this example.
 
 ![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/images/custom_route_rules.drawio.PNG?raw=true&sanitize=true)
 
