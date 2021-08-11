@@ -27,6 +27,5 @@ vcn_dns_label = "vcn"
 vcn_name = "vcn"
 
 tags = {
-  department  = "finance"
   environment = "dev"
 }
