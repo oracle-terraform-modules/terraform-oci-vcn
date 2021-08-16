@@ -101,6 +101,25 @@ tags = {
 ----
 |null
 
+|`local_peering_gateways`
+|List of Local Peering Gateways to attach to the VCN
+| e.g.
+[source]
+----
+  local_peering_gateways = {
+    to_spoke1 = {
+      peer_id = <string>
+      route_table_id = <string>
+      }
+    to_spoke2 = {
+      peer_id = <string>
+      route_table_id = <string>
+      }
+  }
+----
+
+|null
+
 |`lockdown_default_seclist`
 |whether to remove all default security rules from the VCN Default Security List
 |true/false

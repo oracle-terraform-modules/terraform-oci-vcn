@@ -212,3 +212,21 @@ resource "oci_core_drg_attachment" "drg" {
 
   count = var.create_drg == true ? 1 : 0
 }
+
+#############################
+# Local Peering Gateway (LPG)
+#############################
+
+resource "oci_core_local_peering_gateway" "lpg" {
+  for_each       = var.local_peering_gateways != null ? var.local_peering_gateways : {}
+  compartment_id = var.compartment_id
+  display_name   = var.label_prefix == "none" ? each.key : "${var.label_prefix}-${each.key}"
+
+  freeform_tags = var.tags
+
+  vcn_id = oci_core_vcn.vcn.id
+
+  #Optional
+  peer_id        = can(each.value.peer_id) == false ? null : each.value.peer_id
+  route_table_id = can(each.value.route_table_id) == false ? null : each.value.route_table_id
+}
