@@ -14,10 +14,16 @@ Given a version number MAJOR.MINOR.PATCH:
 - MINOR version when adding functionality in a backwards compatible manner,
 - PATCH version when making backwards compatible bug fixes.
 
-== v2.4.0 (unreleased)
+== v3.0.0 (Unreleased)
+
+=== Breaking changes
+* Set minimum Terraform version to 1.0.0 (fixes #49)
 
 === New features
-** added support for local peering gateways (fixes #38)
+* added support for local peering gateways (fixes #38)
+
+=== Other minor changes
+* Updated default tag values
 
 == v2.3.0 (July 21, 2021)
 
