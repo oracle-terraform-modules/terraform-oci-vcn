@@ -88,10 +88,10 @@ variable "tags" {
   }
 }
 
-variable "vcn_cidr" {
-  description = "cidr block of VCN"
-  type        = string
-  default     = "10.0.0.0/16"
+variable "vcn_cidrs" {
+  description = "The list of IPv4 CIDR blocks the VCN will use."
+  type        = list(string)
+  default     = ["10.0.0.0/16"]
 }
 
 variable "vcn_dns_label" {
@@ -145,7 +145,7 @@ locals {
       destination       = "203.0.113.0/24" # rfc5737 (TEST-NET-3)
       destination_type  = "CIDR_BLOCK"
       network_entity_id = "nat_gateway"
-      description       = "Terraformed - User added Routing Rule: To NAT Gateway created by this module. nat_gateway_id is automatically retrieved with keyword nat_gateway"
+      description       = "Terraformed - User added Routing Rule: rfc5737 (TEST-NET-3) To NAT Gateway created by this module. nat_gateway_id is automatically retrieved with keyword nat_gateway"
     },
     {
       destination       = "192.168.1.0/24"

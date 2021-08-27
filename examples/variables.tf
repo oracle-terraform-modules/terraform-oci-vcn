@@ -64,7 +64,7 @@ variable "internet_gateway_enabled" {
 variable "lockdown_default_seclist" {
   description = "whether to remove all default security rules from the VCN Default Security List"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "nat_gateway_enabled" {
@@ -88,10 +88,10 @@ variable "tags" {
   }
 }
 
-variable "vcn_cidr" {
-  description = "cidr block of VCN"
-  type        = string
-  default     = "10.0.0.0/16"
+variable "vcn_cidrs" {
+  description = "The list of IPv4 CIDR blocks the VCN will use."
+  type        = list(string)
+  default     = ["10.0.0.0/16", "172.16.0.0/16", "192.168.0.0/24"]
 }
 
 variable "vcn_dns_label" {

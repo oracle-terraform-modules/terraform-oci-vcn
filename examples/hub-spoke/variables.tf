@@ -88,10 +88,10 @@ variable "tags" {
   }
 }
 
-variable "vcn_cidr" {
-  description = "cidr block of VCN"
-  type        = string
-  default     = "10.0.0.0/16"
+variable "vcn_cidrs" {
+  description = "The list of IPv4 CIDR blocks the VCN will use."
+  type        = list(string)
+  default     = ["10.0.0.0/24"]
 }
 
 variable "vcn_dns_label" {

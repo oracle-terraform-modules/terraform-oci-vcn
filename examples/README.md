@@ -77,7 +77,7 @@ module "vcn" {
   create_drg               = var.create_drg
   drg_display_name         = var.drg_display_name
   tags                     = var.tags
-  vcn_cidr                 = var.vcn_cidr
+  vcn_cidrs                = var.vcn_cidrs
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
   lockdown_default_seclist = var.lockdown_default_seclist

@@ -4,7 +4,7 @@ The [Terraform VCN][repo] for [Oracle Cloud Infrastructure][OCI] provides a reus
 
 It creates the following resources:
 
-* A VCN with customizable CIDR block
+* A VCN with one or more customizable CIDR blocks
 * An optional internet gateway and a route table
 * An optional NAT gateway
 * An optional service gateway

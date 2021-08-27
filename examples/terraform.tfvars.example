@@ -29,11 +29,13 @@ nat_gateway_enabled = false
 
 service_gateway_enabled = false
 
-vcn_cidr = "10.0.0.0/16"
+vcn_cidrs = ["10.0.0.0/16", "172.16.0.0/16", "192.168.0.0/24"]
 
 vcn_dns_label = "vcn"
 
 vcn_name = "vcn"
+
+lockdown_default_seclist = false
 
 tags = {
   environment = "dev"

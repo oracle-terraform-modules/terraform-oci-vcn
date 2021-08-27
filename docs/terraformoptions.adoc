@@ -102,7 +102,7 @@ tags = {
 |null
 
 |`local_peering_gateways`
-|List of Local Peering Gateways to attach to the VCN
+|Map of Local Peering Gateways to attach to the VCN
 | e.g.
 [source]
 ----
@@ -163,7 +163,12 @@ tags = {
 |false
 
 |`vcn_cidr`
-|The VCN's CIDR block. The CIDR block specified for the VCN must not overlap with the CIDR block of another network.
+|DEPRECATED: The VCN's CIDR block. Please use `vcn_cidrs` instead.
+|
+|10.0.0.0/16
+
+|`vcn_cidrs`
+|The list of IPv4 CIDR blocks the VCN will use. The CIDR block specified for the VCN must not overlap with the CIDR block of another network.
 |
 |10.0.0.0/16
 

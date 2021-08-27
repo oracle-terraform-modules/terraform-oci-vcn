@@ -18,7 +18,7 @@ terraform {
 module "vcn_hub" {
   # this module use the generic vcn module and configure it to act as a hub in a hub-and-spoke topology 
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "2.4.0" # this is the first version supporting the LPG feature. Feel free to adjust for a newer version or remove the `version` line to get the latest version each time. 
+  version = "3.0.0-RC2"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -31,7 +31,7 @@ module "vcn_hub" {
   lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
   nat_gateway_enabled      = var.nat_gateway_enabled      # boolean: true or false
   service_gateway_enabled  = var.service_gateway_enabled  # boolean: true or false
-  vcn_cidr                 = var.vcn_cidr                 # VCN CIDR
+  vcn_cidrs                = var.vcn_cidrs                # List of IPv4 CIDRs
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
 
@@ -61,7 +61,7 @@ resource "oci_core_route_table" "VTR_spokes" {
 module "vcn_spoke1" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology 
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "2.4.0" # this is the first version supporting the LPG feature. Feel free to adjust for a newer version or remove the `version` line to get the latest version each time. 
+  version = "3.0.0-RC2"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -69,12 +69,12 @@ module "vcn_spoke1" {
   tags           = var.tags
 
   # vcn parameters
-  create_drg               = false         # boolean: true or false
-  internet_gateway_enabled = false         # boolean: true or false
-  lockdown_default_seclist = true          # boolean: true or false
-  nat_gateway_enabled      = false         # boolean: true or false
-  service_gateway_enabled  = false         # boolean: true or false
-  vcn_cidr                 = "10.0.1.0/24" # VCN CIDR
+  create_drg               = false           # boolean: true or false
+  internet_gateway_enabled = false           # boolean: true or false
+  lockdown_default_seclist = true            # boolean: true or false
+  nat_gateway_enabled      = false           # boolean: true or false
+  service_gateway_enabled  = false           # boolean: true or false
+  vcn_cidrs                = ["10.0.1.0/24"] # VCN CIDR
   vcn_dns_label            = "fraspoke1"
   vcn_name                 = "spoke1"
 
@@ -90,7 +90,7 @@ module "vcn_spoke1" {
 module "vcn_spoke2" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology 
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "2.4.0" # this is the first version supporting the LPG feature. Feel free to adjust for a newer version or remove the `version` line to get the latest version each time. 
+  version = "3.0.0-RC2"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -98,12 +98,12 @@ module "vcn_spoke2" {
   tags           = var.tags
 
   # vcn parameters
-  create_drg               = false         # boolean: true or false
-  internet_gateway_enabled = false         # boolean: true or false
-  lockdown_default_seclist = true          # boolean: true or false
-  nat_gateway_enabled      = false         # boolean: true or false
-  service_gateway_enabled  = false         # boolean: true or false
-  vcn_cidr                 = "10.0.2.0/24" # VCN CIDR
+  create_drg               = false           # boolean: true or false
+  internet_gateway_enabled = false           # boolean: true or false
+  lockdown_default_seclist = true            # boolean: true or false
+  nat_gateway_enabled      = false           # boolean: true or false
+  service_gateway_enabled  = false           # boolean: true or false
+  vcn_cidrs                = ["10.0.2.0/24"] # VCN CIDR
   vcn_dns_label            = "fraspoke2"
   vcn_name                 = "spoke2"
 
@@ -117,7 +117,7 @@ module "vcn_spoke2" {
 module "vcn_spoke3" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology 
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "2.4.0" # this is the first version supporting the LPG feature. Feel free to adjust for a newer version or remove the `version` line to get the latest version each time. 
+  version = "3.0.0-RC2"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -125,12 +125,12 @@ module "vcn_spoke3" {
   tags           = var.tags
 
   # vcn parameters
-  create_drg               = false         # boolean: true or false
-  internet_gateway_enabled = false         # boolean: true or false
-  lockdown_default_seclist = true          # boolean: true or false
-  nat_gateway_enabled      = false         # boolean: true or false
-  service_gateway_enabled  = false         # boolean: true or false
-  vcn_cidr                 = "10.0.3.0/24" # VCN CIDR
+  create_drg               = false           # boolean: true or false
+  internet_gateway_enabled = false           # boolean: true or false
+  lockdown_default_seclist = true            # boolean: true or false
+  nat_gateway_enabled      = false           # boolean: true or false
+  service_gateway_enabled  = false           # boolean: true or false
+  vcn_cidrs                = ["10.0.3.0/24"] # VCN CIDR
   vcn_dns_label            = "fraspoke3"
   vcn_name                 = "spoke3"
 
