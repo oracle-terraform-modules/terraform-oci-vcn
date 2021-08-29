@@ -81,13 +81,6 @@ variable "service_gateway_enabled" {
   type        = bool
 }
 
-variable "vcn_cidr" {
-  #! Deprecated: please use vcn_cidrs instead
-  description = "DEPRECATED: cidr block of VCN. Please use vcn_cidrs instead."
-  default     = null
-  type        = string
-}
-
 variable "vcn_cidrs" {
   description = "The list of IPv4 CIDR blocks the VCN will use."
   default     = ["10.0.0.0/16"]
