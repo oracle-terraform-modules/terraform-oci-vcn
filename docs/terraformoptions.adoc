@@ -164,8 +164,12 @@ tags = {
 
 |`vcn_cidrs`
 |The list of IPv4 CIDR blocks the VCN will use. The CIDR block specified for the VCN must not overlap with the CIDR block of another network.
-|
-|10.0.0.0/16
+|e.g.
+[source]
+----
+["10.0.0.0/16", "172.16.0.0/16", "192.168.0.0/16"]
+----
+| `["10.0.0.0/16"]`
 
 |`vcn_dns_label`
 |The internal DNS domain for resources created and prepended to "oraclevcn.com" which is the VCN-internal domain name. *Required*
