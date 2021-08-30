@@ -1,6 +1,7 @@
 # Example reusing terraform-oci-vcn and extending to create other network resources
 
-[rootvariables]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/examples/variables.tf
+[rootvariables]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/examples/module_composition/variables.tf
+[sampletfvars]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/examples/module_composition/terraform.tfvars.example
 [terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
 [terraform-oci-vcn]:https://registry.terraform.io/modules/oracle-terraform-modules/vcn/oci/latest
 
@@ -34,27 +35,12 @@ provider "oci" {
 }
 ```
 
-4. Create the modules directory
-
-```shell
-mkdir modules
-cd modules
-```
-
-5. Add the terraform-oci-vcn module
-
-```shell
-git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git vcn
-```
-
-Note: Cloning is now optional as [the module is published in HashiCorp's registry][terraform-oci-vcn].
-
 ## Define project variables
 
 ### Variables to reuse the vcn module
 
 1. Define the vcn parameters in the root `variables.tf`.
-See [`variables.tf`][rootvariables] in this directory.
+See an example for [`variables.tf`][rootvariables].
 
 2. Add additional variables if you need to.
 
@@ -64,7 +50,7 @@ See [`variables.tf`][rootvariables] in this directory.
 
 ```HCL
 module "vcn" {
-  source = "./modules/vcn"
+  source  = "oracle-terraform-modules/vcn/oci"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -84,7 +70,8 @@ module "vcn" {
 }
 ```
 
-2. Enter appropriate values for `terraform.tfvars`. Review [Terraform Options][terraformoptions] for reference
+2. Enter appropriate values for `terraform.tfvars`. Review [Terraform Options][terraformoptions] for reference.
+You can also use this example [terraform.tfvars][sampletfvars]. Just remove the `.example` extension.
 
 ## Add your own modules
 

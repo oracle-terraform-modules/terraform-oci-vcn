@@ -16,9 +16,8 @@ terraform {
 # Resources
 
 module "vcn" {
-  # source  = "oracle-terraform-modules/vcn/oci"
-  # version = "3.0.0-RC2"
-  source = "../.."
+  source  = "oracle-terraform-modules/vcn/oci"
+  version = "3.0.0"
 
   # general oci parameters
   compartment_id = var.compartment_id

@@ -31,7 +31,7 @@ Given a version number MAJOR.MINOR.PATCH:
 
 === Other minor changes
 * Updated default tag values
-* Updated all examples to use the new `vcn_cidrs` module Input Variable instead of the now deprecated `vcn_cidr`
+* Updated all examples with new features and using Terraform Registry
 
 == v2.3.0 (July 21, 2021)
 

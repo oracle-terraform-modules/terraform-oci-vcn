@@ -4,11 +4,11 @@ repos:
   hooks:
     - id: trailing-whitespace
       args: [--markdown-linebreak-ext=md]
-- repo: https://github.com/gruntwork-io/pre-commit
-  rev: v0.1.12 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
-  hooks:
-    - id: terraform-validate
-    # - id: terraform-fmt #* this version of tf-fmt detect problem and fails. You have to run tf fmt yourself
+# - repo: https://github.com/gruntwork-io/pre-commit
+#   rev: v0.1.12 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+#   hooks:
+#     - id: terraform-validate
+#     # - id: terraform-fmt #* this version of tf-fmt detect problem and fails. You have to run tf fmt yourself
 - repo: https://github.com/antonbabenko/pre-commit-terraform
   rev: v1.46.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
   hooks:
