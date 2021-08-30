@@ -29,7 +29,7 @@ nat_gateway_enabled = false
 
 service_gateway_enabled = false
 
-vcn_cidr = "10.0.0.0/16"
+vcn_cidrs = ["10.0.0.0/16"]
 
 vcn_dns_label = "vcn"
 

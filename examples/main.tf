@@ -29,7 +29,7 @@ module "vcn" {
   lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
   nat_gateway_enabled      = var.nat_gateway_enabled      # boolean: true or false
   service_gateway_enabled  = var.service_gateway_enabled  # boolean: true or false
-  vcn_cidr                 = var.vcn_cidr                 # VCN CIDR
+  vcn_cidrs                = var.vcn_cidrs                # List of IPv4 CIDRs
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
 

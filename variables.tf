@@ -50,7 +50,7 @@ variable "internet_gateway_enabled" {
 }
 
 variable "local_peering_gateways" {
-  description = "List of Local Peering Gateways to attach to the VCN."
+  description = "Map of Local Peering Gateways to attach to the VCN."
   type        = map(any)
   default     = null
 }
@@ -81,10 +81,10 @@ variable "service_gateway_enabled" {
   type        = bool
 }
 
-variable "vcn_cidr" {
-  description = "cidr block of VCN"
-  default     = "10.0.0.0/16"
-  type        = string
+variable "vcn_cidrs" {
+  description = "The list of IPv4 CIDR blocks the VCN will use."
+  default     = ["10.0.0.0/16"]
+  type        = list(string)
 }
 
 variable "vcn_dns_label" {

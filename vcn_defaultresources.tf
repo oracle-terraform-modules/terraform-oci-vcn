@@ -41,13 +41,16 @@ resource "oci_core_default_security_list" "restore_default" {
     }
   }
 
-  ingress_security_rules {
-    //allow all ICMP from VCN
-    protocol = "1"
-    source   = var.vcn_cidr
-
-    icmp_options {
-      type = "3"
+  dynamic "ingress_security_rules" {
+    //allow all ICMP from all VCN CIDRs
+    for_each = oci_core_vcn.vcn.cidr_blocks
+    iterator = vcn_cidr
+    content {
+      protocol = "1"
+      source   = vcn_cidr.value
+      icmp_options {
+        type = "3"
+      }
     }
   }
 
