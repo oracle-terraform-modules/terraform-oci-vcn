@@ -207,8 +207,11 @@ resource "oci_core_drg" "drg" {
 }
 
 resource "oci_core_drg_attachment" "drg" {
-  drg_id = oci_core_drg.drg[count.index].id
-  vcn_id = oci_core_vcn.vcn.id
+  drg_id       = oci_core_drg.drg[count.index].id
+  vcn_id       = oci_core_vcn.vcn.id
+  display_name = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-drg_to_${oci_core_vcn.vcn.display_name}"
+
+  freeform_tags = var.freeform_tags
 
   count = var.create_drg == true ? 1 : 0
 }
