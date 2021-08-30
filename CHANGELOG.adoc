@@ -19,7 +19,7 @@ Given a version number MAJOR.MINOR.PATCH:
 === Breaking changes
 * Changed minimum Terraform version to 1.0.0 (fixes #49)
 * Deprecated `vcn_cidr`, use `vcn_cidrs` instead (list of IPv4 CIDRs).
-* [ ] Deprecated previous gateway creation variable names. We now use imperative style, see codingconventions (fixes #24)
+* Deprecated previous gateway creation variable names. We now use imperative style, see codingconventions (fixes #24 and #54)
 
 === New features
 * added support for local peering gateways (fixes #38)

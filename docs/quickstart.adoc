@@ -96,9 +96,9 @@ variable "user_id" {
 
 . Optional parameters to override:
 
-* `internet_gateway_enabled`
-* `nat_gateway_enabled`
-* `service_gateway_enabled`
+* `create_internet_gateway`
+* `create_nat_gateway`
+* `create_service_gateway`
 * `tags`
 
 . Run Terraform:
@@ -165,9 +165,9 @@ cp terraform.tfvars.example terraform.tfvars
 . Optional parameters to override:
 
 * `create_drg`
-* `internet_gateway_enabled`
-* `nat_gateway_enabled`
-* `service_gateway_enabled`
+* `create_internet_gateway`
+* `create_nat_gateway`
+* `create_service_gateway`
 * `tags`
 
 . Run Terraform:

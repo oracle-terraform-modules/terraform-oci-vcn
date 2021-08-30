@@ -12,13 +12,13 @@ compartment_id = ""
 label_prefix = "none"
 
 # vcn parameters
-internet_gateway_enabled = false
+create_internet_gateway = false
 
-nat_gateway_enabled = false
+create_nat_gateway = false
 
 nat_gateway_public_ip_id = "none"
 
-service_gateway_enabled = false
+create_service_gateway = false
 
 vcn_cidr = "10.0.0.0/16"
 
@@ -26,7 +26,7 @@ vcn_dns_label = "vcn"
 
 vcn_name = "vcn"
 
-tags = {
+freeform_tags = {
   environment = "dev"
 }
 

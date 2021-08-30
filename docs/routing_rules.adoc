@@ -20,8 +20,8 @@ endif::[]
 
 When you create an Internet or a NAT gateway, terraform-oci-vcn modules automatically creates a dedicated route table for each gateway.
 
-- `<label_prefix>-internet-route` route table is created if `internet_gateway_enabled = true`
-- `<label_prefix>-nat-route` route table is created if `nat_gateway_enabled = true`
+- `<label_prefix>-internet-route` route table is created if `create_internet_gateway = true`
+- `<label_prefix>-nat-route` route table is created if `create_nat_gateway = true`
 
 These automatically created route tables comes with automatic rules, that cannot be controlled by the module user.
 
@@ -33,7 +33,7 @@ internet-route is meant to be attached to public subnets you provision. It comes
 
 nat-route table is meant to be attached to private subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the NAT Gateway created by this module: `0.0.0.0/0 --> NAT Gateway`.
 
-If a Service Gateway is also created by the module with `service_gateway_enabled = true`, a second rule is added to redirect all Oracle Network Services traffic to the Service Gateway created by this module: `All <REGION> services in OSN --> Service Gateway`
+If a Service Gateway is also created by the module with `create_service_gateway = true`, a second rule is added to redirect all Oracle Network Services traffic to the Service Gateway created by this module: `All <REGION> services in OSN --> Service Gateway`
 
 == Custom routes
 

@@ -16,21 +16,22 @@ terraform {
 # Resources
 
 module "vcn_hub" {
-  # this module use the generic vcn module and configure it to act as a hub in a hub-and-spoke topology 
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0-RC2"
+  # this module use the generic vcn module and configure it to act as a hub in a hub-and-spoke topology
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "3.0.0-RC2"
+  source = "../.."
 
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
-  tags           = var.tags
+  freeform_tags  = var.freeform_tags
 
   # vcn parameters
   create_drg               = var.create_drg               # boolean: true or false
-  internet_gateway_enabled = var.internet_gateway_enabled # boolean: true or false
+  create_internet_gateway  = var.create_internet_gateway  # boolean: true or false
   lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
-  nat_gateway_enabled      = var.nat_gateway_enabled      # boolean: true or false
-  service_gateway_enabled  = var.service_gateway_enabled  # boolean: true or false
+  create_nat_gateway       = var.create_nat_gateway       # boolean: true or false
+  create_service_gateway   = var.create_service_gateway   # boolean: true or false
   vcn_cidrs                = var.vcn_cidrs                # List of IPv4 CIDRs
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
@@ -59,21 +60,22 @@ resource "oci_core_route_table" "VTR_spokes" {
 }
 
 module "vcn_spoke1" {
-  # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology 
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0-RC2"
+  # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "3.0.0-RC2"
+  source = "../.."
 
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
-  tags           = var.tags
+  freeform_tags  = var.freeform_tags
 
   # vcn parameters
   create_drg               = false           # boolean: true or false
-  internet_gateway_enabled = false           # boolean: true or false
+  create_internet_gateway  = false           # boolean: true or false
   lockdown_default_seclist = true            # boolean: true or false
-  nat_gateway_enabled      = false           # boolean: true or false
-  service_gateway_enabled  = false           # boolean: true or false
+  create_nat_gateway       = false           # boolean: true or false
+  create_service_gateway   = false           # boolean: true or false
   vcn_cidrs                = ["10.0.1.0/24"] # VCN CIDR
   vcn_dns_label            = "fraspoke1"
   vcn_name                 = "spoke1"
@@ -88,21 +90,22 @@ module "vcn_spoke1" {
 }
 
 module "vcn_spoke2" {
-  # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology 
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0-RC2"
+  # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "3.0.0-RC2"
+  source = "../.."
 
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
-  tags           = var.tags
+  freeform_tags  = var.freeform_tags
 
   # vcn parameters
   create_drg               = false           # boolean: true or false
-  internet_gateway_enabled = false           # boolean: true or false
+  create_internet_gateway  = false           # boolean: true or false
   lockdown_default_seclist = true            # boolean: true or false
-  nat_gateway_enabled      = false           # boolean: true or false
-  service_gateway_enabled  = false           # boolean: true or false
+  create_nat_gateway       = false           # boolean: true or false
+  create_service_gateway   = false           # boolean: true or false
   vcn_cidrs                = ["10.0.2.0/24"] # VCN CIDR
   vcn_dns_label            = "fraspoke2"
   vcn_name                 = "spoke2"
@@ -115,21 +118,22 @@ module "vcn_spoke2" {
 }
 
 module "vcn_spoke3" {
-  # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology 
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0-RC2"
+  # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "3.0.0-RC2"
+  source = "../.."
 
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
-  tags           = var.tags
+  freeform_tags  = var.freeform_tags
 
   # vcn parameters
   create_drg               = false           # boolean: true or false
-  internet_gateway_enabled = false           # boolean: true or false
+  create_internet_gateway  = false           # boolean: true or false
   lockdown_default_seclist = true            # boolean: true or false
-  nat_gateway_enabled      = false           # boolean: true or false
-  service_gateway_enabled  = false           # boolean: true or false
+  create_nat_gateway       = false           # boolean: true or false
+  create_service_gateway   = false           # boolean: true or false
   vcn_cidrs                = ["10.0.3.0/24"] # VCN CIDR
   vcn_dns_label            = "fraspoke3"
   vcn_name                 = "spoke3"

@@ -24,12 +24,11 @@ variable "label_prefix" {
   default     = "none"
 }
 
-variable "tags" {
-  #! Deprecation notice: will be renamed to freeform_tags at next major release
-  description = "simple key-value pairs to tag the resources created using freeform tags."
+variable "freeform_tags" {
+  description = "simple key-value pairs to tag the resources created using freeform freeform_tags."
   type        = map(any)
   default = {
-    terraformed = "yes"
+    terraformed = "Please do not edit manually"
     module      = "oracle-terraform-modules/vcn/oci"
   }
 }
@@ -42,8 +41,7 @@ variable "create_drg" {
   default     = false
 }
 
-variable "internet_gateway_enabled" {
-  #! Deprecation notice: will be renamed to create_internet_gateway at next major release
+variable "create_internet_gateway" {
   description = "whether to create the internet gateway in the vcn. If set to true, creates an Internet Gateway."
   default     = false
   type        = bool
@@ -61,8 +59,7 @@ variable "lockdown_default_seclist" {
   type        = bool
 }
 
-variable "nat_gateway_enabled" {
-  #! Deprecation notice: will be renamed to create_nat_gateway at next major release
+variable "create_nat_gateway" {
   description = "whether to create a nat gateway in the vcn. If set to true, creates a nat gateway."
   default     = false
   type        = bool
@@ -74,8 +71,7 @@ variable "nat_gateway_public_ip_id" {
   type        = string
 }
 
-variable "service_gateway_enabled" {
-  #! Deprecation notice: will be renamed to create_service_gateway at next major release
+variable "create_service_gateway" {
   description = "whether to create a service gateway. If set to true, creates a service gateway."
   default     = false
   type        = bool

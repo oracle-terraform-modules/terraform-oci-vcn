@@ -65,18 +65,18 @@ See [`variables.tf`][rootvariables] in this directory.
 ```HCL
 module "vcn" {
   source = "./modules/vcn"
-  
+
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
 
   # vcn parameters
-  internet_gateway_enabled = var.internet_gateway_enabled
-  nat_gateway_enabled      = var.nat_gateway_enabled
-  service_gateway_enabled  = var.service_gateway_enabled
+  create_internet_gateway = var.create_internet_gateway
+  create_nat_gateway      = var.create_nat_gateway
+  create_service_gateway  = var.create_service_gateway
   create_drg               = var.create_drg
   drg_display_name         = var.drg_display_name
-  tags                     = var.tags
+  tags                     = var.freeform_tags
   vcn_cidrs                = var.vcn_cidrs
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
@@ -94,7 +94,7 @@ module "vcn" {
 mkdir subnets
 ```
 
-2. Define the additional variables(e.g. subnet masks) in the root and module variable file (`variables.tf`) e.g. 
+2. Define the additional variables(e.g. subnet masks) in the root and module variable file (`variables.tf`) e.g.
 
 ```HCL
 variable "netnum" {
@@ -153,7 +153,7 @@ resource "oci_core_security_list" "web" {
   ingress_security_rules {
     # allow ssh
     protocol = 6
-    
+
     source = "0.0.0.0"
 
     tcp_options {
@@ -192,10 +192,10 @@ resource "oci_core_subnet" "web" {
 ```HCL
 module "subnets" {
   source = "./modules/subnets"
-  
+
   netnum  = var.netnum
   newbits = var.newbits
-  
+
   # other required variables
   .
   .

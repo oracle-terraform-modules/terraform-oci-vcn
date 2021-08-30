@@ -36,7 +36,7 @@ toc::[]
 
 == Install Terraform
 
-Start by installing Terraform wth the proper package for your operating system and architecture. 
+Start by installing Terraform wth the proper package for your operating system and architecture.
 
 === Installing Terraform on Oracle Linux
 

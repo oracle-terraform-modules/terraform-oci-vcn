@@ -23,11 +23,11 @@ label_prefix = "dev"
 
 create_drg = false
 
-internet_gateway_enabled = false
+create_internet_gateway = false
 
-nat_gateway_enabled = false
+create_nat_gateway = false
 
-service_gateway_enabled = false
+create_service_gateway = false
 
 vcn_cidrs = ["10.0.0.0/16", "172.16.0.0/16", "192.168.0.0/24"]
 
@@ -37,7 +37,7 @@ vcn_name = "vcn"
 
 lockdown_default_seclist = false
 
-tags = {
+freeform_tags = {
   environment = "dev"
   lob = "finance"
 }

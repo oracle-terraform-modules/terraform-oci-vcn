@@ -85,5 +85,5 @@ Learn how to {uri-contribute}[contribute].
 
 Copyright &copy; 2019, 2021, Oracle and/or its associates.
 
-Licensed under the {uri-license}[Universal Permissive License 1.0] as shown at 
+Licensed under the {uri-license}[Universal Permissive License 1.0] as shown at
 {uri-canonical-license}[https://oss.oracle.com/licenses/upl].

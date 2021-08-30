@@ -15,7 +15,7 @@
 
 == Provider
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"]
 |===
 |Parameter
 |Description
@@ -31,7 +31,7 @@
 
 == General OCI
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"]
 |===
 |Parameter
 |Description
@@ -53,7 +53,7 @@
 
 == VCN
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"]
 |===
 |Parameter
 |Description
@@ -74,7 +74,7 @@ tags = {
   environment = "dev"
 }
 
-|`internet_gateway_enabled`
+|`create_internet_gateway`
 |Whether to create an internet gateway.
 |true/false
 |false
@@ -125,8 +125,8 @@ tags = {
 |true/false
 |true
 
-|`nat_gateway_enabled`
-|Whether to create a NAT gateway. 
+|`create_nat_gateway`
+|Whether to create a NAT gateway.
 |true/false
 |false
 
@@ -157,8 +157,8 @@ tags = {
 ----
 |null
 
-|`service_gateway_enabled`
-|Whether to create a service gateway to use Oracle Services. 
+|`create_service_gateway`
+|Whether to create a service gateway to use Oracle Services.
 |true/false
 |false
 
