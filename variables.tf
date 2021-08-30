@@ -98,8 +98,27 @@ variable "vcn_name" {
 variable "drg_display_name" {
   description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
   type        = string
-  default     = null
+  default     = "drg"
 }
+
+variable "internet_gateway_display_name" {
+  description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
+  type        = string
+  default     = "internet-gateway"
+}
+
+variable "nat_gateway_display_name" {
+  description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
+  type        = string
+  default     = "nat-gateway"
+}
+
+variable "service_gateway_display_name" {
+  description = "(Updatable) Name of Service Gateway. Does not have to be unique."
+  type        = string
+  default     = "service-gateway"
+}
+
 
 # routing rules
 

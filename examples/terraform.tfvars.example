@@ -41,3 +41,10 @@ freeform_tags = {
   environment = "dev"
   lob = "finance"
 }
+
+# gateways parameters
+
+drg_display_name = "drg"
+internet_gateway_display_name = "igw"
+nat_gateway_display_name = "ngw"
+service_gateway_display_name = "sgw"

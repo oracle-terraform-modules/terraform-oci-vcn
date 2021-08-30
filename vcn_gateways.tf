@@ -7,7 +7,7 @@
 
 resource "oci_core_internet_gateway" "ig" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? "internet-gateway" : "${var.label_prefix}-internet-gateway"
+  display_name   = var.label_prefix == "none" ? var.internet_gateway_display_name : "${var.label_prefix}-${var.internet_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
 
@@ -91,7 +91,7 @@ data "oci_core_services" "all_oci_services" {
 
 resource "oci_core_service_gateway" "service_gateway" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? "service-gateway" : "${var.label_prefix}-service-gateway"
+  display_name   = var.label_prefix == "none" ? var.service_gateway_display_name : "${var.label_prefix}-${var.service_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
   services {
@@ -108,7 +108,7 @@ resource "oci_core_service_gateway" "service_gateway" {
 ###################
 resource "oci_core_nat_gateway" "nat_gateway" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? "nat-gateway" : "${var.label_prefix}-nat-gateway"
+  display_name   = var.label_prefix == "none" ? var.nat_gateway_display_name : "${var.label_prefix}-${var.nat_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
 
@@ -199,7 +199,7 @@ resource "oci_core_route_table" "nat" {
 
 resource "oci_core_drg" "drg" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-drg"
+  display_name   = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-${var.drg_display_name}"
 
   freeform_tags = var.freeform_tags
 
@@ -209,7 +209,7 @@ resource "oci_core_drg" "drg" {
 resource "oci_core_drg_attachment" "drg" {
   drg_id       = oci_core_drg.drg[count.index].id
   vcn_id       = oci_core_vcn.vcn.id
-  display_name = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-drg_to_${oci_core_vcn.vcn.display_name}"
+  display_name = var.label_prefix == "none" ? "${var.drg_display_name}_to_${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}_to_${oci_core_vcn.vcn.display_name}"
 
   freeform_tags = var.freeform_tags
 

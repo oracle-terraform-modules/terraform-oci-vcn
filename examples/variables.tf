@@ -113,3 +113,22 @@ variable "drg_display_name" {
   type        = string
   default     = "drg"
 }
+
+variable "internet_gateway_display_name" {
+  description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
+  type        = string
+  default     = "igw"
+}
+
+variable "nat_gateway_display_name" {
+  description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
+  type        = string
+  default     = "ngw"
+}
+
+variable "service_gateway_display_name" {
+  description = "(Updatable) Name of Service Gateway. Does not have to be unique."
+  type        = string
+  default     = "sgw"
+}
+

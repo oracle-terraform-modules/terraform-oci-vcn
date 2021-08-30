@@ -19,7 +19,7 @@
 |===
 |Parameter
 |Description
-|Values
+|Type
 |Default
 
 |`region`
@@ -35,18 +35,18 @@
 |===
 |Parameter
 |Description
-|Values
+|Type
 |Default
 
 |`compartment_id`
 |Compartment id where the VCN Cluster will be provisioned. *Required*.
-|
+|string
 |
 
 |`label_prefix`
 |a string to be prepended to the name of resources. *Required*.
-|
-|none
+|string
+|"none"
 
 
 |===
@@ -57,27 +57,52 @@
 |===
 |Parameter
 |Description
-|Values
+|Type
 |Default
 
-|`tags`
+|`create_drg`
+|whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.
+|boolean
+|false
+
+|`create_internet_gateway`
+|Whether to create an internet gateway.
+|boolean
+|false
+
+|`create_nat_gateway`
+|Whether to create a NAT gateway.
+|boolean
+|false
+
+|`create_service_gateway`
+|Whether to create a service gateway to use Oracle Services.
+|boolean
+|false
+
+|`drg_display_name`
+|(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique.
+|string
+|"drg"
+
+|`freeform_tags`
 |simple key-value pairs to tag the resources created specified in the form of a map
 | e.g.
 [source]
 ----
-tags = {
+freeform_tags = {
   department = "finance"
   environment = "dev"
 }
 ----
-|tags = {
+|freeform_tags = {
   environment = "dev"
 }
 
-|`create_internet_gateway`
-|Whether to create an internet gateway.
-|true/false
-|false
+|`internet_gateway_display_name`
+|(Updatable) Name of Internet Gateway. Does not have to be unique.
+|string
+|"internet-gateway"
 
 |`internet_gateway_route_rules`
 |(Updatable) List of routing rules to add to Internet Gateway Route Table.
@@ -122,18 +147,18 @@ tags = {
 
 |`lockdown_default_seclist`
 |whether to remove all default security rules from the VCN Default Security List
-|true/false
+|boolean
 |true
 
-|`create_nat_gateway`
-|Whether to create a NAT gateway.
-|true/false
-|false
+|`nat_gateway_display_name`
+|(Updatable) Name of NAT Gateway. Does not have to be unique.
+|string
+|"nat-gateway"
 
 |nat_gateway_public_ip_id
 |OCID of reserved IP address for NAT gateway. If default value "none" is used, then a public IP address is selected from Oracle's public IP pool.
-|
-|none
+|string
+|"none"
 
 |`nat_gateway_route_rules`
 |(Updatable) List of routing rules to add to NAT Gateway Route Table
@@ -157,10 +182,10 @@ tags = {
 ----
 |null
 
-|`create_service_gateway`
-|Whether to create a service gateway to use Oracle Services.
-|true/false
-|false
+|`service_gateway_display_name`
+|(Updatable) Name of Service Gateway. Does not have to be unique.
+|string
+|"service-gateway"
 
 |`vcn_cidrs`
 |The list of IPv4 CIDR blocks the VCN will use. The CIDR block specified for the VCN must not overlap with the CIDR block of another network.
@@ -173,22 +198,12 @@ tags = {
 
 |`vcn_dns_label`
 |The internal DNS domain for resources created and prepended to "oraclevcn.com" which is the VCN-internal domain name. *Required*
-|
+|string
 |
 
 |`vcn_name`
 |The name of the VCN that will be appended to the label_prefix. *Required*
-|
-|
-
-|`create_drg`
-|whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.
-|true/false
-|false
-
-|`drg_display_name`
-|(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique.
-|
+|string
 |
 
 |===
