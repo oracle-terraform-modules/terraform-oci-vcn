@@ -168,7 +168,7 @@ cp terraform.tfvars.example terraform.tfvars
 * `create_internet_gateway`
 * `create_nat_gateway`
 * `create_service_gateway`
-* `tags`
+* `freeform_tags`
 
 . Run Terraform:
 +

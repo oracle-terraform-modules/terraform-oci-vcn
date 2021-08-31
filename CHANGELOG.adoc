@@ -26,6 +26,9 @@ Given a version number MAJOR.MINOR.PATCH:
 * added support for multiple CIDR (fixes #21)
 * added custom display name for gateways and drg attachment (fixes #30 and #44)
 
+=== Changes
+* added variable validation for gateway display names (fixes #56)
+
 === Fixes
 * Fixed description for var.local_peering_gateways (fixes #51)
 

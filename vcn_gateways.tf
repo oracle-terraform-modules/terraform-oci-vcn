@@ -209,7 +209,7 @@ resource "oci_core_drg" "drg" {
 resource "oci_core_drg_attachment" "drg" {
   drg_id       = oci_core_drg.drg[count.index].id
   vcn_id       = oci_core_vcn.vcn.id
-  display_name = var.label_prefix == "none" ? "${var.drg_display_name}_to_${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}_to_${oci_core_vcn.vcn.display_name}"
+  display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}"
 
   freeform_tags = var.freeform_tags
 

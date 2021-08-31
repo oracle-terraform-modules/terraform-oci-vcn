@@ -99,24 +99,44 @@ variable "drg_display_name" {
   description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
   type        = string
   default     = "drg"
+
+  validation {
+    condition     = length(var.drg_display_name) > 0
+    error_message = "The drg_display_name value cannot be an empty string."
+  }
 }
 
 variable "internet_gateway_display_name" {
   description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
   type        = string
   default     = "internet-gateway"
+
+  validation {
+    condition     = length(var.internet_gateway_display_name) > 0
+    error_message = "The internet_gateway_display_name value cannot be an empty string."
+  }
 }
 
 variable "nat_gateway_display_name" {
   description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
   type        = string
   default     = "nat-gateway"
+
+  validation {
+    condition     = length(var.nat_gateway_display_name) > 0
+    error_message = "The nat_gateway_display_name value cannot be an empty string."
+  }
 }
 
 variable "service_gateway_display_name" {
   description = "(Updatable) Name of Service Gateway. Does not have to be unique."
   type        = string
   default     = "service-gateway"
+
+  validation {
+    condition     = length(var.service_gateway_display_name) > 0
+    error_message = "The service_gateway_display_name value cannot be an empty string."
+  }
 }
 
 
