@@ -36,7 +36,10 @@ module "vcn_hub" {
   vcn_name                 = var.vcn_name
 
   # gateways parameters
-  drg_display_name = var.drg_display_name
+  drg_display_name              = var.drg_display_name
+  internet_gateway_display_name = var.internet_gateway_display_name
+  nat_gateway_display_name      = var.nat_gateway_display_name
+  service_gateway_display_name  = var.service_gateway_display_name
 
   local_peering_gateways = {
     to_spoke1 = { # LPG will be in acceptor mode with a route table attached
@@ -48,6 +51,9 @@ module "vcn_hub" {
     }
     to_spoke3 = {} # LPG will be in acceptor mode with no route table attached
   }
+
+  # routing rules
+  internet_gateway_route_rules = var.internet_gateway_route_rules # this module input shows how to pass routing information to the vcn module through  Variable Input. Can be initialized in a *.tfvars or *.auto.tfvars file
 }
 
 resource "oci_core_route_table" "VTR_spokes" {
@@ -135,7 +141,6 @@ module "vcn_spoke3" {
   vcn_name                 = "spoke3"
 
   # gateways parameters
-
   local_peering_gateways = {
     to_hub = {} # LPG will be in acceptor mode with no route table attached
   }

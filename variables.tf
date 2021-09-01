@@ -139,27 +139,14 @@ variable "service_gateway_display_name" {
   }
 }
 
-
-# routing rules
-
 variable "internet_gateway_route_rules" {
   description = "(Updatable) List of routing rules to add to Internet Gateway Route Table"
-  type = list(object({
-    destination       = string
-    destination_type  = string
-    network_entity_id = string
-    description       = string
-  }))
-  default = null
+  type        = list(map(string))
+  default     = null
 }
 
 variable "nat_gateway_route_rules" {
-  description = "(Updatable) List of routing rules to add to NAT Gateway Route Table"
-  type = list(object({
-    destination       = string
-    destination_type  = string
-    network_entity_id = string
-    description       = string
-  }))
-  default = null
+  description = "(Updatable) list of routing rules to add to NAT Gateway Route Table"
+  type        = list(map(string))
+  default     = null
 }

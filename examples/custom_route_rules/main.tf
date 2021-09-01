@@ -35,7 +35,10 @@ module "vcn" {
   vcn_name                 = var.vcn_name
 
   # gateways parameters
-  drg_display_name = var.drg_display_name
+  drg_display_name              = var.drg_display_name
+  internet_gateway_display_name = var.internet_gateway_display_name
+  nat_gateway_display_name      = var.nat_gateway_display_name
+  service_gateway_display_name  = var.service_gateway_display_name
 
   # routing rules
 

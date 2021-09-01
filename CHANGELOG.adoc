@@ -28,6 +28,7 @@ Given a version number MAJOR.MINOR.PATCH:
 
 === Changes
 * added variable validation for gateway display names (fixes #56)
+* `var.internet_gateway_route_rules` and `var.nat_gateway_route_rules` new type: `list(map(string))` instead of `list(object)` (backward compatible change)
 
 === Fixes
 * Fixed description for var.local_peering_gateways (fixes #51)

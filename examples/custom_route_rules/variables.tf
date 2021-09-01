@@ -114,17 +114,30 @@ variable "drg_display_name" {
   default     = "drg"
 }
 
+variable "internet_gateway_display_name" {
+  description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
+  type        = string
+  default     = "igw"
+}
+
+variable "nat_gateway_display_name" {
+  description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
+  type        = string
+  default     = "ngw"
+}
+
+variable "service_gateway_display_name" {
+  description = "(Updatable) Name of Service Gateway. Does not have to be unique."
+  type        = string
+  default     = "sgw"
+}
+
 # routing rules
 
 variable "internet_gateway_route_rules" {
   description = "(Updatable) List of routing rules to add to Internet Gateway Route Table"
-  type = list(object({
-    destination       = string
-    destination_type  = string
-    network_entity_id = string
-    description       = string
-  }))
-  default = null
+  type        = list(map(string))
+  default     = null
 }
 
 locals {
@@ -152,6 +165,6 @@ locals {
       destination_type  = "CIDR_BLOCK"
       network_entity_id = oci_core_local_peering_gateway.lpg.id
       description       = "Terraformed - User added Routing Rule: To lpg with lpg_id directly passed by user. Useful for gateways created outside of vcn module"
-    },
+    }
   ]
 }
