@@ -26,7 +26,7 @@
 
 1. Git is installed
 2. SSH client is installed
-3. Terraform 0.12.24+ is installed
+3. Terraform 1.0.0 or greater is installed
 
 == Instructions
 
