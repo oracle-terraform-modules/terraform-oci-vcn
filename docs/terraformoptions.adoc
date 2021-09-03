@@ -15,7 +15,7 @@
 
 == Provider
 
-[stripes=odd,cols="1d,3a,4d,4d", options=header,width="100%"]
+[stripes=odd,cols="2m,5,1m,1m", options=header,width="100%"]
 |===
 |Parameter
 |Description
@@ -31,7 +31,7 @@
 
 == General OCI
 
-[stripes=odd,cols="1d,3a,4d,4d", options=header,width="100%"]
+[stripes=odd,cols="2m,5,1m,1m", options=header,width="100%"]
 |===
 |Parameter
 |Description
@@ -40,12 +40,12 @@
 
 |`compartment_id`
 |Compartment id where the VCN Cluster will be provisioned. *Required*.
-|string
+|`string`
 |
 
 |`label_prefix`
 |a string to be prepended to the name of resources. *Required*.
-|string
+|`string`
 |"none"
 
 
@@ -53,7 +53,7 @@
 
 == VCN
 
-[stripes=odd,cols="1d,3a,4d,4d", options=header,width="100%"]
+[stripes=odd,cols="2m,8,1a,2m", options=header,width="100%"]
 |===
 |Parameter
 |Description
@@ -62,33 +62,35 @@
 
 |`create_drg`
 |whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.
-|boolean
+|`boolean`
 |false
 
 |`create_internet_gateway`
 |Whether to create an internet gateway.
-|boolean
+|`boolean`
 |false
 
 |`create_nat_gateway`
 |Whether to create a NAT gateway.
-|boolean
+|`boolean`
 |false
 
 |`create_service_gateway`
 |Whether to create a service gateway to use Oracle Services.
-|boolean
+|`boolean`
 |false
 
 |`drg_display_name`
 |(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique.
-|string
+|`string`
 |"drg"
 
 |`freeform_tags`
 |simple key-value pairs to tag the resources created specified in the form of a map
-| e.g.
-[source]
+|`map(any)`
+
+e.g.
+[source,HCL]
 ----
 freeform_tags = {
   department = "finance"
@@ -101,13 +103,15 @@ freeform_tags = {
 
 |`internet_gateway_display_name`
 |(Updatable) Name of Internet Gateway. Does not have to be unique.
-|string
+|`string`
 |"internet-gateway"
 
 |`internet_gateway_route_rules`
 |(Updatable) List of routing rules to add to Internet Gateway Route Table.
-| e.g.
-[source]
+|`list(map(string))`
+
+e.g.
+[source,HCL]
 ----
   [
     {
@@ -128,8 +132,10 @@ freeform_tags = {
 
 |`local_peering_gateways`
 |Map of Local Peering Gateways to attach to the VCN
-| e.g.
-[source]
+|`map(any)`
+
+e.g.
+[source,HCL]
 ----
   local_peering_gateways = {
     to_spoke1 = {
@@ -142,28 +148,29 @@ freeform_tags = {
       }
   }
 ----
-
 |null
 
 |`lockdown_default_seclist`
 |whether to remove all default security rules from the VCN Default Security List
-|boolean
+|`boolean`
 |true
 
 |`nat_gateway_display_name`
 |(Updatable) Name of NAT Gateway. Does not have to be unique.
-|string
+|`string`
 |"nat-gateway"
 
 |nat_gateway_public_ip_id
 |OCID of reserved IP address for NAT gateway. If default value "none" is used, then a public IP address is selected from Oracle's public IP pool.
-|string
+|`string`
 |"none"
 
 |`nat_gateway_route_rules`
 |(Updatable) List of routing rules to add to NAT Gateway Route Table
-|e.g.
-[source]
+|`list(map(string))`
+
+e.g.
+[source,HCL]
 ----
   [
     {
@@ -184,13 +191,15 @@ freeform_tags = {
 
 |`service_gateway_display_name`
 |(Updatable) Name of Service Gateway. Does not have to be unique.
-|string
+|`string`
 |"service-gateway"
 
 |`vcn_cidrs`
 |The list of IPv4 CIDR blocks the VCN will use. The CIDR block specified for the VCN must not overlap with the CIDR block of another network.
-|e.g.
-[source]
+|`list(string)`
+
+e.g.
+[source,HCL]
 ----
 ["10.0.0.0/16", "172.16.0.0/16", "192.168.0.0/16"]
 ----
@@ -198,12 +207,12 @@ freeform_tags = {
 
 |`vcn_dns_label`
 |The internal DNS domain for resources created and prepended to "oraclevcn.com" which is the VCN-internal domain name. *Required*
-|string
+|`string`
 |
 
 |`vcn_name`
 |The name of the VCN that will be appended to the label_prefix. *Required*
-|string
+|`string`
 |
 
 |===
