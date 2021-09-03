@@ -24,12 +24,11 @@ variable "label_prefix" {
   default     = "none"
 }
 
-variable "tags" {
-  #! Deprecation notice: will be renamed to freeform_tags at next major release
-  description = "simple key-value pairs to tag the resources created using freeform tags."
+variable "freeform_tags" {
+  description = "simple key-value pairs to tag the resources created using freeform freeform_tags."
   type        = map(any)
   default = {
-    terraformed = "yes"
+    terraformed = "Please do not edit manually"
     module      = "oracle-terraform-modules/vcn/oci"
   }
 }
@@ -42,8 +41,7 @@ variable "create_drg" {
   default     = false
 }
 
-variable "internet_gateway_enabled" {
-  #! Deprecation notice: will be renamed to create_internet_gateway at next major release
+variable "create_internet_gateway" {
   description = "whether to create the internet gateway in the vcn. If set to true, creates an Internet Gateway."
   default     = false
   type        = bool
@@ -61,8 +59,7 @@ variable "lockdown_default_seclist" {
   type        = bool
 }
 
-variable "nat_gateway_enabled" {
-  #! Deprecation notice: will be renamed to create_nat_gateway at next major release
+variable "create_nat_gateway" {
   description = "whether to create a nat gateway in the vcn. If set to true, creates a nat gateway."
   default     = false
   type        = bool
@@ -74,8 +71,7 @@ variable "nat_gateway_public_ip_id" {
   type        = string
 }
 
-variable "service_gateway_enabled" {
-  #! Deprecation notice: will be renamed to create_service_gateway at next major release
+variable "create_service_gateway" {
   description = "whether to create a service gateway. If set to true, creates a service gateway."
   default     = false
   type        = bool
@@ -102,29 +98,55 @@ variable "vcn_name" {
 variable "drg_display_name" {
   description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
   type        = string
-  default     = null
+  default     = "drg"
+
+  validation {
+    condition     = length(var.drg_display_name) > 0
+    error_message = "The drg_display_name value cannot be an empty string."
+  }
 }
 
-# routing rules
+variable "internet_gateway_display_name" {
+  description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
+  type        = string
+  default     = "internet-gateway"
+
+  validation {
+    condition     = length(var.internet_gateway_display_name) > 0
+    error_message = "The internet_gateway_display_name value cannot be an empty string."
+  }
+}
+
+variable "nat_gateway_display_name" {
+  description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
+  type        = string
+  default     = "nat-gateway"
+
+  validation {
+    condition     = length(var.nat_gateway_display_name) > 0
+    error_message = "The nat_gateway_display_name value cannot be an empty string."
+  }
+}
+
+variable "service_gateway_display_name" {
+  description = "(Updatable) Name of Service Gateway. Does not have to be unique."
+  type        = string
+  default     = "service-gateway"
+
+  validation {
+    condition     = length(var.service_gateway_display_name) > 0
+    error_message = "The service_gateway_display_name value cannot be an empty string."
+  }
+}
 
 variable "internet_gateway_route_rules" {
   description = "(Updatable) List of routing rules to add to Internet Gateway Route Table"
-  type = list(object({
-    destination       = string
-    destination_type  = string
-    network_entity_id = string
-    description       = string
-  }))
-  default = null
+  type        = list(map(string))
+  default     = null
 }
 
 variable "nat_gateway_route_rules" {
-  description = "(Updatable) List of routing rules to add to NAT Gateway Route Table"
-  type = list(object({
-    destination       = string
-    destination_type  = string
-    network_entity_id = string
-    description       = string
-  }))
-  default = null
+  description = "(Updatable) list of routing rules to add to NAT Gateway Route Table"
+  type        = list(map(string))
+  default     = null
 }

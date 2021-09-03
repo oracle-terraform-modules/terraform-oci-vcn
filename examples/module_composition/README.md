@@ -1,6 +1,7 @@
 # Example reusing terraform-oci-vcn and extending to create other network resources
 
-[rootvariables]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/examples/variables.tf
+[rootvariables]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/examples/module_composition/variables.tf
+[sampletfvars]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/examples/module_composition/terraform.tfvars.example
 [terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
 [terraform-oci-vcn]:https://registry.terraform.io/modules/oracle-terraform-modules/vcn/oci/latest
 
@@ -34,27 +35,12 @@ provider "oci" {
 }
 ```
 
-4. Create the modules directory
-
-```shell
-mkdir modules
-cd modules
-```
-
-5. Add the terraform-oci-vcn module
-
-```shell
-git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git vcn
-```
-
-Note: Cloning is now optional as [the module is published in HashiCorp's registry][terraform-oci-vcn].
-
 ## Define project variables
 
 ### Variables to reuse the vcn module
 
 1. Define the vcn parameters in the root `variables.tf`.
-See [`variables.tf`][rootvariables] in this directory.
+See an example for [`variables.tf`][rootvariables].
 
 2. Add additional variables if you need to.
 
@@ -64,19 +50,19 @@ See [`variables.tf`][rootvariables] in this directory.
 
 ```HCL
 module "vcn" {
-  source = "./modules/vcn"
-  
+  source  = "oracle-terraform-modules/vcn/oci"
+
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
 
   # vcn parameters
-  internet_gateway_enabled = var.internet_gateway_enabled
-  nat_gateway_enabled      = var.nat_gateway_enabled
-  service_gateway_enabled  = var.service_gateway_enabled
+  create_internet_gateway = var.create_internet_gateway
+  create_nat_gateway      = var.create_nat_gateway
+  create_service_gateway  = var.create_service_gateway
   create_drg               = var.create_drg
   drg_display_name         = var.drg_display_name
-  tags                     = var.tags
+  tags                     = var.freeform_tags
   vcn_cidrs                = var.vcn_cidrs
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
@@ -84,7 +70,8 @@ module "vcn" {
 }
 ```
 
-2. Enter appropriate values for `terraform.tfvars`. Review [Terraform Options][terraformoptions] for reference
+2. Enter appropriate values for `terraform.tfvars`. Review [Terraform Options][terraformoptions] for reference.
+You can also use this example [terraform.tfvars][sampletfvars]. Just remove the `.example` extension.
 
 ## Add your own modules
 
@@ -94,7 +81,7 @@ module "vcn" {
 mkdir subnets
 ```
 
-2. Define the additional variables(e.g. subnet masks) in the root and module variable file (`variables.tf`) e.g. 
+2. Define the additional variables(e.g. subnet masks) in the root and module variable file (`variables.tf`) e.g.
 
 ```HCL
 variable "netnum" {
@@ -153,7 +140,7 @@ resource "oci_core_security_list" "web" {
   ingress_security_rules {
     # allow ssh
     protocol = 6
-    
+
     source = "0.0.0.0"
 
     tcp_options {
@@ -192,10 +179,10 @@ resource "oci_core_subnet" "web" {
 ```HCL
 module "subnets" {
   source = "./modules/subnets"
-  
+
   netnum  = var.netnum
   newbits = var.newbits
-  
+
   # other required variables
   .
   .

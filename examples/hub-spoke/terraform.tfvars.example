@@ -23,11 +23,11 @@ label_prefix = "dev"
 
 create_drg = false
 
-internet_gateway_enabled = false
+create_internet_gateway = false
 
-nat_gateway_enabled = false
+create_nat_gateway = false
 
-service_gateway_enabled = false
+create_service_gateway = false
 
 vcn_cidrs = ["10.0.0.0/24"]
 
@@ -35,9 +35,14 @@ vcn_dns_label = "vcn"
 
 vcn_name = "vcn"
 
-tags = {
+freeform_tags = {
   environment = "dev"
   lob         = "finance"
 }
 
+# gateways parameters
 
+drg_display_name = "drg"
+internet_gateway_display_name = "igw"
+nat_gateway_display_name = "ngw"
+service_gateway_display_name = "sgw"

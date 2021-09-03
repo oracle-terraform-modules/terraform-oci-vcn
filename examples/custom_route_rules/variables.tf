@@ -55,7 +55,7 @@ variable "create_drg" {
   default     = true
 }
 
-variable "internet_gateway_enabled" {
+variable "create_internet_gateway" {
   description = "whether to create the internet gateway"
   type        = bool
   default     = true
@@ -67,23 +67,23 @@ variable "lockdown_default_seclist" {
   default     = true
 }
 
-variable "nat_gateway_enabled" {
+variable "create_nat_gateway" {
   description = "whether to create a nat gateway in the vcn"
   type        = bool
   default     = true
 }
 
-variable "service_gateway_enabled" {
+variable "create_service_gateway" {
   description = "whether to create a service gateway"
   type        = bool
   default     = true
 }
 
-variable "tags" {
+variable "freeform_tags" {
   description = "simple key-value pairs to tag the resources created"
   type        = map(any)
   default = {
-    terraformed = "yes"
+    terraformed = "please do not edit manually"
     module      = "oracle-terraform-modules/vcn/oci"
   }
 }
@@ -114,17 +114,30 @@ variable "drg_display_name" {
   default     = "drg"
 }
 
+variable "internet_gateway_display_name" {
+  description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
+  type        = string
+  default     = "igw"
+}
+
+variable "nat_gateway_display_name" {
+  description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
+  type        = string
+  default     = "ngw"
+}
+
+variable "service_gateway_display_name" {
+  description = "(Updatable) Name of Service Gateway. Does not have to be unique."
+  type        = string
+  default     = "sgw"
+}
+
 # routing rules
 
 variable "internet_gateway_route_rules" {
   description = "(Updatable) List of routing rules to add to Internet Gateway Route Table"
-  type = list(object({
-    destination       = string
-    destination_type  = string
-    network_entity_id = string
-    description       = string
-  }))
-  default = null
+  type        = list(map(string))
+  default     = null
 }
 
 locals {
@@ -152,6 +165,6 @@ locals {
       destination_type  = "CIDR_BLOCK"
       network_entity_id = oci_core_local_peering_gateway.lpg.id
       description       = "Terraformed - User added Routing Rule: To lpg with lpg_id directly passed by user. Useful for gateways created outside of vcn module"
-    },
+    }
   ]
 }

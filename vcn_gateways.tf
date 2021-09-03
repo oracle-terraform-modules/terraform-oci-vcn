@@ -7,20 +7,20 @@
 
 resource "oci_core_internet_gateway" "ig" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? "internet-gateway" : "${var.label_prefix}-internet-gateway"
+  display_name   = var.label_prefix == "none" ? var.internet_gateway_display_name : "${var.label_prefix}-${var.internet_gateway_display_name}"
 
-  freeform_tags = var.tags
+  freeform_tags = var.freeform_tags
 
   vcn_id = oci_core_vcn.vcn.id
 
-  count = var.internet_gateway_enabled == true ? 1 : 0
+  count = var.create_internet_gateway == true ? 1 : 0
 }
 
 resource "oci_core_route_table" "ig" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "internet-route" : "${var.label_prefix}-internet-route"
 
-  freeform_tags = var.tags
+  freeform_tags = var.freeform_tags
 
   route_rules {
     # * With this route table, Internet Gateway is always declared as the default gateway
@@ -74,7 +74,7 @@ resource "oci_core_route_table" "ig" {
 
   vcn_id = oci_core_vcn.vcn.id
 
-  count = var.internet_gateway_enabled == true ? 1 : 0
+  count = var.create_internet_gateway == true ? 1 : 0
 }
 
 #######################
@@ -86,21 +86,21 @@ data "oci_core_services" "all_oci_services" {
     values = ["All .* Services In Oracle Services Network"]
     regex  = true
   }
-  count = var.service_gateway_enabled == true ? 1 : 0
+  count = var.create_service_gateway == true ? 1 : 0
 }
 
 resource "oci_core_service_gateway" "service_gateway" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? "service-gateway" : "${var.label_prefix}-service-gateway"
+  display_name   = var.label_prefix == "none" ? var.service_gateway_display_name : "${var.label_prefix}-${var.service_gateway_display_name}"
 
-  freeform_tags = var.tags
+  freeform_tags = var.freeform_tags
   services {
     service_id = lookup(data.oci_core_services.all_oci_services[0].services[0], "id")
   }
 
   vcn_id = oci_core_vcn.vcn.id
 
-  count = var.service_gateway_enabled == true ? 1 : 0
+  count = var.create_service_gateway == true ? 1 : 0
 }
 
 ###################
@@ -108,22 +108,22 @@ resource "oci_core_service_gateway" "service_gateway" {
 ###################
 resource "oci_core_nat_gateway" "nat_gateway" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? "nat-gateway" : "${var.label_prefix}-nat-gateway"
+  display_name   = var.label_prefix == "none" ? var.nat_gateway_display_name : "${var.label_prefix}-${var.nat_gateway_display_name}"
 
-  freeform_tags = var.tags
+  freeform_tags = var.freeform_tags
 
   public_ip_id = var.nat_gateway_public_ip_id != "none" ? var.nat_gateway_public_ip_id : null
 
   vcn_id = oci_core_vcn.vcn.id
 
-  count = var.nat_gateway_enabled == true ? 1 : 0
+  count = var.create_nat_gateway == true ? 1 : 0
 }
 
 resource "oci_core_route_table" "nat" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "nat-route" : "${var.label_prefix}-nat-route"
 
-  freeform_tags = var.tags
+  freeform_tags = var.freeform_tags
 
   route_rules {
     # * With this route table, NAT Gateway is always declared as the default gateway
@@ -135,7 +135,7 @@ resource "oci_core_route_table" "nat" {
 
   dynamic "route_rules" {
     # * If Service Gateway is created with the module, automatically creates a rule to handle traffic for "all services" through Service Gateway
-    for_each = var.service_gateway_enabled == true ? [1] : []
+    for_each = var.create_service_gateway == true ? [1] : []
 
     content {
       destination       = lookup(data.oci_core_services.all_oci_services[0].services[0], "cidr_block")
@@ -190,7 +190,7 @@ resource "oci_core_route_table" "nat" {
 
   vcn_id = oci_core_vcn.vcn.id
 
-  count = var.nat_gateway_enabled == true ? 1 : 0
+  count = var.create_nat_gateway == true ? 1 : 0
 }
 
 ###############################
@@ -199,16 +199,19 @@ resource "oci_core_route_table" "nat" {
 
 resource "oci_core_drg" "drg" {
   compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-drg"
+  display_name   = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-${var.drg_display_name}"
 
-  freeform_tags = var.tags
+  freeform_tags = var.freeform_tags
 
   count = var.create_drg == true ? 1 : 0
 }
 
 resource "oci_core_drg_attachment" "drg" {
-  drg_id = oci_core_drg.drg[count.index].id
-  vcn_id = oci_core_vcn.vcn.id
+  drg_id       = oci_core_drg.drg[count.index].id
+  vcn_id       = oci_core_vcn.vcn.id
+  display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}"
+
+  freeform_tags = var.freeform_tags
 
   count = var.create_drg == true ? 1 : 0
 }
@@ -222,7 +225,7 @@ resource "oci_core_local_peering_gateway" "lpg" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? each.key : "${var.label_prefix}-${each.key}"
 
-  freeform_tags = var.tags
+  freeform_tags = var.freeform_tags
 
   vcn_id = oci_core_vcn.vcn.id
 

@@ -17,7 +17,7 @@ variables:
     title: Region
     description: The OCI region where resources will be created
     required: true
- 
+
   compartment_id:
     type: oci:identity:compartment:id
     title: Target Compartment
@@ -31,10 +31,10 @@ variables:
     required: false
     default: dev
 
-  vcn_cidr:
-    type: string
+  vcn_cidrs:
+    type: list(string)
     title: VCN CIDR
-    default: 10.0.0.0/16
+    default: ["10.0.0.0/16"]
     required: true
 
   vcn_name:
@@ -55,6 +55,6 @@ variables:
     required: false
     default: true
 
-  tags:
+  freeform_tags:
     type: map
     visible: false

@@ -35,7 +35,7 @@ You should ensure that your documentation changes include the following:
 - If your contribution provision new resources, update the README introduction section
 - If your contribution adds any new variables, update xref:docs/terraformoptions.adoc[docs/terraformoptions] with the variable requirements
 - Add your GitHub handler to xref:CONTRIBUTORS.adoc[CONTRIBUTORS] under the *CONTRIBUTORS* section
-- 
+-
 - Don't forget how important the documentation is, especially for examples: we would love it if you updated the `main.tf` and `variables.tf` in the `examples/` folder. A simple example is fine.
 - You should also update the code examples in link:examples/README.md[examples/README]: it contains sample code blocks that probably needs to be updated to reflect your changes
 

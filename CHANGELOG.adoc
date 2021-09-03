@@ -19,19 +19,23 @@ Given a version number MAJOR.MINOR.PATCH:
 === Breaking changes
 * Changed minimum Terraform version to 1.0.0 (fixes #49)
 * Deprecated `vcn_cidr`, use `vcn_cidrs` instead (list of IPv4 CIDRs).
-* [ ] Deprecated previous gateway creation variable names. We now use imperative style, see codingconventions (fixes #24)
+* Deprecated previous gateway creation variable names. We now use imperative style, see codingconventions (fixes #24 and #54)
 
 === New features
 * added support for local peering gateways (fixes #38)
 * added support for multiple CIDR (fixes #21)
-* [ ] added custom display name for gateways and drg attachment (fixes #30 and #44)
+* added custom display name for gateways and drg attachment (fixes #30 and #44)
+
+=== Changes
+* added variable validation for gateway display names (fixes #56)
+* `var.internet_gateway_route_rules` and `var.nat_gateway_route_rules` new type: `list(map(string))` instead of `list(object)` (backward compatible change)
 
 === Fixes
 * Fixed description for var.local_peering_gateways (fixes #51)
 
 === Other minor changes
 * Updated default tag values
-* Updated all examples to use the new `vcn_cidrs` module Input Variable instead of the now deprecated `vcn_cidr`
+* Updated all examples with new features and using Terraform Registry
 
 == v2.3.0 (July 21, 2021)
 

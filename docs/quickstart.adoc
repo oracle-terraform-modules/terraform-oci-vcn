@@ -26,7 +26,7 @@
 
 1. Git is installed
 2. SSH client is installed
-3. Terraform 0.12.24+ is installed
+3. Terraform 1.0.0 or greater is installed
 
 == Instructions
 
@@ -96,10 +96,10 @@ variable "user_id" {
 
 . Optional parameters to override:
 
-* `internet_gateway_enabled`
-* `nat_gateway_enabled`
-* `service_gateway_enabled`
-* `tags`
+* `create_internet_gateway`
+* `create_nat_gateway`
+* `create_service_gateway`
+* `freeform_tags`
 
 . Run Terraform:
 
@@ -119,7 +119,7 @@ You can also use the method below to reuse this in your own module.
 +
 [source, hcl]
 ----
-include::../examples/variables.tf[lines=3..-1]
+include::../examples/module_composition/variables.tf[lines=3..-1]
 ----
 
 . Create a provider.tf file in your root directory and add the following:
@@ -139,7 +139,7 @@ provider "oci" {
 +
 [source,hcl]
 ----
-include::../examples/main.tf[lines=3..-1]
+include::../examples/module_composition/main.tf[lines=3..-1]
 ----
 
 . Copy terraform.tfvars.example to terraform.tfvars and set the mandatory provider parameters:
@@ -165,10 +165,10 @@ cp terraform.tfvars.example terraform.tfvars
 . Optional parameters to override:
 
 * `create_drg`
-* `internet_gateway_enabled`
-* `nat_gateway_enabled`
-* `service_gateway_enabled`
-* `tags`
+* `create_internet_gateway`
+* `create_nat_gateway`
+* `create_service_gateway`
+* `freeform_tags`
 
 . Run Terraform:
 +

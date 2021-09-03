@@ -20,8 +20,8 @@ endif::[]
 
 When you create an Internet or a NAT gateway, terraform-oci-vcn modules automatically creates a dedicated route table for each gateway.
 
-- `<label_prefix>-internet-route` route table is created if `internet_gateway_enabled = true`
-- `<label_prefix>-nat-route` route table is created if `nat_gateway_enabled = true`
+- `<label_prefix>-internet-route` route table is created if `create_internet_gateway = true`
+- `<label_prefix>-nat-route` route table is created if `create_nat_gateway = true`
 
 These automatically created route tables comes with automatic rules, that cannot be controlled by the module user.
 
@@ -33,39 +33,39 @@ internet-route is meant to be attached to public subnets you provision. It comes
 
 nat-route table is meant to be attached to private subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the NAT Gateway created by this module: `0.0.0.0/0 --> NAT Gateway`.
 
-If a Service Gateway is also created by the module with `service_gateway_enabled = true`, a second rule is added to redirect all Oracle Network Services traffic to the Service Gateway created by this module: `All <REGION> services in OSN --> Service Gateway`
+If a Service Gateway is also created by the module with `create_service_gateway = true`, a second rule is added to redirect all Oracle Network Services traffic to the Service Gateway created by this module: `All <REGION> services in OSN --> Service Gateway`
 
 == Custom routes
 
 terraform-oci-vcn modules have two optional Input Variables to inject user defined route rules into `internet-route` route table and `nat-route` route table using respectively:
 
-- `internet_gateway_route_rules` with the following schema:
+- `internet_gateway_route_rules` defined as a `list(map(string))` with the following expected schema:
 
 [source,hcl]
 ----
 variable "internet_gateway_route_rules" {
   description = "(Updatable) List of routing rules to add to Internet Gateway Routing Table"
   type = list(object({
-    destination       = string
-    destination_type  = string
-    network_entity_id = string
-    description       = string
+    destination       = string # required
+    destination_type  = string # required
+    network_entity_id = string # required
+    description       = string # optional
   }))
   default = null
 }
 ----
 
-- `nat_gateway_route_rules` with the following schema:
+- `nat_gateway_route_rules` defined as a `list(map(string))` with the following expected schema:
 
 [source,hcl]
 ----
 variable "nat_gateway_route_rules" {
   description = "(Updatable) List of routing rules to add to NAT Gateway Routing Table"
   type = list(object({
-    destination       = string
-    destination_type  = string
-    network_entity_id = string
-    description       = string
+    destination       = string # required
+    destination_type  = string # required
+    network_entity_id = string # required
+    description       = string # optional
   }))
   default = null
 }
