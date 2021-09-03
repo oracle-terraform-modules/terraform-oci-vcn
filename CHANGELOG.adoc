@@ -22,12 +22,11 @@ Given a version number MAJOR.MINOR.PATCH:
 * Deprecated previous gateway-creation variable names. See v2.2.0 deprecation notice and codingconventions (fixes #24 and #54)
 
 === New features
-* added support for local peering gateways (fixes #38)
-* added support for multiple CIDR blocks on VCN (fixes #21)
-* added custom display name for gateways and drg attachment (fixes #30 and #44)
+* Added support for local peering gateways (fixes #38)
+* Added custom display name for gateways and drg attachment (fixes #30 and #44)
 
 === Changes
-* added variable validation for gateway display names (fixes #56)
+* Added variable validation for gateway display names (fixes #56)
 * `var.internet_gateway_route_rules` and `var.nat_gateway_route_rules` new type: `list(map(string))` instead of `list(object)` (backward compatible change)
 
 === Fixes
@@ -40,28 +39,28 @@ Given a version number MAJOR.MINOR.PATCH:
 == v2.3.0 (July 21, 2021)
 
 === New features
-* added a new parameter to support reserved IP address for the NAT gateway (fixes #14)
+* Added a new parameter to support reserved IP address for the NAT gateway (fixes #14)
 
 == v2.2.0 (March 23, 2021)
 
 === New features
-* added a new parameter to create a DRG and attach it to VCN (fixes #16)
-* added support for custom routing rules to provisioned route tables (fixes #17)
-* added new outputs for each provisioned resources: "all_attributes" outputs have full provider coverage and are auto-updating. (fixes #34)
+* Added a new parameter to create a DRG and attach it to VCN (fixes #16)
+* Added support for custom routing rules to provisioned route tables (fixes #17)
+* Added new outputs for each provisioned resources: "all_attributes" outputs have full provider coverage and are auto-updating. (fixes #34)
 * added `service_gateway_id` output
 
 === Changes
-* oci provider minimum version to 4.0.0
-* module examples
-** added Terraform minimum version to 0.13 and OCI provider minimum version to 4.0.0
-** changed default label prefix to "terraform-oci"
-** added outputs for cli feedback
-** added a new example config for custom routing rules
-* documentation update: coding conventions
-* repo: default branch renamed from `master` to `main`
+* OCI provider minimum version to 4.0.0
+* Module examples
+** Added Terraform minimum version to 0.13 and OCI provider minimum version to 4.0.0
+** Changed default label prefix to "terraform-oci"
+** Added outputs for cli feedback
+** Added a new example config for custom routing rules
+* Documentation update: coding conventions
+* Repo: default branch renamed from `master` to `main`
 
 === Fixes
-* update legacy (attributes only) splat syntax in outputs
+* Update legacy (attributes only) splat syntax in outputs
 
 === Deprecation notice
 
@@ -75,22 +74,22 @@ The folowwing variables will be renamed at the next major release of this module
 == v2.1.0 (February 03, 2021)
 
 === New features
-* added a new parameter to lockdown the VCN Default Security List and option to revert to original state (fixes #22)
+* Added a new parameter to lockdown the VCN Default Security List and option to revert to original state (fixes #22)
 
 === Changes
-* update CONTRIBUTING guide
-* fix typo on resource oci_core_internet_gateway.ig
+* Update CONTRIBUTING guide
+* Fix typo on resource oci_core_internet_gateway.ig
 
 == v2.0.1 (February 01,2021)
 
 === Changes
-* changed input region to be optional (fixes #18)
+* Changed input region to be optional (fixes #18)
 
 == v2.0.0 (November 26,2020)
 
 === Changes
-* added Terraform 0.13 compatibility
-* changed Terraform minimum version to 0.13
+* Added Terraform 0.13 compatibility
+* Changed Terraform minimum version to 0.13
 
 == v1.0.3 (July 13,2020)
 
@@ -115,6 +114,6 @@ The folowwing variables will be renamed at the next major release of this module
 
 === Changes
 * First release after split from terraform-oci-base
-* changed most variables to simple types
-* internet gateway now optional
-* updated docs
+* Changed most variables to simple types
+* Internet gateway now optional
+* Updated docs
