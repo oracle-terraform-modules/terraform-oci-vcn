@@ -18,7 +18,7 @@ terraform {
 module "vcn_hub" {
   # this module use the generic vcn module and configure it to act as a hub in a hub-and-spoke topology
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0"
+  version = "3.1.0"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -31,7 +31,8 @@ module "vcn_hub" {
   lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
   create_nat_gateway       = var.create_nat_gateway       # boolean: true or false
   create_service_gateway   = var.create_service_gateway   # boolean: true or false
-  vcn_cidrs                = var.vcn_cidrs                # List of IPv4 CIDRs
+  enable_ipv6              = var.enable_ipv6
+  vcn_cidrs                = var.vcn_cidrs # List of IPv4 CIDRs
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
 
@@ -67,7 +68,7 @@ resource "oci_core_route_table" "VTR_spokes" {
 module "vcn_spoke1" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0"
+  version = "3.1.0"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -96,7 +97,7 @@ module "vcn_spoke1" {
 module "vcn_spoke2" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0"
+  version = "3.1.0"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -123,7 +124,7 @@ module "vcn_spoke2" {
 module "vcn_spoke3" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0"
+  version = "3.1.0"
 
   # general oci parameters
   compartment_id = var.compartment_id

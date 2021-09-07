@@ -21,7 +21,7 @@ Three VCN will be created:
 
 This diagram illustrates what will be created by this example.
 
-![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/images/hub-spoke-lpg.PNG?raw=true&sanitize=true)
+![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/images/hub-spoke-lpg.png?raw=true&sanitize=true)
 
 ## How to declare one or many LPG on the vcn module
 

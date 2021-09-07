@@ -47,6 +47,24 @@ variable "create_internet_gateway" {
   type        = bool
 }
 
+variable "create_nat_gateway" {
+  description = "whether to create a nat gateway in the vcn. If set to true, creates a nat gateway."
+  default     = false
+  type        = bool
+}
+
+variable "create_service_gateway" {
+  description = "whether to create a service gateway. If set to true, creates a service gateway."
+  default     = false
+  type        = bool
+}
+
+variable "enable_ipv6" {
+  description = "Whether IPv6 is enabled for the VCN. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block."
+  type        = bool
+  default     = false
+}
+
 variable "local_peering_gateways" {
   description = "Map of Local Peering Gateways to attach to the VCN."
   type        = map(any)
@@ -59,22 +77,10 @@ variable "lockdown_default_seclist" {
   type        = bool
 }
 
-variable "create_nat_gateway" {
-  description = "whether to create a nat gateway in the vcn. If set to true, creates a nat gateway."
-  default     = false
-  type        = bool
-}
-
 variable "nat_gateway_public_ip_id" {
   description = "OCID of reserved IP address for NAT gateway. The reserved public IP address needs to be manually created."
   default     = "none"
   type        = string
-}
-
-variable "create_service_gateway" {
-  description = "whether to create a service gateway. If set to true, creates a service gateway."
-  default     = false
-  type        = bool
 }
 
 variable "vcn_cidrs" {

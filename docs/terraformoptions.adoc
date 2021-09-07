@@ -85,6 +85,11 @@
 |`string`
 |"drg"
 
+|`enable_ipv6`
+|(Updatable) Whether IPv6 is enabled for the VCN. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block.
+|`boolean`
+|false
+
 |`freeform_tags`
 |simple key-value pairs to tag the resources created specified in the form of a map
 |`map(any)`
