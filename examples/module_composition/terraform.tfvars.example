@@ -29,6 +29,8 @@ create_nat_gateway = false
 
 create_service_gateway = false
 
+enable_ipv6 = false
+
 vcn_cidrs = ["10.0.0.0/16", "172.16.0.0/16", "192.168.0.0/24"]
 
 vcn_dns_label = "vcn"

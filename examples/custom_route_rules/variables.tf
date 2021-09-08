@@ -61,12 +61,6 @@ variable "create_internet_gateway" {
   default     = true
 }
 
-variable "lockdown_default_seclist" {
-  description = "whether to remove all default security rules from the VCN Default Security List"
-  type        = bool
-  default     = true
-}
-
 variable "create_nat_gateway" {
   description = "whether to create a nat gateway in the vcn"
   type        = bool
@@ -79,6 +73,12 @@ variable "create_service_gateway" {
   default     = true
 }
 
+variable "enable_ipv6" {
+  description = "Whether IPv6 is enabled for the VCN. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block."
+  type        = bool
+  default     = false
+}
+
 variable "freeform_tags" {
   description = "simple key-value pairs to tag the resources created"
   type        = map(any)
@@ -86,6 +86,12 @@ variable "freeform_tags" {
     terraformed = "please do not edit manually"
     module      = "oracle-terraform-modules/vcn/oci"
   }
+}
+
+variable "lockdown_default_seclist" {
+  description = "whether to remove all default security rules from the VCN Default Security List"
+  type        = bool
+  default     = true
 }
 
 variable "vcn_cidrs" {

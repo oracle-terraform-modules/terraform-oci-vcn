@@ -17,7 +17,7 @@ terraform {
 
 module "vcn" {
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.0.0"
+  version = "3.1.0"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -30,7 +30,8 @@ module "vcn" {
   lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
   create_nat_gateway       = var.create_nat_gateway       # boolean: true or false
   create_service_gateway   = var.create_service_gateway   # boolean: true or false
-  vcn_cidrs                = var.vcn_cidrs                # List of IPv4 CIDRs
+  enable_ipv6              = var.enable_ipv6
+  vcn_cidrs                = var.vcn_cidrs # List of IPv4 CIDRs
   vcn_dns_label            = var.vcn_dns_label
   vcn_name                 = var.vcn_name
 

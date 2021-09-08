@@ -16,6 +16,8 @@ create_internet_gateway = false
 
 create_nat_gateway = false
 
+enable_ipv6 = false
+
 nat_gateway_public_ip_id = "none"
 
 create_service_gateway = false
