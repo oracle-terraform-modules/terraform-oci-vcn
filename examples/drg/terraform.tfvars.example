@@ -1,0 +1,14 @@
+<!-- BEGIN_TF_DOCS -->
+api_fingerprint      = ""
+api_private_key_path = ""
+compartment_id       = ""
+drg_display_name     = "drg"
+freeform_tags = {
+  "module": "oracle-terraform-modules/vcn/oci",
+  "terraformed": "please do not edit manually"
+}
+label_prefix = "terraform-oci"
+region       = ""
+tenancy_id   = ""
+user_id      = ""
+<!-- END_TF_DOCS -->

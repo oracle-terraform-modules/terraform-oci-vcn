@@ -56,85 +56,10 @@ variable "freeform_tags" {
   }
 }
 
-# vcn parameters
-
-variable "create_drg" {
-  description = "whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway."
-  type        = bool
-  default     = false
-}
-
-variable "create_internet_gateway" {
-  description = "whether to create the internet gateway"
-  type        = bool
-  default     = false
-}
-
-variable "create_nat_gateway" {
-  description = "whether to create a nat gateway in the vcn"
-  type        = bool
-  default     = false
-}
-
-variable "create_service_gateway" {
-  description = "whether to create a service gateway"
-  type        = bool
-  default     = false
-}
-
-variable "enable_ipv6" {
-  description = "Whether IPv6 is enabled for the VCN. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block."
-  type        = bool
-  default     = false
-}
-
-variable "lockdown_default_seclist" {
-  description = "whether to remove all default security rules from the VCN Default Security List"
-  type        = bool
-  default     = false
-}
-
-variable "vcn_cidrs" {
-  description = "The list of IPv4 CIDR blocks the VCN will use."
-  type        = list(string)
-  default     = ["10.0.0.0/16", "172.16.0.0/16", "192.168.0.0/24"]
-}
-
-variable "vcn_dns_label" {
-  description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
-  type        = string
-  default     = "vcnmodule"
-}
-
-variable "vcn_name" {
-  description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
-  type        = string
-  default     = "vcn-module"
-}
-
-# gateways parameters
+# drg parameters
 
 variable "drg_display_name" {
   description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
   type        = string
   default     = "drg"
 }
-
-variable "internet_gateway_display_name" {
-  description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
-  type        = string
-  default     = "igw"
-}
-
-variable "nat_gateway_display_name" {
-  description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
-  type        = string
-  default     = "ngw"
-}
-
-variable "service_gateway_display_name" {
-  description = "(Updatable) Name of Service Gateway. Does not have to be unique."
-  type        = string
-  default     = "sgw"
-}
-

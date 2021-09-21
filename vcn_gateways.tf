@@ -197,24 +197,15 @@ resource "oci_core_route_table" "nat" {
 # Dynamic Routing Gateway (DRG)
 ###############################
 
-resource "oci_core_drg" "drg" {
-  compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-${var.drg_display_name}"
+# resource "oci_core_drg_attachment" "drg" {
+#   drg_id       = oci_core_drg.drg[count.index].id
+#   vcn_id       = oci_core_vcn.vcn.id
+#   display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}"
 
-  freeform_tags = var.freeform_tags
+#   freeform_tags = var.freeform_tags
 
-  count = var.create_drg == true ? 1 : 0
-}
-
-resource "oci_core_drg_attachment" "drg" {
-  drg_id       = oci_core_drg.drg[count.index].id
-  vcn_id       = oci_core_vcn.vcn.id
-  display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}"
-
-  freeform_tags = var.freeform_tags
-
-  count = var.create_drg == true ? 1 : 0
-}
+#   count = var.create_drg == true ? 1 : 0
+# }
 
 #############################
 # Local Peering Gateway (LPG)

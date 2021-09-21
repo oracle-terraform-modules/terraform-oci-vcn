@@ -1,4 +1,4 @@
-# Copyright (c) 2019, 2020 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # provider identity parameters
@@ -100,17 +100,6 @@ variable "vcn_name" {
 }
 
 # gateways parameters
-
-variable "drg_display_name" {
-  description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
-  type        = string
-  default     = "drg"
-
-  validation {
-    condition     = length(var.drg_display_name) > 0
-    error_message = "The drg_display_name value cannot be an empty string."
-  }
-}
 
 variable "internet_gateway_display_name" {
   description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
