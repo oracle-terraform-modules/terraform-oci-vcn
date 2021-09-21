@@ -6,4 +6,5 @@ resource "oci_core_drg" "drg" {
   display_name   = var.label_prefix == "none" ? var.drg_display_name : "${var.label_prefix}-${var.drg_display_name}"
 
   freeform_tags = var.freeform_tags
+  defined_tags  = var.defined_tags
 }

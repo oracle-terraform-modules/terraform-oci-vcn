@@ -31,7 +31,7 @@
 
 == General OCI
 
-[stripes=odd,cols="2m,5,1m,1m", options=header,width="100%"]
+[stripes=odd,cols="1m,4,3a,2m", options=header,width="100%"]
 |===
 |Parameter
 |Description
@@ -48,6 +48,21 @@
 |`string`
 |"none"
 
+|`freeform_tags`
+|simple key-value pairs to tag the resources created specified in the form of a map
+|`map(any)`
+
+e.g.
+[source,HCL]
+----
+freeform_tags = {
+  department = "finance"
+  environment = "dev"
+}
+----
+|freeform_tags = {
+  environment = "dev"
+}
 
 |===
 
@@ -89,22 +104,6 @@
 |(Updatable) Whether IPv6 is enabled for the VCN. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block.
 |`boolean`
 |false
-
-|`freeform_tags`
-|simple key-value pairs to tag the resources created specified in the form of a map
-|`map(any)`
-
-e.g.
-[source,HCL]
-----
-freeform_tags = {
-  department = "finance"
-  environment = "dev"
-}
-----
-|freeform_tags = {
-  environment = "dev"
-}
 
 |`internet_gateway_display_name`
 |(Updatable) Name of Internet Gateway. Does not have to be unique.

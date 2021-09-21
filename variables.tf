@@ -25,7 +25,7 @@ variable "label_prefix" {
 }
 
 variable "freeform_tags" {
-  description = "simple key-value pairs to tag the resources created using freeform freeform_tags."
+  description = "simple key-value pairs to tag the created resources using freeform OCI Free-form tags."
   type        = map(any)
   default = {
     terraformed = "Please do not edit manually"
