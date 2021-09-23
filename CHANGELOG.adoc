@@ -17,14 +17,28 @@ Given a version number MAJOR.MINOR.PATCH:
 == v3.1.0 (Unreleased)
 
 === New features
-* Added add IPv6 support for VCN (fixes #62)
+* Added IPv6 support for VCN (fixes #62)
+* Added capability to attach multiple vcn to a drg using the new drg sub-module
+* Added optional DNS activation on VCN. `var.vcn_dns_label` is now also validated to be alphanumeric string that begins with a letter (fixes #66)
+
+=== Changes
+* drg is refactored as an independent sub-module
+* `var.vcn_name` is not a required input anymore for vcn module. Default value is set to `"vcn-module"`
+* `var.vcn_dns_label` is not a required input anymore for vcn module. Default value is set to `"vcnmodule"`
+
+=== Deprecation notice
+
+Creating a DRG directly from vcn module with `var.create_drg` is deprecated. Previous features related to `var.create_drg` remains unchanged and works as expected before:
+
+* DRG provisioning and attachment features are moving to their own sub-module as part of the "DRG refactor" effort (#46)
+* Any new feature related to DRG will be handled into the new vcn sub-module: `module/drg`
 
 == v3.0.0 (September 03, 2021)
 
 === Breaking changes
 * Changed minimum Terraform version to 1.0.0 (fixes #49)
-* Deprecated `vcn_cidr`, use `vcn_cidrs` instead (list of IPv4 CIDRs).
-* Deprecated previous gateway-creation variable names. See v2.2.0 deprecation notice and codingconventions (fixes #24 and #54)
+* removed `var.vcn_cidr` (string), use `var.vcn_cidrs` instead (list of strings: IPv4 CIDRs).
+* renamed previous gateway-creation variable names. See **v2.2.0 deprecation notice** and codingconventions (fixes #24 and #54)
 
 === New features
 * Added support for local peering gateways (fixes #38)
@@ -71,10 +85,10 @@ Given a version number MAJOR.MINOR.PATCH:
 
 The folowwing variables will be renamed at the next major release of this module (related to issue #24):
 
-* var.internet_gateway_enabled --> var.create_internet_gateway
-* var.nat_gateway_enabled --> var.create_nat_gateway
-* var.service_gateway_enabled --> var.create_service_gateway
-* var.tags --> var.freeform_tags
+* `var.internet_gateway_enabled` will be renamed to `var.create_internet_gateway`
+* `var.nat_gateway_enabled` will be renamed to `var.create_nat_gateway`
+* `var.service_gateway_enabled` will be renamed to `var.create_service_gateway`
+* `var.tags` will be renamed to `var.freeform_tags`
 
 == v2.1.0 (February 03, 2021)
 

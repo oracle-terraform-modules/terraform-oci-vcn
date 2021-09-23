@@ -38,7 +38,7 @@ resource "oci_core_route_table" "ig" {
     content {
       destination       = route_rules.value.destination
       destination_type  = route_rules.value.destination_type
-      network_entity_id = oci_core_drg.drg[0].id
+      network_entity_id = module.drg_from_vcn_module[0].drg_id
       description       = route_rules.value.description
     }
   }
@@ -154,7 +154,7 @@ resource "oci_core_route_table" "nat" {
     content {
       destination       = route_rules.value.destination
       destination_type  = route_rules.value.destination_type
-      network_entity_id = oci_core_drg.drg[0].id
+      network_entity_id = module.drg_from_vcn_module[0].drg_id
       description       = route_rules.value.description
     }
   }
@@ -174,7 +174,7 @@ resource "oci_core_route_table" "nat" {
   }
 
   dynamic "route_rules" {
-    # * filter var.internet_gateway_route_rules for generic routes
+    # * filter var.nat_gateway_route_rules for generic routes
     # * can take any Named Value : String, Input Variable, Local Value, Data Source, Resource, Module Output ...
     # * useful for gateways that are not managed by the module
     for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
@@ -197,15 +197,17 @@ resource "oci_core_route_table" "nat" {
 # Dynamic Routing Gateway (DRG)
 ###############################
 
-# resource "oci_core_drg_attachment" "drg" {
-#   drg_id       = oci_core_drg.drg[count.index].id
-#   vcn_id       = oci_core_vcn.vcn.id
-#   display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}"
+#! this resource is here for backward compatibility with feature related to `var.create_drg`
+#! deprecation notice: this resource will be removed at next major release
+resource "oci_core_drg_attachment" "drg_from_vcn_module" {
+  drg_id       = module.drg_from_vcn_module[0].drg_id
+  vcn_id       = oci_core_vcn.vcn.id
+  display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}"
 
-#   freeform_tags = var.freeform_tags
+  freeform_tags = var.freeform_tags
 
-#   count = var.create_drg == true ? 1 : 0
-# }
+  count = var.create_drg == true ? 1 : 0
+}
 
 #############################
 # Local Peering Gateway (LPG)

@@ -51,3 +51,9 @@ variable "drg_display_name" {
     error_message = "The drg_display_name value cannot be an empty string."
   }
 }
+
+variable "drg_attachment_resource_ids" {
+  description = "The OCID of the network resource attached to the DRG"
+  type        = map(string)
+  default     = null
+}

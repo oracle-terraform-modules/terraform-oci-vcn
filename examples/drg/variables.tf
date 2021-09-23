@@ -47,19 +47,36 @@ variable "label_prefix" {
   default     = "terraform-oci"
 }
 
-variable "freeform_tags" {
-  description = "simple key-value pairs to tag the created resources using freeform OCI Free-form tags."
-  type        = map(any)
-  default = {
-    terraformed = "please do not edit manually"
-    module      = "oracle-terraform-modules/vcn/oci"
-  }
-}
-
 # drg parameters
 
 variable "drg_display_name" {
   description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
   type        = string
-  default     = "drg"
+  default     = "drg_hub"
+}
+
+# vcn parameters
+
+variable "vcn_spokes" {
+  type = map(any)
+  default = {
+    vcn_spoke1 = {
+      cidrs                    = ["10.0.1.0/24", "10.0.2.0/24"]
+      dns_label                = "spoke1"
+      create_internet_gateway  = true
+      create_nat_gateway       = true
+      create_service_gateway   = true
+      enable_ipv6              = true
+      lockdown_default_seclist = true
+    }
+    vcn_spoke2 = {
+      cidrs                    = ["10.0.3.0/24"]
+      dns_label                = "spoke2"
+      create_internet_gateway  = true
+      create_nat_gateway       = false
+      create_service_gateway   = true
+      enable_ipv6              = false
+      lockdown_default_seclist = true
+    }
+  }
 }

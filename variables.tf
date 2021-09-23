@@ -36,7 +36,8 @@ variable "freeform_tags" {
 # vcn parameters
 
 variable "create_drg" {
-  description = "whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway and attach it to the vcn."
+  #! Deprecation notice: Please use drg sub-module instead
+  description = "Deprecated: Use drg sub-module instead. Whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway and attach it to the vcn."
   type        = bool
   default     = false
 }
@@ -65,12 +66,6 @@ variable "enable_ipv6" {
   default     = false
 }
 
-variable "local_peering_gateways" {
-  description = "Map of Local Peering Gateways to attach to the VCN."
-  type        = map(any)
-  default     = null
-}
-
 variable "lockdown_default_seclist" {
   description = "whether to remove all default security rules from the VCN Default Security List"
   default     = true
@@ -92,14 +87,37 @@ variable "vcn_cidrs" {
 variable "vcn_dns_label" {
   description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
   type        = string
+  default     = "vcnmodule"
+
+  validation {
+    condition     = length(regexall("^[^0-9][a-zA-Z0-9_]+$", var.vcn_dns_label)) > 0
+    error_message = "DNS label must be an alphanumeric string that begins with a letter."
+  }
 }
 
 variable "vcn_name" {
   description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
   type        = string
+  default     = "vcn-module"
+  validation {
+    condition     = length(var.vcn_name) > 0
+    error_message = "The vcn_display_name value cannot be an empty string."
+  }
 }
 
 # gateways parameters
+
+variable "drg_display_name" {
+  #! Deprecation notice: Please use drg sub-module instead
+  description = "Deprecated: Use drg sub-module instead. (Updatable) Name of Internet Gateway. Does not have to be unique."
+  type        = string
+  default     = "drg"
+
+  validation {
+    condition     = length(var.drg_display_name) > 0
+    error_message = "The drg_display_name value cannot be an empty string."
+  }
+}
 
 variable "internet_gateway_display_name" {
   description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
@@ -110,6 +128,12 @@ variable "internet_gateway_display_name" {
     condition     = length(var.internet_gateway_display_name) > 0
     error_message = "The internet_gateway_display_name value cannot be an empty string."
   }
+}
+
+variable "local_peering_gateways" {
+  description = "Map of Local Peering Gateways to attach to the VCN."
+  type        = map(any)
+  default     = null
 }
 
 variable "nat_gateway_display_name" {

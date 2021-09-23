@@ -37,7 +37,7 @@ module "vcn" {
   vcn_name                 = var.vcn_name
 
   # gateways parameters
-  # drg_display_name              = var.drg_display_name
+  drg_display_name              = var.drg_display_name
   internet_gateway_display_name = var.internet_gateway_display_name
   nat_gateway_display_name      = var.nat_gateway_display_name
   service_gateway_display_name  = var.service_gateway_display_name
@@ -48,7 +48,7 @@ module "vcn" {
 output "module_vcn_ids" {
   description = "vcn and gateways information"
   value = {
-    # drg_id                       = module.vcn.drg_id
+    drg_id                       = module.vcn.drg_id
     internet_gateway_id          = module.vcn.internet_gateway_id
     internet_gateway_route_id    = module.vcn.ig_route_id
     nat_gateway_id               = module.vcn.nat_gateway_id
