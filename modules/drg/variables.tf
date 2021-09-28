@@ -52,8 +52,8 @@ variable "drg_display_name" {
   }
 }
 
-variable "drg_attachment_resource_ids" {
+variable "drg_vcn_attachments" {
   description = "The OCID of the network resource attached to the DRG"
-  type        = map(string)
+  type        = map(any)
   default     = null
 }

@@ -76,7 +76,7 @@ freeform_tags = {
 |Default
 
 |`create_drg`
-|whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.
+|Deprecated: Use drg sub-module instead. whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.
 |`boolean`
 |false
 
@@ -96,7 +96,7 @@ freeform_tags = {
 |false
 
 |`drg_display_name`
-|(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique.
+|Deprecated: Use drg sub-module instead. (Updatable) Name of Dynamic Routing Gateway. Does not have to be unique.
 |`string`
 |"drg"
 
@@ -210,9 +210,9 @@ e.g.
 | `["10.0.0.0/16"]`
 
 |`vcn_dns_label`
-|The internal DNS domain for resources created and prepended to "oraclevcn.com" which is the VCN-internal domain name. *Required*
+|A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet
 |`string`
-|
+|"vcnmodule"
 
 |`vcn_name`
 |The name of the VCN that will be appended to the label_prefix. *Required*

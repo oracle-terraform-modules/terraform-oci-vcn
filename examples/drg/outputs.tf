@@ -1,10 +1,10 @@
 # Copyright (c) 2019, 2021, Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
-# display names and ids of a module not using for_each or count and shows how to use the *_all_attributes output to select a specific field
+# display a summary of the drg and its attachments
 output "module_drg_hub" {
-  description = "drg name and OCID"
-  value       = { (module.drg_hub.drg_all_attributes.display_name) = module.drg_hub.drg_id }
+  description = "drg name, OCID and vcn attachment summary"
+  value       = module.drg_hub.drg_summary
 }
 
 # display names and ids of a module that use for_each and shows how to use the *_all_attributes output to select a specific field

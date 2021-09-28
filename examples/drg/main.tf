@@ -16,21 +16,25 @@ terraform {
 # Resources
 
 module "drg_hub" {
-  source = "../../modules/drg/"
+  source = "oracle-terraform-modules/vcn/oci//modules/drg/"
 
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
 
   # drg parameters
-  drg_display_name            = var.drg_display_name
-  drg_attachment_resource_ids = { for k, v in module.vcn_spokes : k => v.vcn_id }
+  drg_display_name = var.drg_display_name
+  drg_vcn_attachments = { for k, v in module.vcn_spokes : k => {
+    vcn_id : v.vcn_id
+    vcn_transit_routing_rt_id : null
+    drg_route_table_id : null
+    }
+  }
 }
 
 module "vcn_spokes" {
-  source = "../.."
-  # source  = "oracle-terraform-modules/vcn/oci"
-  # version = "3.1.0"
+  source   = "oracle-terraform-modules/vcn/oci"
+  version  = "3.1.0"
   for_each = var.vcn_spokes
 
   # general oci parameters
@@ -60,27 +64,4 @@ module "vcn_spokes" {
 #     # freeform_tags = {"Department"= "Finance"}
 #     # peer_id = oci_core_remote_peering_connection.test_remote_peering_connection2.id
 #     # peer_region_name = var.remote_peering_connection_peer_region_name
-# }
-
-# module "vcn_spoke3_with_drg" {
-# ! Module Examples should not show deprecated code. Temporarly kept to test backward compatibility during development
-# ! To be removed before PR.
-#   source = "../.."
-#   # source  = "oracle-terraform-modules/vcn/oci"
-#   # version = "3.1.0"
-
-#   # general oci parameters
-#   compartment_id = var.compartment_id
-#   label_prefix   = var.label_prefix
-
-#   # vcn parameters
-#   create_drg               = true           # boolean: true or false
-#   create_internet_gateway  = true            # boolean: true or false
-#   lockdown_default_seclist = true            # boolean: true or false
-#   create_nat_gateway       = true            # boolean: true or false
-#   create_service_gateway   = true            # boolean: true or false
-#   enable_ipv6              = true            # boolean: true or false
-#   vcn_cidrs                = ["10.0.4.0/24"] # List of IPv4 CIDRs
-#   vcn_dns_label            = "spoke3"        # string
-#   vcn_name                 = "spoke3"        # string
 # }

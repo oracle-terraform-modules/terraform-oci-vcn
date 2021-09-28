@@ -21,5 +21,15 @@ output "drg_all_attributes" {
 
 output "drg_attachment_all_attributes" {
   description = "all attributes related to drg attachment"
-  value       = { for k, v in oci_core_drg_attachment.drg : k => v }
+  value       = { for k, v in oci_core_drg_attachment.vcns : k => v }
+}
+
+output "drg_summary" {
+  description = "drg information summary"
+  value = {
+    (oci_core_drg.drg.display_name) = {
+      drg_id          = oci_core_drg.drg.id
+      vcn_attachments = { for k, v in oci_core_drg_attachment.vcns : k => v.network_details[0].id }
+    }
+  }
 }
