@@ -16,7 +16,7 @@ terraform {
 # Resources
 
 module "drg_hub" {
-  source = "oracle-terraform-modules/vcn/oci//modules/drg/"
+  source = "oracle-terraform-modules/vcn/oci//modules/drg"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -25,6 +25,10 @@ module "drg_hub" {
   # drg parameters
   drg_display_name = var.drg_display_name
   drg_vcn_attachments = { for k, v in module.vcn_spokes : k => {
+    # instead of manually setting the vcn_id in a variable named var.vcn_attachments for example
+    # this `for` expression gets the vcn_id values dynamically from the vcn module used in the same
+    # configuration below. for example on how to setup this field manually, please see terraform.tfvars.example
+    # in this folder.
     vcn_id : v.vcn_id
     vcn_transit_routing_rt_id : null
     drg_route_table_id : null

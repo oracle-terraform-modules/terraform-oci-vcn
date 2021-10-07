@@ -101,7 +101,7 @@ variable "vcn_name" {
   default     = "vcn-module"
   validation {
     condition     = length(var.vcn_name) > 0
-    error_message = "The vcn_display_name value cannot be an empty string."
+    error_message = "The vcn_name value cannot be an empty string."
   }
 }
 
