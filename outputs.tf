@@ -7,10 +7,10 @@ output "vcn_id" {
 }
 
 output "drg_id" {
-  description = "id of drg if it is created"
-  value       = join(",", oci_core_drg.drg[*].id)
+  #! deprecation notice: this output will be removed at next major release
+  description = "Deprecated: Use drg sub-module instead. id of drg if it is created"
+  value       = join(",", module.drg_from_vcn_module[*].drg_id)
 }
-
 output "nat_gateway_id" {
   description = "id of nat gateway if it is created"
   value       = join(",", oci_core_nat_gateway.nat_gateway[*].id)
@@ -39,14 +39,10 @@ output "nat_route_id" {
 # New complete outputs for each resources with provider parity. Auto-updating.
 # Usefull for module composition.
 
-output "drg_all_attributes" {
-  description = "all attributes of created drg"
-  value       = { for k, v in oci_core_drg.drg : k => v }
-}
-
 output "drg_attachment_all_attributes" {
-  description = "all attributes related to drg attachment"
-  value       = { for k, v in oci_core_drg_attachment.drg : k => v }
+  #! deprecation notice: this output will be removed at next major release
+  description = "Deprecated: Use drg sub-module instead. all attributes related to drg attachment"
+  value       = { for k, v in oci_core_drg_attachment.drg_from_vcn_module : k => v }
 }
 
 output "internet_gateway_all_attributes" {

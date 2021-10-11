@@ -1,0 +1,48 @@
+# Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
+api_fingerprint      = ""
+api_private_key_path = ""
+compartment_id       = ""
+drg_display_name     = "drg_hub"
+label_prefix         = "terraform-oci"
+region               = ""
+tenancy_id           = ""
+user_id              = ""
+vcn_spokes = {
+  "vcn_spoke1": {
+    "cidrs": [
+      "10.0.1.0/24",
+      "10.0.2.0/24"
+    ],
+    "create_internet_gateway": true,
+    "create_nat_gateway": true,
+    "create_service_gateway": true,
+    "dns_label": "spoke1",
+    "enable_ipv6": true,
+    "lockdown_default_seclist": true
+  },
+  "vcn_spoke2": {
+    "cidrs": [
+      "10.0.3.0/24"
+    ],
+    "create_internet_gateway": true,
+    "create_nat_gateway": false,
+    "create_service_gateway": true,
+    "dns_label": "spoke2",
+    "enable_ipv6": false,
+    "lockdown_default_seclist": true
+  }
+}
+vcn_attachments = {
+  "vcn_spoke1": {
+    vcn_id : ""
+    vcn_transit_routing_rt_id : ""
+    drg_route_table_id : ""
+  },
+  "vcn_spoke2": {
+    vcn_id : ""
+    vcn_transit_routing_rt_id : ""
+    drg_route_table_id : ""
+  }
+}

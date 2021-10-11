@@ -47,6 +47,15 @@ variable "label_prefix" {
   default     = "terraform-oci"
 }
 
+variable "freeform_tags" {
+  description = "simple key-value pairs to tag the created resources using freeform OCI Free-form tags."
+  type        = map(any)
+  default = {
+    terraformed = "please do not edit manually"
+    module      = "oracle-terraform-modules/vcn/oci"
+  }
+}
+
 # vcn parameters
 
 variable "create_drg" {
@@ -83,15 +92,6 @@ variable "enable_ipv6" {
   description = "Whether IPv6 is enabled for the VCN. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block."
   type        = bool
   default     = true
-}
-
-variable "freeform_tags" {
-  description = "simple key-value pairs to tag the resources created"
-  type        = map(any)
-  default = {
-    terraformed = "please do not edit manually"
-    module      = "oracle-terraform-modules/vcn/oci"
-  }
 }
 
 variable "vcn_cidrs" {
