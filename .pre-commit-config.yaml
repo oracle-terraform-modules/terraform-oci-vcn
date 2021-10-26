@@ -1,0 +1,7 @@
+repos:
+  - repo: git://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.52.0
+    hooks:
+      - id: terragrunt_fmt
+      - id: terragrunt_validate
+
