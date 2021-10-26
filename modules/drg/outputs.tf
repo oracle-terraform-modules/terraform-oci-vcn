@@ -6,6 +6,7 @@ output "drg_id" {
   value       = join(",", oci_core_drg.drg[*].id)
 }
 
+
 output "drg_display_name" {
   description = "display name of drg if it is created"
   value       = join(",", oci_core_drg.drg[*].display_name)
