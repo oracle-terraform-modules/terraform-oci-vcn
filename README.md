@@ -17,6 +17,9 @@ Custom route rules can be added to the two route tables created by the module.
 
 This module is primarily meant to be reusable to create more advanced infrastructure on [OCI][OCI] either manually in the OCI Console or by extending the Terraform code.
 
+## [Module Documentation]
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## [Documentation][docs]
 
 ### [Pre-requisites][prerequisites]

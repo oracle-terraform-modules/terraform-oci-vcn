@@ -4,4 +4,4 @@ repos:
     hooks:
       - id: terragrunt_fmt
       - id: terragrunt_validate
-
+      - id: terraform_docs
