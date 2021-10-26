@@ -9,17 +9,14 @@ resource "oci_core_default_security_list" "lockdown" {
 
   count = var.lockdown_default_seclist == true ? 1 : 0
 }
-
 resource "oci_core_default_security_list" "restore_default" {
   // If variable is false, restore all default rules to default security list
   manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
-
   egress_security_rules {
     // allow all egress traffic
     destination = "0.0.0.0/0"
     protocol    = "all"
   }
-
   ingress_security_rules {
     // allow all SSH
     protocol = "6"
@@ -29,7 +26,6 @@ resource "oci_core_default_security_list" "restore_default" {
       max = 22
     }
   }
-
   ingress_security_rules {
     // allow ICMP for all type 3 code 4
     protocol = "1"
