@@ -11,9 +11,18 @@ module "drg_from_vcn_module" {
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
-
+  
   # drg parameters
   drg_display_name = var.label_prefix == "none" ? "${var.drg_display_name}_created_from_${var.vcn_name}" : "${var.drg_display_name}"
 
-  count = var.create_drg == true ? 1 : 0
+  #rpc parameters    
+  create_rpc = var.create_rpc
+  remote_rpc_id = var.drg_rpc_id_remote
+  remote_rpc_region = var.drg_rpc_region_remote
+
+
+  count = var.create_drg == true || var.create_rpc == true ? 1 : 0
 }
+
+
+

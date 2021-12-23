@@ -1,0 +1,35 @@
+# Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
+# provider identity parameters
+
+api_fingerprint = ""
+
+api_private_key_path = ""
+
+region = "us-phoenix-1"
+
+tenancy_id = ""
+
+user_id = ""
+
+# general oci parameters
+
+compartment_id = ""
+
+label_prefix = "dev"
+
+# rpc parameters
+remote_region = "us-ashburn-1"
+
+local_vcn_cidr = "10.0.0.0/24"
+
+remote_vcn_cidr = "192.168.0.0/24"
+
+freeform_tags = {
+  environment = "dev"
+  lob         = "rpc"
+}
+
+
+

@@ -30,3 +30,21 @@ resource "oci_core_drg_attachment" "vcns" {
   export_drg_route_distribution_id             = null  # (Optional) (Updatable) string
   remove_export_drg_route_distribution_trigger = false # (Optional) (Updatable) boolean
 }
+
+resource "oci_core_remote_peering_connection" "rpc" {
+  
+  compartment_id = var.compartment_id
+  drg_id         = oci_core_drg.drg.id
+  display_name   = var.label_prefix == "none" ? "rpc_created_from_${var.drg_display_name}" : "${var.label_prefix}_RPC"
+
+  freeform_tags = var.freeform_tags
+  defined_tags  = var.defined_tags
+
+
+  peer_id          = var.remote_rpc_id
+  peer_region_name = var.remote_rpc_region
+
+  count = var.create_rpc == true ? 1 : 0
+
+}
+

@@ -42,6 +42,12 @@ variable "create_drg" {
   default     = false
 }
 
+variable "create_rpc" {
+  description = "Whether to create Remote Peering Connection in the DRG module. It requires a DRG to be created"
+  type        = bool
+  default     = false
+}
+
 variable "create_internet_gateway" {
   description = "whether to create the internet gateway in the vcn. If set to true, creates an Internet Gateway."
   default     = false
@@ -117,6 +123,20 @@ variable "drg_display_name" {
     condition     = length(var.drg_display_name) > 0
     error_message = "The drg_display_name value cannot be an empty string."
   }
+}
+
+variable "drg_rpc_id_remote" {
+  #! Added for compatibility with inner drg management. Please use drg sub-module instead
+  description = "the ID of the remote RPC"
+  type = string
+  default = null
+}
+variable "drg_rpc_region_remote" {
+  #! Added for compatibility with inner drg management. Please use drg sub-module instead
+  # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
+  description = "the OCI region where the Remote Peering Connection will be established with"
+  type        = string
+  default     = null
 }
 
 variable "internet_gateway_display_name" {
