@@ -17,7 +17,7 @@ terraform {
 
 module "vcn_local" {
   # this module use the generic vcn module and configure it to act as local vcn
-  source  = "../../../"
+  source  = "oracle-terraform-modules/vcn/oci"
   
   # general oci parameters
   compartment_id = var.compartment_id
@@ -42,43 +42,31 @@ module "vcn_local" {
       description       = "Terraformed - User added Routing Rule to remote vcn through DRG"
     },
   ]
+
   providers = {
     oci = oci
   }
   
 }
 
-module "subnet_local" {
-  source          = "github.com/oracle-terraform-modules/terraform-oci-tdf-subnet"
-  
-  default_compartment_id  = var.compartment_id
-  vcn_id                  = module.vcn_local.vcn_id
-  vcn_cidr                = var.local_vcn_cidr
-  
-  subnets = {
-    local_rpc_subnet               = {
-      compartment_id    = null
-      defined_tags      = null
-      freeform_tags     = null
-      dynamic_cidr      = false
-      cidr              = var.local_vcn_cidr
-      cidr_len          = null
-      cidr_num          = null
-      enable_dns        = true
-      dns_label         = "localrpcsubnet"
-      private           = true
-      ad                = null
-      dhcp_options_id   = null
-      route_table_id    = module.vcn_local.nat_route_id
-      security_list_ids = null
-    },
-  }
+resource "oci_core_subnet" "subnet_local" {
+  #Required
+  cidr_block     = var.local_vcn_cidr
+  compartment_id = var.compartment_id
+  vcn_id         = module.vcn_local.vcn_id
+
+  #Optional
+  display_name               = "sub-local"
+  dns_label                  = "rpcsublocal"
+  prohibit_public_ip_on_vnic = true
+  route_table_id = module.vcn_local.nat_route_id
+  freeform_tags    = var.freeform_tags
 }
 
 
 module "vcn_remote" {
   # this module use the generic vcn module and configure it to act as remote vcn
-  source  = "../../../"
+  source  = "oracle-terraform-modules/vcn/oci"
   
   # general oci parameters
   compartment_id = var.compartment_id
@@ -112,32 +100,17 @@ module "vcn_remote" {
   
 }
 
-module "subnet_remote" {
-  source          = "github.com/oracle-terraform-modules/terraform-oci-tdf-subnet"
-  
-  default_compartment_id  = var.compartment_id
-  vcn_id                  = module.vcn_remote.vcn_id
-  vcn_cidr                = var.remote_vcn_cidr
-  
-  subnets = {
-    local_rpc_subnet               = {
-      compartment_id    = null
-      defined_tags      = null
-      freeform_tags     = var.freeform_tags
-      dynamic_cidr      = false
-      cidr              = var.remote_vcn_cidr
-      cidr_len          = null
-      cidr_num          = null
-      enable_dns        = true
-      dns_label         = "remote"
-      private           = false
-      ad                = null
-      dhcp_options_id   = null
-      route_table_id    = module.vcn_remote.ig_route_id
-      security_list_ids = null
-    },
-  }
-  providers = {
-    oci = oci.remote
-  }
+resource "oci_core_subnet" "subnet_remote" {
+  provider = oci.remote
+  #Required
+  cidr_block     = var.remote_vcn_cidr
+  compartment_id = var.compartment_id
+  vcn_id         = module.vcn_remote.vcn_id
+
+  #Optional
+  display_name               = "sub-remote"
+  dns_label                  = "rpcsubremote"
+  prohibit_public_ip_on_vnic = false
+  route_table_id = module.vcn_remote.ig_route_id
+  freeform_tags    = var.freeform_tags
 }
