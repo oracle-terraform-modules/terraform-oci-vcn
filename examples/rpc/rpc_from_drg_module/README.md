@@ -23,7 +23,7 @@ In the remote region will be created:
 
 This diagram illustrates what will be created by this example.
 
-![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/images/network_remote_peering_basic.png?raw=true&sanitize=true)
+![diagram](../../..//docs/images/network_remote_peering_basic.png))
 
 ## Prerequisites
 
@@ -39,22 +39,23 @@ For detailed instructions, see [docs/prerequisites]
 ### Creating Providers
 
 You need to create 2 providers:
-* 1 provider for the local region where all the local resources will be created 
-* 1 provider for the remote region where all the remote resources will be created (alias: remote)
+* 1 provider for the acceptor region where all the acceptor resources will be created (alias: acceptor)
+* 1 provider for the requestor region where all the requestor resources will be created (alias: requestor)
 
 ```
 provider "oci" {
   fingerprint          = var.api_fingerprint
   private_key_path     = var.api_private_key_path
-  region               = var.region
+  region               = var.region_acceptor
   tenancy_ocid         = var.tenancy_id
   user_ocid            = var.user_id
+  alias                = "acceptor"
 }
 
 provider "oci" {
   fingerprint          = var.api_fingerprint
   private_key_path     = var.api_private_key_path
-  region               = var.remote_region
+  region               = var.region_requestor
   tenancy_ocid         = var.tenancy_id
   user_ocid            = var.user_id
   alias                = "remote"

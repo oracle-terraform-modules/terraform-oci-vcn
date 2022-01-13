@@ -7,7 +7,7 @@ api_fingerprint = ""
 
 api_private_key_path = ""
 
-region = "us-phoenix-1"
+
 
 tenancy_id = ""
 
@@ -17,19 +17,22 @@ user_id = ""
 
 compartment_id = ""
 
-label_prefix = "dev"
-
-# rpc parameters
-remote_region = "us-ashburn-1"
-
-local_vcn_cidr = "10.0.0.0/24"
-
-remote_vcn_cidr = "192.168.0.0/24"
+label_prefix = "tf-rpc"
 
 freeform_tags = {
   environment = "dev"
   lob         = "rpc"
 }
+
+# rpc acceptor parameters
+region_acceptor = "us-phoenix-1"
+vcn_cidr_acceptor = "10.0.0.0/24"
+
+# rpc requestor parameters 
+region_requestor = "us-ashburn-1"
+vcn_cidr_requestor = "192.168.0.0/24"
+
+
 
 
 

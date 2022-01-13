@@ -56,16 +56,3 @@ module "vcn_spokes" {
   vcn_name                 = each.key                               # string
 }
 
-# resource "oci_core_remote_peering_connection" "test_rpc" {
-# * boilerplate to start RPC support development
-#     #Required
-#     compartment_id = var.compartment_id
-#     drg_id = module.drg_hub.drg_id
-
-#     #Optional
-#     # defined_tags = {"Operations.CostCenter"= "42"}
-#     display_name = "test_rpc"
-#     # freeform_tags = {"Department"= "Finance"}
-#     # peer_id = oci_core_remote_peering_connection.test_remote_peering_connection2.id
-#     # peer_region_name = var.remote_peering_connection_peer_region_name
-# }

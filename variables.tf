@@ -125,13 +125,13 @@ variable "drg_display_name" {
   }
 }
 
-variable "drg_rpc_id_remote" {
+variable "drg_rpc_acceptor_id" {
   #! Added for compatibility with inner drg management. Please use drg sub-module instead
-  description = "the ID of the remote RPC"
+  description = "the ID of the RPC acceptor"
   type = string
   default = null
 }
-variable "drg_rpc_region_remote" {
+variable "drg_rpc_acceptor_region" {
   #! Added for compatibility with inner drg management. Please use drg sub-module instead
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
   description = "the OCI region where the Remote Peering Connection will be established with"

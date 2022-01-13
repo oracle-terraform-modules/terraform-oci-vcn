@@ -64,12 +64,12 @@ variable "create_rpc" {
   default     = false
 }
 
-variable "remote_rpc_id" {
+variable "rpc_acceptor_id" {
   description = "the ID of the remote RPC"
   type = string
   default = null
 }
-variable "remote_rpc_region" {
+variable "rpc_acceptor_region" {
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
   description = "the OCI region where the Remote Peering Connection will be established with"
   type        = string

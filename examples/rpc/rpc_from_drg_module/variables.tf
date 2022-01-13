@@ -14,13 +14,6 @@ variable "api_private_key_path" {
   # no default value, asking user to explicitly set this variable's value. see codingconventions.adoc
 }
 
-variable "region" {
-  description = "the oci region where resources will be created"
-  type        = string
-  # no default value, asking user to explicitly set this variable's value. see codingconventions.adoc
-  # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
-}
-
 variable "tenancy_id" {
   description = "tenancy id where to create the sources"
   type        = string
@@ -56,23 +49,37 @@ variable "freeform_tags" {
   }
 }
 
-variable "remote_region" {
-  description = "remote OCI region"
-  type = string
+
+# acceptor parameters
+
+variable "region_acceptor" {
+  description = "the oci region where RPC acceptor resources will be created"
+  type        = string
+  # no default value, asking user to explicitly set this variable's value. see codingconventions.adoc
+  # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
 }
 
-variable "local_vcn_cidr" {
-  description = "local vcn cidr"
-  type = string
-  default = "10.0.0.0/24"
-  
+# requestor parameter
+
+variable "region_requestor" {
+  description = "OCI region where RPC requstor resources will be created"
+  type        = string
+  # no default value, asking user to explicitly set this variable's value. see codingconventions.adoc
+  # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
 }
 
-variable "remote_vcn_cidr" {
-  description = "local vcn cidr"
-  type = string
-  default = "192.168.0.0/24"
-  
+variable "vcn_cidr_acceptor" {
+  description = "RPC acceptor vcn cidr"
+  type        = string
+  default     = "10.0.0.0/24"
+
+}
+
+variable "vcn_cidr_requestor" {
+  description = "RPC requestor vcn cidr"
+  type        = string
+  default     = "192.168.0.0/24"
+
 }
 
 

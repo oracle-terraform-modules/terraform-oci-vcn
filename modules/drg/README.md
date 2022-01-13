@@ -33,8 +33,8 @@ No requirements.
 | <a name="input_label_prefix"></a> [label\_prefix](#input\_label\_prefix) | a string that will be prepended to all resources | `string` | `"none"` | no |
 | <a name="input_region"></a> [region](#input\_region) | the OCI region where resources will be created | `string` | `null` | no |
 | <a name="input_create_rpc"></a> [create\_rpc](#input\_create\_rpc) | whether to create Remote Peering Connection. If set to true, creates an Remote Peerin Connection | `bool` | `false` | no |
-| <a name="input_remote_rpc_id"></a> [remote\_rpc\_id](#input\_remote\_\rpc\_id) | the Remote Peering Connection ID to peer with, running in a remote OCI region. It is required in only one of the two RPCs to establish the peering | `string` | `null` | no |
-| <a name="input_remote_rpc_region"></a> [remote\_rpc\_region](#input\_remote\_rpc\_region) | the remote OCI region to establish the peer with. List of regions can be found here: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions | `string` | `null` | no |
+| <a name="input_rpc_acceptor_id"></a> [remote\_rpc\_id](#input\_remote\_\rpc\_id) | the Remote Peering Connection ID to peer with, running in a remote OCI region. It is required in only one of the two RPCs to establish the peering | `string` | `null` | no |
+| <a name="input_rpc_acceptor_region"></a> [remote\_rpc\_region](#input\_remote\_rpc\_region) | the remote OCI region to establish the peer with. List of regions can be found here: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions | `string` | `null` | no |
 ## Outputs
 
 | Name | Description |

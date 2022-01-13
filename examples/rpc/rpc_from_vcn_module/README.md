@@ -12,7 +12,7 @@
 This example illustrates how to use `terraform-oci-vcn` to create a remote VCN peering between VCNs created in different regions, using the Remote Peering Gateway.
 > **Note:** This example is provide for backwards compatibility, using the vcn module to handle the DRG and RPC. For new projects you should use [this one](../rpc_from_drg_module/README.md)
 
-In the local region will be created: 
+In the acceptor region will be created: 
 - a VCN with a private subnet and a NAT gateway
 - a DRG attached to the VCN
 - the route rules to allow traffic through the Peering
@@ -24,7 +24,7 @@ In the remote region will be created:
 
 This diagram illustrates what will be created by this example.
 
-![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/images/network_remote_peering_basic.png?raw=true&sanitize=true)
+![diagram](../../..//docs/images/network_remote_peering_basic.png)
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ provider "oci" {
 provider "oci" {
   fingerprint          = var.api_fingerprint
   private_key_path     = var.api_private_key_path
-  region               = var.remote_region
+  region               = var.requestor_region
   tenancy_ocid         = var.tenancy_id
   user_ocid            = var.user_id
   alias                = "remote"
