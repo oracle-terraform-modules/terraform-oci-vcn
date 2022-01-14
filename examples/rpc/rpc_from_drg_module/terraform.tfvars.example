@@ -21,16 +21,16 @@ label_prefix = "tf-rpc"
 
 freeform_tags = {
   environment = "dev"
-  lob         = "rpc"
+  lab         = "rpc"
 }
 
 # rpc acceptor parameters
 region_acceptor = "us-phoenix-1"
-vcn_cidr_acceptor = "10.0.0.0/24"
+vcn_cidrs_acceptor = ["10.0.0.0/24"]
 
 # rpc requestor parameters 
 region_requestor = "us-ashburn-1"
-vcn_cidr_requestor = "192.168.0.0/24"
+vcn_cidrs_requestor = ["192.168.0.0/24"]
 
 
 

@@ -13,12 +13,12 @@ This example illustrates how to use `terraform-oci-vcn` to create a remote VCN p
 > **Note:** This example is provide for backwards compatibility, using the vcn module to handle the DRG and RPC. For new projects you should use [this one](../rpc_from_drg_module/README.md)
 
 In the acceptor region will be created: 
-- a VCN with a private subnet and a NAT gateway
+- a VCN, with a private subnet for each given CIDR block, and a NAT gateway
 - a DRG attached to the VCN
 - the route rules to allow traffic through the Peering
 
 In the remote region will be created:
-- a VCN with a public subnet and an Internet Gateway
+- a VCN with, a public subnet for each given CIDR block, and an Internet Gateway
 - a DRG attached to the VCN
 - the route rules to allow traffic through the Peering
 
@@ -47,18 +47,19 @@ You need to create 2 providers:
 provider "oci" {
   fingerprint          = var.api_fingerprint
   private_key_path     = var.api_private_key_path
-  region               = var.region
+  region               = var.region_acceptor
   tenancy_ocid         = var.tenancy_id
   user_ocid            = var.user_id
+  alias                = "acceptor"
 }
 
 provider "oci" {
   fingerprint          = var.api_fingerprint
   private_key_path     = var.api_private_key_path
-  region               = var.requestor_region
+  region               = var.region_requestor
   tenancy_ocid         = var.tenancy_id
   user_ocid            = var.user_id
-  alias                = "remote"
+  alias                = "requestor"
 }
 ```
 

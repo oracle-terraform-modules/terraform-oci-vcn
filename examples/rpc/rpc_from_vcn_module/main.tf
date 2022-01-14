@@ -17,7 +17,8 @@ terraform {
 
 module "vcn_acceptor" {
   # this module use the generic vcn module and configure it to act as rpc acceptor vcn
-  source = "oracle-terraform-modules/vcn/oci"
+  source  = "oracle-terraform-modules/vcn/oci"
+  version = "3.2.0"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -31,16 +32,17 @@ module "vcn_acceptor" {
   lockdown_default_seclist = false
   create_nat_gateway       = true
   create_service_gateway   = false
-  vcn_cidrs                = tolist([var.vcn_cidr_acceptor])
+  vcn_cidrs                = var.vcn_cidrs_acceptor
   vcn_dns_label            = "vcnacceptor"
   vcn_name                 = "vcn-rpc-acceptor"
-  nat_gateway_route_rules = [
+
+  nat_gateway_route_rules = [for cidr in var.vcn_cidrs_requestor :
     {
-      destination       = var.vcn_cidr_requestor # set rpc requestor vcn cidr as destination cidr 
+      destination       = cidr # set rpc requestor vcn cidr as destination cidr 
       destination_type  = "CIDR_BLOCK"
       network_entity_id = "drg"
-      description       = "Terraformed - User added Routing Rule to RPC requestor vcn through DRG"
-    },
+      description       = "Terraformed - User added Routing Rule to RPC requestor VCN through DRG"
+    }
   ]
 
   providers = {
@@ -51,14 +53,17 @@ module "vcn_acceptor" {
 
 resource "oci_core_subnet" "subnet_acceptor" {
   provider = oci.acceptor
+  count    = length(var.vcn_cidrs_acceptor)
+
   #Required
-  cidr_block     = var.vcn_cidr_acceptor
   compartment_id = var.compartment_id
   vcn_id         = module.vcn_acceptor.vcn_id
+  #in this example each subnet will use the entire vcn address space
+  cidr_block = var.vcn_cidrs_acceptor[count.index]
 
   #Optional
-  display_name               = "sub-rpc-acceptor"
-  dns_label                  = "subacceptor"
+  display_name               = "sub-rpc-acceptor-${count.index}"
+  dns_label                  = "subacceptor${count.index}"
   prohibit_public_ip_on_vnic = true
   route_table_id             = module.vcn_acceptor.nat_route_id
   freeform_tags              = var.freeform_tags
@@ -67,7 +72,8 @@ resource "oci_core_subnet" "subnet_acceptor" {
 
 module "vcn_requestor" {
   # this module use the generic vcn module and configure it to act as rpc requestor vcn
-  source = "oracle-terraform-modules/vcn/oci"
+  source  = "oracle-terraform-modules/vcn/oci"
+  version = "3.2.0"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -81,17 +87,19 @@ module "vcn_requestor" {
   lockdown_default_seclist = false
   create_nat_gateway       = false
   create_service_gateway   = false
-  vcn_cidrs                = tolist([var.vcn_cidr_requestor]) # VCN CIDR
+  vcn_cidrs                = var.vcn_cidrs_requestor
   vcn_dns_label            = "vcnrequestor"
   vcn_name                 = "vcn-rpc-requestor"
-  internet_gateway_route_rules = [
+
+  internet_gateway_route_rules = [for cidr in var.vcn_cidrs_acceptor :
     {
-      destination       = var.vcn_cidr_acceptor # set rpc acceptor vcn cidr as destination cidr 
+      destination       = cidr # set rpc acceptor vcn cidr as destination cidr 
       destination_type  = "CIDR_BLOCK"
       network_entity_id = "drg"
-      description       = "Terraformed - User added Routing Rule to rpc acceptor vcn through DRG"
-    },
+      description       = "Terraformed - User added Routing Rule to RPC acceptor VCN through DRG"
+    }
   ]
+
   drg_rpc_acceptor_id     = module.vcn_acceptor.rpc_id
   drg_rpc_acceptor_region = var.region_acceptor
 
@@ -103,14 +111,17 @@ module "vcn_requestor" {
 
 resource "oci_core_subnet" "subnet_requestor" {
   provider = oci.requestor
+  count    = length(var.vcn_cidrs_requestor)
+
   #Required
-  cidr_block     = var.vcn_cidr_requestor
   compartment_id = var.compartment_id
   vcn_id         = module.vcn_requestor.vcn_id
+  #in this example each subnet will use the entire vcn address space
+  cidr_block = var.vcn_cidrs_requestor[count.index]
 
   #Optional
-  display_name               = "sub-rpc-requestor"
-  dns_label                  = "subrequestor"
+  display_name               = "sub-rpc-requestor-${count.index}"
+  dns_label                  = "subrequestor${count.index}"
   prohibit_public_ip_on_vnic = false
   route_table_id             = module.vcn_requestor.ig_route_id
   freeform_tags              = var.freeform_tags

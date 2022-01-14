@@ -12,12 +12,12 @@
 This example illustrates how to use `terraform-oci-vcn` and `drg submodule` to create a remote VCN peering between VCNs created in different regions, using the Remote Peering Gateway.
 
 In the local region will be created: 
-- a VCN with a private subnet and a NAT gateway
+- a VCN, with a private subnet for each given CIDR block, and a NAT gateway
 - a DRG attached to the VCN
 - the route rules to allow traffic through the Peering
 
 In the remote region will be created:
-- a VCN with a public subnet and an Internet Gateway
+- a VCN with, a public subnet for each given CIDR block, and an Internet Gateway
 - a DRG attached to the VCN
 - the route rules to allow traffic through the Peering
 
@@ -58,7 +58,7 @@ provider "oci" {
   region               = var.region_requestor
   tenancy_ocid         = var.tenancy_id
   user_ocid            = var.user_id
-  alias                = "remote"
+  alias                = "requestor"
 }
 ```
 

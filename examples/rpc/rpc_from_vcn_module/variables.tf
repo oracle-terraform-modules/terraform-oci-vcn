@@ -59,6 +59,13 @@ variable "region_acceptor" {
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
 }
 
+variable "vcn_cidrs_acceptor" {
+  description = "The updatable list of IPv4 CIDR blocks the RPC acceptor VCN will use."
+  type        = list(string)
+  default     = ["10.0.0.0/24"]
+
+}
+
 # requestor parameter
 
 variable "region_requestor" {
@@ -68,17 +75,9 @@ variable "region_requestor" {
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
 }
 
-variable "vcn_cidr_acceptor" {
-  description = "RPC acceptor vcn cidr"
-  type        = string
-  default     = "10.0.0.0/24"
-
-}
-
-variable "vcn_cidr_requestor" {
-  description = "RPC requestor vcn cidr"
-  type        = string
-  default     = "192.168.0.0/24"
-
+variable "vcn_cidrs_requestor" {
+  description = "The updatable list of IPv4 CIDR blocks the RPC requestor VCN will use."
+  type        = list(string)
+  default     = ["192.168.0.0/24"]
 }
 
