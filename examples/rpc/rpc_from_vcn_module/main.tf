@@ -38,10 +38,10 @@ module "vcn_acceptor" {
 
   nat_gateway_route_rules = [for cidr in var.vcn_cidrs_requestor :
     {
-      destination       = cidr # set rpc requestor vcn cidr as destination cidr 
+      destination       = cidr # set requestor vcn cidr as destination cidr 
       destination_type  = "CIDR_BLOCK"
       network_entity_id = "drg"
-      description       = "Terraformed - User added Routing Rule to RPC requestor VCN through DRG"
+      description       = "Terraformed - User added Routing Rule to requestor VCN through DRG"
     }
   ]
 
@@ -93,10 +93,10 @@ module "vcn_requestor" {
 
   internet_gateway_route_rules = [for cidr in var.vcn_cidrs_acceptor :
     {
-      destination       = cidr # set rpc acceptor vcn cidr as destination cidr 
+      destination       = cidr # set acceptor vcn cidr as destination cidr 
       destination_type  = "CIDR_BLOCK"
       network_entity_id = "drg"
-      description       = "Terraformed - User added Routing Rule to RPC acceptor VCN through DRG"
+      description       = "Terraformed - User added Routing Rule to acceptor VCN through DRG"
     }
   ]
 
