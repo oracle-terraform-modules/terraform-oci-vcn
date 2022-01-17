@@ -9,7 +9,7 @@
 [docs/routing_rules]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/routing_rules.adoc
 [Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
 
-This example illustrates how to use `terraform-oci-vcn` to create a remote VCN peering between VCNs created in different regions, using the Remote Peering Gateway.
+This example illustrates how to use terraform-oci-vcn to create a remote VCN peering between VCNs created in different regions, using the Remote Peering Gateway.
 > **Note:** This example is provide for backwards compatibility, using the vcn module to handle the DRG and RPC. For new projects you should use [this one](../rpc_from_drg_module/README.md)
 
 In the acceptor region will be created: 
@@ -65,9 +65,9 @@ provider "oci" {
 
 ### Creating Terraform variables definition file
 
-Prepare one [Terraform Variable Definition file] named `terraform.tfvars` with the required authentication information.
+Prepare one [Terraform Variable Definition file] named terraform.tfvars with the required authentication information.
 
-*TIP: You can rename and configure `terraform.tfvars.example` from this example's folder.*
+*TIP: You can rename and configure [terraform.tfvars.example](terraform.tfvars.example) from this example's folder.*
 
 Then apply the example using the following commands:
 
