@@ -17,7 +17,7 @@ In the acceptor region will be created:
 - a DRG attached to the VCN
 - the route rules to allow traffic through the Peering
 
-In the remote region will be created:
+In the requestor region will be created:
 - a VCN with, a public subnet for each given CIDR block, and an Internet Gateway
 - a DRG attached to the VCN
 - the route rules to allow traffic through the Peering
