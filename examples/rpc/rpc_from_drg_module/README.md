@@ -9,7 +9,7 @@
 [docs/routing_rules]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/routing_rules.adoc
 [Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
 
-This example illustrates how to use terraform-oci-vcn and drg submodule to create a remote VCN peering between VCNs created in different regions, using the Remote Peering Gateway.
+This example illustrates how to use terraform-oci-vcn and drg submodule to create a remote VCN peering between VCNs created in different regions, through a DRG.
 
 In the local region will be created: 
 - a VCN, with a private subnet for each given CIDR block, and a NAT gateway
