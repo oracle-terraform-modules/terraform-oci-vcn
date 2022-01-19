@@ -57,3 +57,24 @@ variable "drg_vcn_attachments" {
   type        = map(any)
   default     = null
 }
+
+variable "create_rpc" {
+  description = "Whether to create Remote Peering Connection. If set to true, creates an RPC"
+  type        = bool
+  default     = false
+}
+
+variable "rpc_acceptor_id" {
+  description = "the ID of the remote RPC"
+  type = string
+  default = null
+}
+variable "rpc_acceptor_region" {
+  # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
+  description = "the OCI region where the Remote Peering Connection will be established with"
+  type        = string
+  default     = null
+}
+
+
+

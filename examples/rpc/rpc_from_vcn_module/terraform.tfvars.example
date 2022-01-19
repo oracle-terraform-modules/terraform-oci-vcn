@@ -1,0 +1,38 @@
+# Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
+# provider identity parameters
+
+api_fingerprint = ""
+
+api_private_key_path = ""
+
+
+
+tenancy_id = ""
+
+user_id = ""
+
+# general oci parameters
+
+compartment_id = ""
+
+label_prefix = "tf-rpc"
+
+freeform_tags = {
+  environment = "dev"
+  lab         = "rpc"
+}
+
+# rpc acceptor parameters
+region_acceptor = "us-phoenix-1"
+vcn_cidrs_acceptor = ["10.0.0.0/24"]
+
+# rpc requestor parameters 
+region_requestor = "us-ashburn-1"
+vcn_cidrs_requestor = ["192.168.0.0/24"]
+
+
+
+
+

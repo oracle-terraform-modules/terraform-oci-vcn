@@ -9,6 +9,7 @@ It creates the following resources:
 * An optional NAT gateway
 * An optional service gateway
 * An optional dynamic routing gateway
+* An optional remote peering connection
 * One or more optional Local Peering Gateways in requestor or acceptor mode, and possibilities to associate a Route Table
 
 It also controls the Default Security List, with a *Lockdown mode* that can be enabled or disabled.

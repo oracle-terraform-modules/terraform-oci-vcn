@@ -15,5 +15,14 @@ module "drg_from_vcn_module" {
   # drg parameters
   drg_display_name = var.label_prefix == "none" ? "${var.drg_display_name}_created_from_${var.vcn_name}" : "${var.drg_display_name}"
 
-  count = var.create_drg == true ? 1 : 0
+  #rpc parameters    
+  create_rpc          = var.create_rpc
+  rpc_acceptor_id     = var.drg_rpc_acceptor_id
+  rpc_acceptor_region = var.drg_rpc_acceptor_region
+
+
+  count = var.create_drg == true || var.create_rpc == true ? 1 : 0
 }
+
+
+

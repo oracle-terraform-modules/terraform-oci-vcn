@@ -16,3 +16,4 @@ provider.tf
 
 # macOS related files
 **/.DS_Store
+.terraform.lock.hcl

@@ -11,6 +11,12 @@ output "drg_id" {
   description = "Deprecated: Use drg sub-module instead. id of drg if it is created"
   value       = join(",", module.drg_from_vcn_module[*].drg_id)
 }
+
+output "rpc_id" {
+  description = "id of rpc if it is created"
+  value       = join(",", module.drg_from_vcn_module[*].rpc_id)
+}
+
 output "nat_gateway_id" {
   description = "id of nat gateway if it is created"
   value       = join(",", oci_core_nat_gateway.nat_gateway[*].id)
@@ -78,4 +84,8 @@ output "service_gateway_all_attributes" {
 output "vcn_all_attributes" {
   description = "all attributes of created vcn"
   value       = { for k, v in oci_core_vcn.vcn : k => v }
+}
+
+output "drg_summary" {
+  value = { for k, v in module.drg_from_vcn_module : k => v.drg_summary } 
 }
