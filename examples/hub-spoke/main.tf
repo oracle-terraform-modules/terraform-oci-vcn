@@ -24,6 +24,7 @@ module "vcn_hub" {
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
   freeform_tags  = var.freeform_tags
+  defined_tags = var.defined_tags
 
   # vcn parameters
   create_drg               = var.create_drg               # boolean: true or false

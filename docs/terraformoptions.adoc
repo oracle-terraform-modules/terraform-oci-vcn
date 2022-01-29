@@ -64,6 +64,19 @@ freeform_tags = {
   environment = "dev"
 }
 
+|`defined_tags`
+|predefined and scoped to a namespace to tag the resources created using defined tags.
+|`map(string)`
+
+e.g.
+[source,HCL]
+----
+defined_tags = {
+  "Operations.CostCenter" = "42"
+}
+----
+|null
+
 |===
 
 == VCN
