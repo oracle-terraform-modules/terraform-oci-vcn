@@ -42,6 +42,10 @@ freeform_tags = {
   lob         = "finance"
 }
 
+defined_tags = {
+  "Operations.CostCenter" = "42"
+}
+
 # routing rules
 
 internet_gateway_route_rules = [ # this module input shows how to pass routing information to the vcn module inline, directly on the vcn module block
