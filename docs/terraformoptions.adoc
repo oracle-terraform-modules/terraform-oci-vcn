@@ -64,6 +64,19 @@ freeform_tags = {
   environment = "dev"
 }
 
+|`defined_tags`
+|predefined and scoped to a namespace to tag the resources created using defined tags.
+|`map(string)`
+
+e.g.
+[source,HCL]
+----
+defined_tags = {
+  "Operations.CostCenter" = "42"
+}
+----
+|null
+
 |===
 
 == VCN
@@ -74,6 +87,12 @@ freeform_tags = {
 |Description
 |Type
 |Default
+
+|`create_vcn`
+|whether to create the main VCN. If set to true, creates an VCN.
+|`boolean`
+|true
+
 
 |`create_drg`
 |Deprecated: Use drg sub-module instead. whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.

@@ -10,8 +10,9 @@ resource "oci_core_internet_gateway" "ig" {
   display_name   = var.label_prefix == "none" ? var.internet_gateway_display_name : "${var.label_prefix}-${var.internet_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
 
-  vcn_id = oci_core_vcn.vcn.id
+  vcn_id = oci_core_vcn.vcn.0.id
 
   count = var.create_internet_gateway == true ? 1 : 0
 }
@@ -21,6 +22,7 @@ resource "oci_core_route_table" "ig" {
   display_name   = var.label_prefix == "none" ? "internet-route" : "${var.label_prefix}-internet-route"
 
   freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
 
   route_rules {
     # * With this route table, Internet Gateway is always declared as the default gateway
@@ -72,7 +74,7 @@ resource "oci_core_route_table" "ig" {
     }
   }
 
-  vcn_id = oci_core_vcn.vcn.id
+  vcn_id = oci_core_vcn.vcn.0.id
 
   count = var.create_internet_gateway == true ? 1 : 0
 }
@@ -94,11 +96,12 @@ resource "oci_core_service_gateway" "service_gateway" {
   display_name   = var.label_prefix == "none" ? var.service_gateway_display_name : "${var.label_prefix}-${var.service_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
   services {
     service_id = lookup(data.oci_core_services.all_oci_services[0].services[0], "id")
   }
 
-  vcn_id = oci_core_vcn.vcn.id
+  vcn_id = oci_core_vcn.vcn.0.id
 
   count = var.create_service_gateway == true ? 1 : 0
 }
@@ -111,10 +114,11 @@ resource "oci_core_nat_gateway" "nat_gateway" {
   display_name   = var.label_prefix == "none" ? var.nat_gateway_display_name : "${var.label_prefix}-${var.nat_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
 
   public_ip_id = var.nat_gateway_public_ip_id != "none" ? var.nat_gateway_public_ip_id : null
 
-  vcn_id = oci_core_vcn.vcn.id
+  vcn_id = oci_core_vcn.vcn.0.id
 
   count = var.create_nat_gateway == true ? 1 : 0
 }
@@ -124,6 +128,7 @@ resource "oci_core_route_table" "nat" {
   display_name   = var.label_prefix == "none" ? "nat-route" : "${var.label_prefix}-nat-route"
 
   freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
 
   route_rules {
     # * With this route table, NAT Gateway is always declared as the default gateway
@@ -188,7 +193,7 @@ resource "oci_core_route_table" "nat" {
     }
   }
 
-  vcn_id = oci_core_vcn.vcn.id
+  vcn_id = oci_core_vcn.vcn.0.id
 
   count = var.create_nat_gateway == true ? 1 : 0
 }
@@ -201,10 +206,11 @@ resource "oci_core_route_table" "nat" {
 #! deprecation notice: this resource will be removed at next major release
 resource "oci_core_drg_attachment" "drg_from_vcn_module" {
   drg_id       = module.drg_from_vcn_module[0].drg_id
-  vcn_id       = oci_core_vcn.vcn.id
-  display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}"
+  vcn_id       = oci_core_vcn.vcn.0.id
+  display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.0.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.0.display_name}"
 
   freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
 
   count = var.create_drg == true ? 1 : 0
 }
@@ -219,8 +225,9 @@ resource "oci_core_local_peering_gateway" "lpg" {
   display_name   = var.label_prefix == "none" ? each.key : "${var.label_prefix}-${each.key}"
 
   freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
 
-  vcn_id = oci_core_vcn.vcn.id
+  vcn_id = oci_core_vcn.vcn.0.id
 
   #Optional
   peer_id        = can(each.value.peer_id) == false ? null : each.value.peer_id

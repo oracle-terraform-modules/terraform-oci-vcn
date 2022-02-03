@@ -17,13 +17,13 @@ terraform {
 
 module "vcn_acceptor" {
   # this module use the generic vcn module and configure it to act as rpc acceptor vcn
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.2.0"
+  source         = "../../../"
 
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
   freeform_tags  = var.freeform_tags
+  defined_tags = var.defined_tags
 
   # vcn parameters
   create_drg               = true
@@ -72,9 +72,7 @@ resource "oci_core_subnet" "subnet_acceptor" {
 
 module "vcn_requestor" {
   # this module use the generic vcn module and configure it to act as rpc requestor vcn
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.2.0"
-
+  source         = "../../../"
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix

@@ -33,7 +33,18 @@ variable "freeform_tags" {
   }
 }
 
+variable "defined_tags" {
+  description = "predefined and scoped to a namespace to tag the resources created using defined tags."
+  type        = map(string)
+  default     = null
+}
+
 # vcn parameters
+variable "create_vcn" {
+  description = "whether to create the main VCN. If set to true, creates an VCN."
+  type        = bool
+  default     = true
+}
 
 variable "create_drg" {
   #! Deprecation notice: Please use drg sub-module instead

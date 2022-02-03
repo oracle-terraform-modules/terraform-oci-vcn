@@ -44,6 +44,10 @@ freeform_tags = {
   lob = "finance"
 }
 
+defined_tags = {
+  "Operations.CostCenter" = "42"
+}
+
 # gateways parameters
 
 drg_display_name = "drg"
