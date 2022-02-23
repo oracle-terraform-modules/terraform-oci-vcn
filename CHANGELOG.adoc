@@ -14,6 +14,9 @@ Given a version number MAJOR.MINOR.PATCH:
 - MINOR version when adding functionality in a backwards compatible manner,
 - PATCH version when making backwards compatible bug fixes.
 
+== #58 Add Managed Route Table
+* benwoltz WIP pull request
+
 == 3.3.0 (unreleased)
 * Added support for Defined Tags (fixes #73)
 
