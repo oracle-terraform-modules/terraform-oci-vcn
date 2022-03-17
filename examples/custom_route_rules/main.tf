@@ -16,9 +16,7 @@ terraform {
 # Resources
 
 module "vcn" {
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.1.0"
-
+  source  = "../../"
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
@@ -57,18 +55,4 @@ resource "oci_core_local_peering_gateway" "lpg" {
 
 # Outputs
 
-output "module_vcn" {
-  description = "vcn and gateways information"
-  value = {
-    drg_id              = module.vcn.drg_id
-    internet_gateway_id = module.vcn.internet_gateway_id
-    nat_gateway_id      = module.vcn.nat_gateway_id
-    service_gateway_id  = module.vcn.service_gateway_id
-    vcn_id              = module.vcn.vcn_id
-  }
-}
 
-output "local_peering_gateway" {
-  description = "local peering gateways information"
-  value       = oci_core_local_peering_gateway.lpg.id
-}

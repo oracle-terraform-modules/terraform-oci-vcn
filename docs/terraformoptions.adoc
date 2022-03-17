@@ -88,6 +88,12 @@ defined_tags = {
 |Type
 |Default
 
+|`create_vcn`
+|whether to create the main VCN. If set to true, creates an VCN.
+|`boolean`
+|true
+
+
 |`create_drg`
 |Deprecated: Use drg sub-module instead. whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.
 |`boolean`

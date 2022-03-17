@@ -40,6 +40,11 @@ variable "defined_tags" {
 }
 
 # vcn parameters
+variable "create_vcn" {
+  description = "whether to create the main VCN. If set to true, creates an VCN."
+  type        = bool
+  default     = true
+}
 
 variable "create_drg" {
   #! Deprecation notice: Please use drg sub-module instead

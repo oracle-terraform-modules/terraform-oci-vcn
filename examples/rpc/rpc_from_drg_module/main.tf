@@ -17,8 +17,7 @@ terraform {
 
 module "vcn_acceptor" {
   # this module use the generic vcn module and configure it to act as vcn for RPC acceptor
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.2.0"
+  source         = "../../../"
 
   # general oci parameters
   compartment_id = var.compartment_id

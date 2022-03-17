@@ -5,14 +5,14 @@
 // See Issue #22 for the reasoning
 resource "oci_core_default_security_list" "lockdown" {
   // If variable is true, removes all rules from default security list
-  manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
+  manage_default_resource_id = oci_core_vcn.vcn.0.default_security_list_id
 
   count = var.lockdown_default_seclist == true ? 1 : 0
 }
 
 resource "oci_core_default_security_list" "restore_default" {
   // If variable is false, restore all default rules to default security list
-  manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
+  manage_default_resource_id = oci_core_vcn.vcn.0.default_security_list_id
 
   egress_security_rules {
     // allow all egress traffic
@@ -43,7 +43,7 @@ resource "oci_core_default_security_list" "restore_default" {
 
   dynamic "ingress_security_rules" {
     //allow all ICMP from all VCN CIDRs
-    for_each = oci_core_vcn.vcn.cidr_blocks
+    for_each = oci_core_vcn.vcn.0.cidr_blocks
     iterator = vcn_cidr
     content {
       protocol = "1"

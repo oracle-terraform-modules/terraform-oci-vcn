@@ -1,22 +1,13 @@
 # Copyright (c) 2019, 2021, Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
-# Version requirements
 
-terraform {
-  required_providers {
-    oci = {
-      source  = "hashicorp/oci"
-      version = ">=4.41.0"
-    }
-  }
-  required_version = ">= 1.0.0"
-}
+
 
 # Resources
 
 module "drg_hub" {
-  source = "oracle-terraform-modules/vcn/oci//modules/drg"
+  source  = "../../modules/drg"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -37,8 +28,8 @@ module "drg_hub" {
 }
 
 module "vcn_spokes" {
-  source   = "oracle-terraform-modules/vcn/oci"
-  version  = "3.1.0"
+  source  = "../../"
+  create_vcn = true
   for_each = var.vcn_spokes
 
   # general oci parameters
