@@ -195,3 +195,9 @@ variable "nat_gateway_route_rules" {
   type        = list(map(string))
   default     = null
 }
+
+variable "attached_drg_id" {
+  descripdescription = "the ID of DRG attached to the VCN"
+  type = string
+  default = ""
+}

@@ -24,7 +24,7 @@ module "vcn_acceptor" {
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
   freeform_tags  = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags   = var.defined_tags
 
   # vcn parameters
   create_drg               = false #! deprecated inner drg, use drg-module instead     
@@ -35,12 +35,13 @@ module "vcn_acceptor" {
   vcn_cidrs                = var.vcn_cidrs_acceptor
   vcn_dns_label            = "vcnacceptor"
   vcn_name                 = "vcn-rpc-acceptor"
+  attached_drg_id          = module.drg_acceptor.drg_id
 
   nat_gateway_route_rules = [for cidr in var.vcn_cidrs_requestor :
     {
       destination       = cidr # set requestor vcn cidr as destination cidr 
       destination_type  = "CIDR_BLOCK"
-      network_entity_id = module.drg_acceptor.drg_id
+      network_entity_id = "drg"
       description       = "Terraformed - User added Routing Rule to requestor VCN through DRG"
     }
   ]
@@ -121,7 +122,7 @@ module "vcn_requestor" {
     {
       destination       = cidr # set acceptor vcn cidr as destination cidr 
       destination_type  = "CIDR_BLOCK"
-      network_entity_id = module.drg_requestor.drg_id
+      network_entity_id = "drg"
       description       = "Terraformed - User added Routing Rule to acceptor VCN through DRG"
     }
   ]

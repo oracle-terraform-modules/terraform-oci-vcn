@@ -40,7 +40,7 @@ resource "oci_core_route_table" "ig" {
     content {
       destination       = route_rules.value.destination
       destination_type  = route_rules.value.destination_type
-      network_entity_id = module.drg_from_vcn_module[0].drg_id
+      network_entity_id = var.create_drg ? module.drg_from_vcn_module[0].drg_id : var.attached_drg_id
       description       = route_rules.value.description
     }
   }
@@ -159,7 +159,7 @@ resource "oci_core_route_table" "nat" {
     content {
       destination       = route_rules.value.destination
       destination_type  = route_rules.value.destination_type
-      network_entity_id = module.drg_from_vcn_module[0].drg_id
+      network_entity_id = var.create_drg ? module.drg_from_vcn_module[0].drg_id : var.attached_drg_id
       description       = route_rules.value.description
     }
   }
