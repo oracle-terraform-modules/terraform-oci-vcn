@@ -17,8 +17,11 @@ terraform {
 
 module "vcn_acceptor" {
   # this module use the generic vcn module and configure it to act as vcn for RPC acceptor
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.2.0"
+
+  source = "../../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -73,8 +76,11 @@ resource "oci_core_subnet" "subnet_acceptor" {
 
 
 module "drg_acceptor" {
-  source  = "oracle-terraform-modules/vcn/oci//modules/drg"
-  version = "3.2.0"
+
+  source = "../../../modules/drg"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci//modules/drg"
+  # version = "specify_version_number"
 
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
@@ -100,8 +106,11 @@ module "drg_acceptor" {
 
 module "vcn_requestor" {
   # this module use the generic vcn module and configure it to act as rpc requestor vcn
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.2.0"
+  
+  source = "../../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -152,8 +161,10 @@ resource "oci_core_subnet" "subnet_requestor" {
 }
 
 module "drg_requestor" {
-  source  = "oracle-terraform-modules/vcn/oci//modules/drg"
-  version = "3.2.0"
+ source = "../../../modules/drg"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci//modules/drg"
+  # version = "specify_version_number"
 
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
