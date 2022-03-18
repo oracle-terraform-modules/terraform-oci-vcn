@@ -42,8 +42,9 @@ module "vcn_spokes" {
   for_each = var.vcn_spokes
 
   # general oci parameters
-  compartment_id = var.compartment_id
-  label_prefix   = var.label_prefix
+  compartment_id  = var.compartment_id
+  label_prefix    = var.label_prefix
+  attached_drg_id = module.drg_hub.drg_id
 
   # vcn parameters
   create_internet_gateway  = each.value["create_internet_gateway"]  # boolean: true or false
