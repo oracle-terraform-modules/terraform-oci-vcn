@@ -197,7 +197,7 @@ variable "nat_gateway_route_rules" {
 }
 
 variable "attached_drg_id" {
-  descripdescription = "the ID of DRG attached to the VCN"
+  description = "the ID of DRG attached to the VCN"
   type = string
   default = ""
 }

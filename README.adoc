@@ -40,8 +40,8 @@ It creates the following resources:
 * An optional internet gateway and a route table
 * An optional NAT gateway and a route table
 * An optional service gateway
-* An optional dynamic routing gateway _[Deprecated; use the drg submodule instead]_
-* An optional remote peering connection _[Deprecated; use the drg submodule instead]_
+* An optional dynamic routing gateway _[Deprecated; use the [drg submodule](modules/drg/README.md) instead]_
+* An optional remote peering connection _[Deprecated; use the [drg submodule](modules/drg/README.md) instead]_
 * One or more optional Local Peering Gateways in requestor or acceptor mode, and possibilities to associate a Route Table
 
 It also controls the Default Security List, with a *Lockdown mode* that can be enabled or disabled
