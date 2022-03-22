@@ -6,8 +6,8 @@
 terraform {
   required_providers {
     oci = {
-      source  = "hashicorp/oci"
-      version = ">=4.41.0"
+      source  = "oracle/oci"
+      version = ">=4.67.3"
     }
   }
   required_version = ">= 1.0.0"
@@ -17,7 +17,7 @@ terraform {
 
 module "vcn" {
   
-  source = "../../../"
+  source = "../../"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
   # version = "specify_version_number"
