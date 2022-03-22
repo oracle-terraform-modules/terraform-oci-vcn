@@ -16,7 +16,10 @@ terraform {
 # Resources
 
 module "drg_hub" {
-  source = "oracle-terraform-modules/vcn/oci//modules/drg"
+  source = "../../modules/drg"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci//modules/drg"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -37,8 +40,11 @@ module "drg_hub" {
 }
 
 module "vcn_spokes" {
-  source   = "oracle-terraform-modules/vcn/oci"
-  version  = "3.1.0"
+  source = "../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
+
   for_each = var.vcn_spokes
 
   # general oci parameters
