@@ -17,7 +17,7 @@ terraform {
 
 module "vcn" {
   
-  source = "../../../"
+  source = "../../"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
   # version = "specify_version_number"
