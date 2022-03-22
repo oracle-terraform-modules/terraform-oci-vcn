@@ -17,8 +17,11 @@ terraform {
 
 module "vcn_hub" {
   # this module use the generic vcn module and configure it to act as a hub in a hub-and-spoke topology
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.1.0"
+
+  source = "../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -68,8 +71,11 @@ resource "oci_core_route_table" "VTR_spokes" {
 
 module "vcn_spoke1" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.1.0"
+  
+  source = "../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -97,8 +103,11 @@ module "vcn_spoke1" {
 
 module "vcn_spoke2" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.1.0"
+  
+  source = "../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -124,8 +133,11 @@ module "vcn_spoke2" {
 
 module "vcn_spoke3" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.1.0"
+  
+  source = "../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
