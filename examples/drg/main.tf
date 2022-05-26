@@ -6,8 +6,8 @@
 terraform {
   required_providers {
     oci = {
-      source  = "hashicorp/oci"
-      version = ">=4.41.0"
+      source  = "oracle/oci"
+      version = ">=4.67.3"
     }
   }
   required_version = ">= 1.0.0"
@@ -16,7 +16,10 @@ terraform {
 # Resources
 
 module "drg_hub" {
-  source = "oracle-terraform-modules/vcn/oci//modules/drg"
+  source = "../../modules/drg"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci//modules/drg"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -37,13 +40,17 @@ module "drg_hub" {
 }
 
 module "vcn_spokes" {
-  source   = "oracle-terraform-modules/vcn/oci"
-  version  = "3.1.0"
+  source = "../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
+
   for_each = var.vcn_spokes
 
   # general oci parameters
-  compartment_id = var.compartment_id
-  label_prefix   = var.label_prefix
+  compartment_id  = var.compartment_id
+  label_prefix    = var.label_prefix
+  attached_drg_id = module.drg_hub.drg_id
 
   # vcn parameters
   create_internet_gateway  = each.value["create_internet_gateway"]  # boolean: true or false

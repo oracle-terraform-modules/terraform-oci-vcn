@@ -50,6 +50,12 @@ variable "freeform_tags" {
   }
 }
 
+variable "defined_tags" {
+  description = "predefined and scoped to a namespace to tag the resources created using defined tags."
+  type        = map(string)
+  default     = null
+}
+
 # acceptor parameters
 
 variable "region_acceptor" {

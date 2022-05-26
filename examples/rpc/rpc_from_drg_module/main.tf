@@ -6,8 +6,8 @@
 terraform {
   required_providers {
     oci = {
-      source  = "hashicorp/oci"
-      version = ">=4.41.0"
+      source  = "oracle/oci"
+      version = ">=4.67.3"
     }
   }
   required_version = ">= 1.0.0"
@@ -17,13 +17,17 @@ terraform {
 
 module "vcn_acceptor" {
   # this module use the generic vcn module and configure it to act as vcn for RPC acceptor
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.2.0"
+
+  source = "../../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
   freeform_tags  = var.freeform_tags
+  defined_tags   = var.defined_tags
 
   # vcn parameters
   create_drg               = false #! deprecated inner drg, use drg-module instead     
@@ -34,12 +38,13 @@ module "vcn_acceptor" {
   vcn_cidrs                = var.vcn_cidrs_acceptor
   vcn_dns_label            = "vcnacceptor"
   vcn_name                 = "vcn-rpc-acceptor"
+  attached_drg_id          = module.drg_acceptor.drg_id
 
   nat_gateway_route_rules = [for cidr in var.vcn_cidrs_requestor :
     {
       destination       = cidr # set requestor vcn cidr as destination cidr 
       destination_type  = "CIDR_BLOCK"
-      network_entity_id = module.drg_acceptor.drg_id
+      network_entity_id = "drg"
       description       = "Terraformed - User added Routing Rule to requestor VCN through DRG"
     }
   ]
@@ -71,8 +76,11 @@ resource "oci_core_subnet" "subnet_acceptor" {
 
 
 module "drg_acceptor" {
-  source  = "oracle-terraform-modules/vcn/oci//modules/drg"
-  version = "3.2.0"
+
+  source = "../../../modules/drg"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci//modules/drg"
+  # version = "specify_version_number"
 
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
@@ -98,8 +106,11 @@ module "drg_acceptor" {
 
 module "vcn_requestor" {
   # this module use the generic vcn module and configure it to act as rpc requestor vcn
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.2.0"
+  
+  source = "../../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
@@ -120,7 +131,7 @@ module "vcn_requestor" {
     {
       destination       = cidr # set acceptor vcn cidr as destination cidr 
       destination_type  = "CIDR_BLOCK"
-      network_entity_id = module.drg_requestor.drg_id
+      network_entity_id = "drg"
       description       = "Terraformed - User added Routing Rule to acceptor VCN through DRG"
     }
   ]
@@ -150,8 +161,10 @@ resource "oci_core_subnet" "subnet_requestor" {
 }
 
 module "drg_requestor" {
-  source  = "oracle-terraform-modules/vcn/oci//modules/drg"
-  version = "3.2.0"
+ source = "../../../modules/drg"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci//modules/drg"
+  # version = "specify_version_number"
 
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix

@@ -32,6 +32,13 @@ freeform_tags = {
   environment = "dev"
 }
 
+defined_tags = {
+  "Operations.CostCenter" = "42"
+}
+
+#ID of the DRG attached to the VCN
+attached_drg_id = ""
+
 # # custom routing rules variable declaration example
 
 # internet_gateway_route_rules = [ # this module input shows how to pass routing information to the vcn module inline, directly on the vcn module block

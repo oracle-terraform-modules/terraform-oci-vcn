@@ -14,10 +14,13 @@ Given a version number MAJOR.MINOR.PATCH:
 - MINOR version when adding functionality in a backwards compatible manner,
 - PATCH version when making backwards compatible bug fixes.
 
-== v3.2.0 (unreleased)
+== 3.3.0 (unreleased)
+* Added support for Defined Tags (fixes #73)
+
+== v3.2.0 (January 19, 2022)
 
 === New features
-* Added Remote Peering Connection capability in DRG module (feat #71)
+* Added Remote Peering Connection capability in DRG module (fixes #71)
 
 == v3.1.0 (October 06, 2021)
 

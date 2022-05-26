@@ -6,8 +6,8 @@
 terraform {
   required_providers {
     oci = {
-      source  = "hashicorp/oci"
-      version = ">=4.41.0"
+      source  = "oracle/oci"
+      version = ">=4.67.3"
     }
   }
   required_version = ">= 1.0.0"
@@ -16,13 +16,17 @@ terraform {
 # Resources
 
 module "vcn" {
-  source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.1.0"
+  
+  source = "../../"
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = "oracle-terraform-modules/vcn/oci"
+  # version = "specify_version_number"
 
   # general oci parameters
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
   freeform_tags  = var.freeform_tags
+  defined_tags = var.defined_tags
 
   # vcn parameters
   create_drg               = var.create_drg               # boolean: true or false

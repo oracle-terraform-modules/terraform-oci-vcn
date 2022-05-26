@@ -7,14 +7,13 @@ output "vcn_id" {
 }
 
 output "drg_id" {
-  #! deprecation notice: this output will be removed at next major release
-  description = "Deprecated: Use drg sub-module instead. id of drg if it is created"
-  value       = join(",", module.drg_from_vcn_module[*].drg_id)
+  description = "id of the attached drg"
+  value       = var.create_drg ? join(",", module.drg_from_vcn_module[*].drg_id) : var.attached_drg_id
 }
 
 output "rpc_id" {
   description = "id of rpc if it is created"
-  value       = join(",", module.drg_from_vcn_module[*].rpc_id)
+  value       = var.create_drg ? join(",", module.drg_from_vcn_module[*].rpc_id) : ""
 }
 
 output "nat_gateway_id" {

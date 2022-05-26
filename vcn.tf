@@ -11,4 +11,5 @@ resource "oci_core_vcn" "vcn" {
   is_ipv6enabled = var.enable_ipv6
 
   freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
 }

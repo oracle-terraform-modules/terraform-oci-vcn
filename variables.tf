@@ -33,6 +33,12 @@ variable "freeform_tags" {
   }
 }
 
+variable "defined_tags" {
+  description = "predefined and scoped to a namespace to tag the resources created using defined tags."
+  type        = map(string)
+  default     = null
+}
+
 # vcn parameters
 
 variable "create_drg" {
@@ -188,4 +194,10 @@ variable "nat_gateway_route_rules" {
   description = "(Updatable) list of routing rules to add to NAT Gateway Route Table"
   type        = list(map(string))
   default     = null
+}
+
+variable "attached_drg_id" {
+  description = "the ID of DRG attached to the VCN"
+  type = string
+  default = ""
 }
