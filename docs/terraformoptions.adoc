@@ -233,3 +233,19 @@ e.g.
 |
 
 |===
+
+== Subnets
+
+[stripes=odd,cols="2m,8,1a,2m", options=header,width="100%"]
+|===
+|Parameter
+|Description
+|Type
+|Default
+
+|`subnets`
+|Subnets to be created in the VCN
+|`any`
+|{}
+
+|===
