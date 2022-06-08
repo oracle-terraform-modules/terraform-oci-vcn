@@ -14,8 +14,8 @@ resource "oci_core_vcn" "vcn" {
   defined_tags  = var.defined_tags
 }
 
-
-module "subnets" {
+#Module for Subnet
+module "subnet" {
   source = "./modules/subnet"
 
   compartment_id = var.compartment_id
@@ -24,5 +24,9 @@ module "subnets" {
   vcn_id         = oci_core_vcn.vcn.id
   ig_route_id    = var.create_internet_gateway ? oci_core_route_table.ig[0].id : null
   nat_route_id   = var.create_nat_gateway ? oci_core_route_table.nat[0].id : null
+
+  freeform_tags = var.freeform_tags
+
+  count = length(var.subnets) > 0 ? 1 : 0
 
 }

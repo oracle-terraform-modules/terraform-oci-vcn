@@ -90,9 +90,9 @@ output "drg_summary" {
 }
 
 output "subnet_id" {
-  value = module.subnets.subnet_id
+  value = try(module.subnet[0].subnet_id, null)
 }
 
 output "subnet_all_attributes" {
-  value = module.subnets.all_attributes
+  value = try(module.subnet[0].all_attributes, null)
 }

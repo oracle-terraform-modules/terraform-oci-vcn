@@ -206,4 +206,5 @@ variable "attached_drg_id" {
 variable "subnets" {
   description = "Private or Public subnets in a VCN"
   type        = any
+  default     = {}
 }
