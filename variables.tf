@@ -104,9 +104,6 @@ variable "vcn_name" {
 }
 
 # gateways parameters
-
-
-
 variable "internet_gateway_display_name" {
   description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
   type        = string
@@ -162,4 +159,11 @@ variable "attached_drg_id" {
   description = "the ID of DRG attached to the VCN"
   type = string
   default = null
+}
+
+#subnets
+variable "subnets" {
+  description = "Private or Public subnets in a VCN"
+  type        = any
+  default     = {}
 }

@@ -71,4 +71,11 @@ output "vcn_all_attributes" {
   value       = { for k, v in oci_core_vcn.vcn : k => v }
 }
 
+# subnet
+output "subnet_id" {
+  value = try(module.subnet[0].subnet_id, null)
+}
 
+output "subnet_all_attributes" {
+  value = try(module.subnet[0].all_attributes, null)
+}
