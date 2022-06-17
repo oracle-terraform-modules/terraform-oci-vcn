@@ -134,8 +134,8 @@ variable "drg_display_name" {
 variable "drg_rpc_acceptor_id" {
   #! Added for compatibility with inner drg management. Please use drg sub-module instead
   description = "the ID of the RPC acceptor"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 variable "drg_rpc_acceptor_region" {
   #! Added for compatibility with inner drg management. Please use drg sub-module instead
@@ -198,6 +198,13 @@ variable "nat_gateway_route_rules" {
 
 variable "attached_drg_id" {
   description = "the ID of DRG attached to the VCN"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
+}
+
+#subnets
+variable "subnets" {
+  description = "Private or Public subnets in a VCN"
+  type        = any
+  default     = {}
 }

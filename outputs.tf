@@ -86,5 +86,13 @@ output "vcn_all_attributes" {
 }
 
 output "drg_summary" {
-  value = { for k, v in module.drg_from_vcn_module : k => v.drg_summary } 
+  value = { for k, v in module.drg_from_vcn_module : k => v.drg_summary }
+}
+
+output "subnet_id" {
+  value = try(module.subnet[0].subnet_id, null)
+}
+
+output "subnet_all_attributes" {
+  value = try(module.subnet[0].all_attributes, null)
 }
