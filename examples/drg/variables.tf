@@ -55,6 +55,21 @@ variable "drg_display_name" {
   default     = "drg_hub"
 }
 
+variable "internet_gateway_route_rules" {
+  description = "(Updatable) List of routing rules to add to Internet Gateway Route Table"
+  type        = list(map(string))
+  default     = null
+}
+
+variable "freeform_tags" {
+  description = "simple key-value pairs to tag the created resources using freeform OCI Free-form tags."
+  type        = map(any)
+  default = {
+    terraformed = "Please do not edit manually"
+    module      = "oracle-terraform-modules/vcn/oci"
+  }
+}
+
 # vcn parameters
 
 variable "vcn_spokes" {
@@ -80,3 +95,5 @@ variable "vcn_spokes" {
     }
   }
 }
+
+

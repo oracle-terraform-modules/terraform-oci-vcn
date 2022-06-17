@@ -21,7 +21,6 @@ label_prefix = "dev"
 
 # vcn parameters
 
-create_drg = false
 
 create_internet_gateway = false
 
@@ -50,7 +49,7 @@ defined_tags = {
 
 # gateways parameters
 
-drg_display_name = "drg"
 internet_gateway_display_name = "igw"
 nat_gateway_display_name = "ngw"
 service_gateway_display_name = "sgw"
+attached_drg_id = null

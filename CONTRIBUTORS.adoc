@@ -5,7 +5,7 @@
 _maintainers have admin access and can merge code to main_
 
 - https://github.com/hyder[@hyder]
-- https://github.com/markxnelson[@markxnelson]
+- https://github.com/snafuz[@snafuz]
 
 === CONTRIBUTORS
 

@@ -3,17 +3,9 @@
 [docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.adoc
 [Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
 
-This example illustrates how to use submodule `drg` from `terraform-oci-vcn` module to create a DRG. Use this example if you need to create a DRG independently from a VCN.
+This example illustrates how to use  `terraform-drg-module` to create an hub and spoke configuration.
 
-<!-- insert list of created resources here -->
 
-This diagram illustrates what will be created by this example.
-
-<!-- insert diagram here -->
-
-## How to declare a DRG
-
-<!-- update provisioning info -->
 
 ## Prerequisites
 

@@ -17,7 +17,7 @@ terraform {
 
 module "vcn" {
   
-  source = "../../"
+  source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
   # version = "specify_version_number"
@@ -29,7 +29,6 @@ module "vcn" {
   defined_tags = var.defined_tags
 
   # vcn parameters
-  create_drg               = var.create_drg               # boolean: true or false
   create_internet_gateway  = var.create_internet_gateway  # boolean: true or false
   lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
   create_nat_gateway       = var.create_nat_gateway       # boolean: true or false
@@ -40,10 +39,10 @@ module "vcn" {
   vcn_name                 = var.vcn_name
 
   # gateways parameters
-  drg_display_name              = var.drg_display_name
   internet_gateway_display_name = var.internet_gateway_display_name
   nat_gateway_display_name      = var.nat_gateway_display_name
   service_gateway_display_name  = var.service_gateway_display_name
+  attached_drg_id               = var.attached_drg_id
 
   # routing rules
 
@@ -63,7 +62,6 @@ resource "oci_core_local_peering_gateway" "lpg" {
 output "module_vcn" {
   description = "vcn and gateways information"
   value = {
-    drg_id              = module.vcn.drg_id
     internet_gateway_id = module.vcn.internet_gateway_id
     nat_gateway_id      = module.vcn.nat_gateway_id
     service_gateway_id  = module.vcn.service_gateway_id
