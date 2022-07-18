@@ -33,14 +33,14 @@ resource "oci_core_route_table" "ig" {
 
   dynamic "route_rules" {
     # * filter var.internet_gateway_route_rules for routes with "drg" as destination
-    # * and steer traffic to the module created DRG
+    # * and steer traffic to the attached DRG if available
     for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
-    if v.network_entity_id == "drg" } : {}
+    if v.network_entity_id == "drg" && var.attached_drg_id != null} : {}
 
     content {
       destination       = route_rules.value.destination
       destination_type  = route_rules.value.destination_type
-      network_entity_id = var.create_drg ? module.drg_from_vcn_module[0].drg_id : var.attached_drg_id
+      network_entity_id =  var.attached_drg_id
       description       = route_rules.value.description
     }
   }
@@ -152,14 +152,14 @@ resource "oci_core_route_table" "nat" {
 
   dynamic "route_rules" {
     # * filter var.nat_gateway_route_rules for routes with "drg" as destination
-    # * and steer traffic to the module created DRG
+    # * and steer traffic to the attached DRG if available
     for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
-    if v.network_entity_id == "drg" } : {}
+    if v.network_entity_id == "drg" && var.attached_drg_id != null} : {}
 
     content {
       destination       = route_rules.value.destination
       destination_type  = route_rules.value.destination_type
-      network_entity_id = var.create_drg ? module.drg_from_vcn_module[0].drg_id : var.attached_drg_id
+      network_entity_id = var.attached_drg_id
       description       = route_rules.value.description
     }
   }
@@ -198,22 +198,7 @@ resource "oci_core_route_table" "nat" {
   count = var.create_nat_gateway == true ? 1 : 0
 }
 
-###############################
-# Dynamic Routing Gateway (DRG)
-###############################
 
-#! this resource is here for backward compatibility with feature related to `var.create_drg`
-#! deprecation notice: this resource will be removed at next major release
-resource "oci_core_drg_attachment" "drg_from_vcn_module" {
-  drg_id       = module.drg_from_vcn_module[0].drg_id
-  vcn_id       = oci_core_vcn.vcn.id
-  display_name = var.label_prefix == "none" ? "${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}" : "${var.label_prefix}-${var.drg_display_name}-to-${oci_core_vcn.vcn.display_name}"
-
-  freeform_tags = var.freeform_tags
-  defined_tags = var.defined_tags
-
-  count = var.create_drg == true ? 1 : 0
-}
 
 #############################
 # Local Peering Gateway (LPG)

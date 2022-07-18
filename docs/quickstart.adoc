@@ -100,6 +100,7 @@ variable "user_id" {
 * `create_nat_gateway`
 * `create_service_gateway`
 * `freeform_tags`
+* `attached_drg_id`
 
 . Run Terraform:
 
@@ -164,11 +165,12 @@ cp terraform.tfvars.example terraform.tfvars
 
 . Optional parameters to override:
 
-* `create_drg`
+* `attached_drg_id`
 * `create_internet_gateway`
 * `create_nat_gateway`
 * `create_service_gateway`
 * `freeform_tags`
+* `defined_tags`
 
 . Run Terraform:
 +

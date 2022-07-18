@@ -64,12 +64,6 @@ variable "defined_tags" {
 
 # vcn parameters
 
-variable "create_drg" {
-  description = "whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway."
-  type        = bool
-  default     = false
-}
-
 variable "create_internet_gateway" {
   description = "whether to create the internet gateway"
   type        = bool
@@ -120,11 +114,12 @@ variable "vcn_name" {
 
 # gateways parameters
 
-variable "drg_display_name" {
-  description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
-  type        = string
-  default     = "drg"
+variable "attached_drg_id" {
+  description = "the ID of DRG attached to the VCN"
+  type = string
+  default = null
 }
+
 
 variable "internet_gateway_display_name" {
   description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
@@ -152,31 +147,3 @@ variable "internet_gateway_route_rules" {
   default     = null
 }
 
-# locals {
-#   nat_gateway_route_rules = [ # this is a local that can be used to pass routing information to vcn module for either route tables
-#     {
-#       destination       = "192.168.0.0/16" # Route Rule Destination CIDR
-#       destination_type  = "CIDR_BLOCK"     # only CIDR_BLOCK is supported at the moment
-#       network_entity_id = "drg"            # for nat_gateway_route_rules input variable, you can use special strings "drg", "nat_gateway" or pass a valid OCID using string or any Named Values
-#       description       = "Terraformed - User added Routing Rule: To drg created by this module. drg_id is automatically retrieved with keyword drg"
-#     },
-#     {
-#       destination       = "172.16.0.0/16"
-#       destination_type  = "CIDR_BLOCK"
-#       network_entity_id = module.vcn.drg_id
-#       description       = "Terraformed - User added Routing Rule: To drg with drg_id directly passed by user. Useful for gateways created outside of vcn module"
-#     },
-#     {
-#       destination       = "203.0.113.0/24" # rfc5737 (TEST-NET-3)
-#       destination_type  = "CIDR_BLOCK"
-#       network_entity_id = "nat_gateway"
-#       description       = "Terraformed - User added Routing Rule: To NAT Gateway created by this module. nat_gateway_id is automatically retrieved with keyword nat_gateway"
-#     },
-#     {
-#       destination       = "192.168.1.0/24"
-#       destination_type  = "CIDR_BLOCK"
-#       network_entity_id = oci_core_local_peering_gateway.lpg.id
-#       description       = "Terraformed - User added Routing Rule: To lpg with lpg_id directly passed by user. Useful for gateways created outside of vcn module"
-#     },
-#   ]
-# }

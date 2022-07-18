@@ -64,12 +64,6 @@ variable "defined_tags" {
 
 # vcn parameters
 
-variable "create_drg" {
-  description = "whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway."
-  type        = bool
-  default     = false
-}
-
 variable "create_internet_gateway" {
   description = "whether to create the internet gateway"
   type        = bool
@@ -120,11 +114,12 @@ variable "vcn_name" {
 
 # gateways parameters
 
-variable "drg_display_name" {
-  description = "(Updatable) Name of Dynamic Routing Gateway. Does not have to be unique."
-  type        = string
-  default     = "drg"
+variable "attached_drg_id" {
+  description = "the ID of DRG attached to the VCN"
+  type = string
+  default = null
 }
+
 
 variable "internet_gateway_display_name" {
   description = "(Updatable) Name of Internet Gateway. Does not have to be unique."

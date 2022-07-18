@@ -55,6 +55,12 @@ variables:
     required: false
     default: true
 
+  attached_drg_id:
+    title: DRG OCID to attach to the VCN
+    type: string
+    required: false
+    default: null
+
   freeform_tags:
     type: map
     visible: false

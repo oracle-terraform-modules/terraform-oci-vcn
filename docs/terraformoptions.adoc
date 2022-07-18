@@ -88,10 +88,10 @@ defined_tags = {
 |Type
 |Default
 
-|`create_drg`
-|Deprecated: Use drg sub-module instead. whether to create Dynamic Routing Gateway. If set to true, creates a Dynamic Routing Gateway.
-|`boolean`
-|false
+|`attached_drg_id`
+|DRG OCID to be attached to the VCN.
+|`string`
+|null
 
 |`create_internet_gateway`
 |Whether to create an internet gateway.
@@ -107,11 +107,6 @@ defined_tags = {
 |Whether to create a service gateway to use Oracle Services.
 |`boolean`
 |false
-
-|`drg_display_name`
-|Deprecated: Use drg sub-module instead. (Updatable) Name of Dynamic Routing Gateway. Does not have to be unique.
-|`string`
-|"drg"
 
 |`enable_ipv6`
 |(Updatable) Whether IPv6 is enabled for the VCN. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block.

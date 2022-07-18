@@ -1,24 +1,13 @@
 # Copyright (c) 2019, 2021, Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
-# Version requirements
-
-terraform {
-  required_providers {
-    oci = {
-      source  = "oracle/oci"
-      version = ">=4.67.3"
-    }
-  }
-  required_version = ">= 1.0.0"
-}
 
 # Resources
 
 module "vcn_hub" {
   # this module use the generic vcn module and configure it to act as a hub in a hub-and-spoke topology
 
-  source = "../../"
+  source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
   # version = "specify_version_number"
@@ -30,7 +19,6 @@ module "vcn_hub" {
   defined_tags = var.defined_tags
 
   # vcn parameters
-  create_drg               = var.create_drg               # boolean: true or false
   create_internet_gateway  = var.create_internet_gateway  # boolean: true or false
   lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
   create_nat_gateway       = var.create_nat_gateway       # boolean: true or false
@@ -41,10 +29,10 @@ module "vcn_hub" {
   vcn_name                 = var.vcn_name
 
   # gateways parameters
-  drg_display_name              = var.drg_display_name
   internet_gateway_display_name = var.internet_gateway_display_name
   nat_gateway_display_name      = var.nat_gateway_display_name
   service_gateway_display_name  = var.service_gateway_display_name
+  attached_drg_id               = var.attached_drg_id
 
   local_peering_gateways = {
     to_spoke1 = { # LPG will be in acceptor mode with a route table attached
@@ -72,7 +60,7 @@ resource "oci_core_route_table" "VTR_spokes" {
 module "vcn_spoke1" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
   
-  source = "../../"
+  source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
   # version = "specify_version_number"
@@ -83,7 +71,6 @@ module "vcn_spoke1" {
   freeform_tags  = var.freeform_tags
 
   # vcn parameters
-  create_drg               = false           # boolean: true or false
   create_internet_gateway  = false           # boolean: true or false
   lockdown_default_seclist = true            # boolean: true or false
   create_nat_gateway       = false           # boolean: true or false
@@ -93,6 +80,7 @@ module "vcn_spoke1" {
   vcn_name                 = "spoke1"
 
   # gateways parameters
+  attached_drg_id = var.attached_drg_id
 
   local_peering_gateways = {
     to_hub = {
@@ -104,7 +92,7 @@ module "vcn_spoke1" {
 module "vcn_spoke2" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
   
-  source = "../../"
+  source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
   # version = "specify_version_number"
@@ -115,7 +103,6 @@ module "vcn_spoke2" {
   freeform_tags  = var.freeform_tags
 
   # vcn parameters
-  create_drg               = false           # boolean: true or false
   create_internet_gateway  = false           # boolean: true or false
   lockdown_default_seclist = true            # boolean: true or false
   create_nat_gateway       = false           # boolean: true or false
@@ -125,6 +112,7 @@ module "vcn_spoke2" {
   vcn_name                 = "spoke2"
 
   # gateways parameters
+  attached_drg_id = var.attached_drg_id
 
   local_peering_gateways = {
     to_hub = {} # LPG will be in acceptor mode with no route table attached
@@ -134,7 +122,7 @@ module "vcn_spoke2" {
 module "vcn_spoke3" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
   
-  source = "../../"
+  source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
   # version = "specify_version_number"
@@ -145,7 +133,6 @@ module "vcn_spoke3" {
   freeform_tags  = var.freeform_tags
 
   # vcn parameters
-  create_drg               = false           # boolean: true or false
   create_internet_gateway  = false           # boolean: true or false
   lockdown_default_seclist = true            # boolean: true or false
   create_nat_gateway       = false           # boolean: true or false
@@ -155,6 +142,7 @@ module "vcn_spoke3" {
   vcn_name                 = "spoke3"
 
   # gateways parameters
+  attached_drg_id = var.attached_drg_id
   local_peering_gateways = {
     to_hub = {} # LPG will be in acceptor mode with no route table attached
   }

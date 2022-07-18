@@ -3,22 +3,15 @@
 
 # Version requirements
 
-terraform {
-  required_providers {
-    oci = {
-      source  = "oracle/oci"
-      version = ">=4.67.3"
-    }
-  }
-  required_version = ">= 1.0.0"
-}
+
 
 # Resources
 
 module "drg_hub" {
-  source = "../../modules/drg"
+  
+  source = "github.com/oracle-terraform-modules/terraform-oci-drg"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
-  # source  = "oracle-terraform-modules/vcn/oci//modules/drg"
+  # source  = "oracle-terraform-modules/drg/oci"
   # version = "specify_version_number"
 
   # general oci parameters
@@ -40,7 +33,8 @@ module "drg_hub" {
 }
 
 module "vcn_spokes" {
-  source = "../../"
+  
+  source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
   # version = "specify_version_number"
@@ -53,13 +47,15 @@ module "vcn_spokes" {
   attached_drg_id = module.drg_hub.drg_id
 
   # vcn parameters
-  create_internet_gateway  = each.value["create_internet_gateway"]  # boolean: true or false
-  lockdown_default_seclist = each.value["lockdown_default_seclist"] # boolean: true or false
-  create_nat_gateway       = each.value["create_nat_gateway"]       # boolean: true or false
-  create_service_gateway   = each.value["create_service_gateway"]   # boolean: true or false
-  enable_ipv6              = each.value["enable_ipv6"]              # boolean: true or false
-  vcn_cidrs                = each.value["cidrs"]                    # List of IPv4 CIDRs
-  vcn_dns_label            = each.value["dns_label"]                # string
-  vcn_name                 = each.key                               # string
+  create_internet_gateway      = each.value["create_internet_gateway"]  # boolean: true or false
+  lockdown_default_seclist     = each.value["lockdown_default_seclist"] # boolean: true or false
+  create_nat_gateway           = each.value["create_nat_gateway"]       # boolean: true or false
+  create_service_gateway       = each.value["create_service_gateway"]   # boolean: true or false
+  enable_ipv6                  = each.value["enable_ipv6"]              # boolean: true or false
+  vcn_cidrs                    = each.value["cidrs"]                    # List of IPv4 CIDRs
+  vcn_dns_label                = each.value["dns_label"]                # string
+  vcn_name                     = each.key                               # string
+  internet_gateway_route_rules = var.internet_gateway_route_rules
+  freeform_tags                = var.freeform_tags
 }
 
