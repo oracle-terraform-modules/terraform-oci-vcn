@@ -7,6 +7,10 @@ resource "oci_core_default_security_list" "lockdown" {
   // If variable is true, removes all rules from default security list
   manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
 
+  lifecycle {
+    ignore_changes = all
+  }
+
   count = var.lockdown_default_seclist == true ? 1 : 0
 }
 
