@@ -102,4 +102,5 @@ attached_drg_id = null
 #subnets = {
 #  sub1 = {name = "subnet1",cidr_block = "10.0.4.0/24"}
 #  sub2 = {cidr_block="10.0.5.0/24",type="private"}
+#  sub3 = {cidr_block="10.0.6.0/24",type="private", security_list_ids=["ocid1.securitylist.oc1.eu-frankfurt-1.aaaa","ocid1.securitylist.oc1.eu-frankfurt-1.bbbb"]}
 #}
