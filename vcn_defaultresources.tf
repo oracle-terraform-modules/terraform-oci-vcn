@@ -8,6 +8,11 @@ resource "oci_core_default_security_list" "lockdown" {
   manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
 
   count = var.lockdown_default_seclist == true ? 1 : 0
+
+  lifecycle {
+    ignore_changes = [egress_security_rules, ingress_security_rules, defined_tags]
+  }
+
 }
 
 resource "oci_core_default_security_list" "restore_default" {
@@ -54,5 +59,9 @@ resource "oci_core_default_security_list" "restore_default" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [egress_security_rules, ingress_security_rules, defined_tags]
+  }
+  
   count = var.lockdown_default_seclist == false ? 1 : 0
 }
