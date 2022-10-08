@@ -24,6 +24,10 @@ resource "oci_core_subnet" "vcn_subnet" {
   prohibit_public_ip_on_vnic = lookup(each.value, "type", "public") == "public" ? false : true
   route_table_id             = lookup(each.value, "type", "public") == "public" ? var.ig_route_id : var.nat_route_id
   security_list_ids          = null
+
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
 }
 
 data "oci_core_dhcp_options" "dhcp_options" {
