@@ -12,6 +12,10 @@ resource "oci_core_vcn" "vcn" {
 
   freeform_tags = var.freeform_tags
   defined_tags  = var.defined_tags
+
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
 }
 
 #Module for Subnet

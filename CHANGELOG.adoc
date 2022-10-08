@@ -15,6 +15,9 @@ Given a version number MAJOR.MINOR.PATCH:
 - PATCH version when making backwards compatible bug fixes.
 
 == 4.0.0 (not released)
+* Ignored lifecycle changes for defined_tags, freeform_tags
+
+== 3.5.1 (September 5, 2022))
 * removed DRG submodule, now promoted to terraform-oci-drg module (feat: )
 * updated examples to use GitHub repo as source ()
 

@@ -14,6 +14,10 @@ resource "oci_core_internet_gateway" "ig" {
 
   vcn_id = oci_core_vcn.vcn.id
 
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
+
   count = var.create_internet_gateway == true ? 1 : 0
 }
 
@@ -76,6 +80,10 @@ resource "oci_core_route_table" "ig" {
 
   vcn_id = oci_core_vcn.vcn.id
 
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
+
   count = var.create_internet_gateway == true ? 1 : 0
 }
 
@@ -103,6 +111,10 @@ resource "oci_core_service_gateway" "service_gateway" {
 
   vcn_id = oci_core_vcn.vcn.id
 
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
+
   count = var.create_service_gateway == true ? 1 : 0
 }
 
@@ -119,6 +131,10 @@ resource "oci_core_nat_gateway" "nat_gateway" {
   public_ip_id = var.nat_gateway_public_ip_id != "none" ? var.nat_gateway_public_ip_id : null
 
   vcn_id = oci_core_vcn.vcn.id
+
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
 
   count = var.create_nat_gateway == true ? 1 : 0
 }
@@ -195,6 +211,10 @@ resource "oci_core_route_table" "nat" {
 
   vcn_id = oci_core_vcn.vcn.id
 
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
+
   count = var.create_nat_gateway == true ? 1 : 0
 }
 
@@ -217,4 +237,8 @@ resource "oci_core_local_peering_gateway" "lpg" {
   #Optional
   peer_id        = can(each.value.peer_id) == false ? null : each.value.peer_id
   route_table_id = can(each.value.route_table_id) == false ? null : each.value.route_table_id
+
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
 }
