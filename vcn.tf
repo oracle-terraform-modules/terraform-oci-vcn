@@ -1,4 +1,4 @@
-# Copyright (c) 2019, 2021, Oracle Corporation and/or affiliates.
+# Copyright (c) 2019, 2022 Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 resource "oci_core_vcn" "vcn" {
@@ -14,7 +14,7 @@ resource "oci_core_vcn" "vcn" {
   defined_tags  = var.defined_tags
 
   lifecycle {
-    ignore_changes = [defined_tags, freeform_tags]
+    ignore_changes = [defined_tags, dns_label, freeform_tags]
   }
 }
 

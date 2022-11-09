@@ -91,7 +91,6 @@ variable "user_id" {
 
 * `compartment_id`
 * `label_prefix`
-* `vcn_dns_label`
 * `vcn_name`
 
 . Optional parameters to override:
@@ -101,6 +100,7 @@ variable "user_id" {
 * `create_service_gateway`
 * `freeform_tags`
 * `attached_drg_id`
+* `vcn_dns_label`
 
 . Run Terraform:
 
@@ -160,7 +160,6 @@ cp terraform.tfvars.example terraform.tfvars
 
 * `compartment_id`
 * `label_prefix`
-* `vcn_dns_label`
 * `vcn_name`
 
 . Optional parameters to override:
@@ -171,6 +170,7 @@ cp terraform.tfvars.example terraform.tfvars
 * `create_service_gateway`
 * `freeform_tags`
 * `defined_tags`
+* `vcn_dns_label`
 
 . Run Terraform:
 +

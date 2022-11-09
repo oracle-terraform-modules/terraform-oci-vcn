@@ -218,14 +218,14 @@ e.g.
 | `["10.0.0.0/16"]`
 
 |`vcn_dns_label`
-|A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet
+|A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet. DNS resolution for hostnames in the VCN is disabled if null.
 |`string`
 |"vcnmodule"
 
 |`vcn_name`
-|The name of the VCN that will be appended to the label_prefix. *Required*
+|The name of the VCN that will be appended to the label_prefix.
 |`string`
-|
+|"vcn-module"
 
 |===
 
