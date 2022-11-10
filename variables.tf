@@ -96,7 +96,7 @@ variable "vcn_dns_label" {
 variable "vcn_name" {
   description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
   type        = string
-  default     = "vcn-module"
+  default     = "vcn"
   validation {
     condition     = length(var.vcn_name) > 0
     error_message = "The vcn_name value cannot be an empty string."

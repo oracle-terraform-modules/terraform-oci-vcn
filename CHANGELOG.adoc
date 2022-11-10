@@ -16,6 +16,7 @@ Given a version number MAJOR.MINOR.PATCH:
 
 == 4.0.0 (not released)
 * Added support for disabled VCN DNS resolution with null vcn_dns_label variable
+* Change default vcn_name from vcn-module -> vcn
 
 == 3.5.2 (October 7, 2022)
 * Ignored lifecycle changes for defined_tags, freeform_tags

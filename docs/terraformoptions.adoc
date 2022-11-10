@@ -225,7 +225,7 @@ e.g.
 |`vcn_name`
 |The name of the VCN that will be appended to the label_prefix.
 |`string`
-|"vcn-module"
+|"vcn"
 
 |===
 
