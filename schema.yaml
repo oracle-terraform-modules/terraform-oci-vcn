@@ -46,7 +46,7 @@ variables:
   vcn_dns_label:
     title: VCN DNS Label
     type: string
-    required: true
+    required: false
     default: vcn
 
   lockdown_default_seclist:

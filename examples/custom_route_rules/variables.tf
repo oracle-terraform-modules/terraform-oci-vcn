@@ -110,7 +110,7 @@ variable "vcn_dns_label" {
 variable "vcn_name" {
   description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
   type        = string
-  default     = "vcn-module"
+  default     = "vcn"
 }
 
 # gateways parameters

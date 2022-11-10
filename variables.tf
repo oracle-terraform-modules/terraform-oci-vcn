@@ -1,4 +1,4 @@
-# Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2019, 2022 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # provider identity parameters
@@ -83,20 +83,20 @@ variable "vcn_cidrs" {
 }
 
 variable "vcn_dns_label" {
-  description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
+  description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet. DNS resolution of hostnames in the VCN is disabled when null."
   type        = string
   default     = "vcnmodule"
 
   validation {
-    condition     = length(regexall("^[^0-9][a-zA-Z0-9_]+$", var.vcn_dns_label)) > 0
-    error_message = "DNS label must be an alphanumeric string that begins with a letter."
+    condition     = var.vcn_dns_label == null ? true : length(regexall("^[^0-9][a-zA-Z0-9_]{1,14}$", var.vcn_dns_label)) > 0
+    error_message = "DNS label must be unset to disable, or an alphanumeric string with length of 1 through 15 that begins with a letter."
   }
 }
 
 variable "vcn_name" {
   description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
   type        = string
-  default     = "vcn-module"
+  default     = "vcn"
   validation {
     condition     = length(var.vcn_name) > 0
     error_message = "The vcn_name value cannot be an empty string."

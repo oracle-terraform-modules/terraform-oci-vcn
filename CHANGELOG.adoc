@@ -15,9 +15,13 @@ Given a version number MAJOR.MINOR.PATCH:
 - PATCH version when making backwards compatible bug fixes.
 
 == 4.0.0 (not released)
+* Added support for disabled VCN DNS resolution with null vcn_dns_label variable
+* Change default vcn_name from vcn-module -> vcn
+
+== 3.5.2 (October 7, 2022)
 * Ignored lifecycle changes for defined_tags, freeform_tags
 
-== 3.5.1 (September 5, 2022))
+== 3.5.1 (September 5, 2022)
 * removed DRG submodule, now promoted to terraform-oci-drg module (feat: )
 * updated examples to use GitHub repo as source ()
 

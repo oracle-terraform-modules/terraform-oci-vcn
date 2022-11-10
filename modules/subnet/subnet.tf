@@ -26,7 +26,7 @@ resource "oci_core_subnet" "vcn_subnet" {
   security_list_ids          = null
 
   lifecycle {
-    ignore_changes = [defined_tags, freeform_tags]
+    ignore_changes = [defined_tags, dns_label, freeform_tags]
   }
 }
 
