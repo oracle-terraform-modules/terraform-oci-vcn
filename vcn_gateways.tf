@@ -36,6 +36,17 @@ resource "oci_core_route_table" "ig" {
   }
 
   dynamic "route_rules" {
+    # * With this route table, Internet Gateway is always declared as the default gateway
+    for_each = var.enable_ipv6 == true ? [1] : []
+
+    content {
+      destination       = local.anywhere_ipv6
+      network_entity_id = oci_core_internet_gateway.ig[0].id
+      description       = "Terraformed - Auto-generated at Internet Gateway creation: Internet Gateway as default gateway"
+    }
+  }
+
+  dynamic "route_rules" {
     # * filter var.internet_gateway_route_rules for routes with "drg" as destination
     # * and steer traffic to the attached DRG if available
     for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
