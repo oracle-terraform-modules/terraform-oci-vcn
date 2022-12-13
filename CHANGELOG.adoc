@@ -17,6 +17,7 @@ Given a version number MAJOR.MINOR.PATCH:
 == 4.0.0 (not released)
 * Added support for disabled VCN DNS resolution with null vcn_dns_label variable
 * Change default vcn_name from vcn-module -> vcn
+* Added default route to Internet Gateway when IPv6 is enabled
 
 == 3.5.2 (October 7, 2022)
 * Ignored lifecycle changes for defined_tags, freeform_tags
@@ -26,7 +27,7 @@ Given a version number MAJOR.MINOR.PATCH:
 * updated examples to use GitHub repo as source ()
 
 == 3.4.0 (March 27, 2022)
-* Replaced required provider hashicorp/oci --> oracle/oci 
+* Replaced required provider hashicorp/oci --> oracle/oci
 
 == 3.3.0 (March 18, 2022)
 * Added support for Defined Tags (fixes #73)
