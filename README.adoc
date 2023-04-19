@@ -26,7 +26,6 @@
 :uri-reuse-module: {uri-rel-tree-base}/examples/
 :uri-rm: {uri-docs}/resourcemanager.adoc
 :uri-terraform: https://www.terraform.io
-:uri-terraform-cidrsubnet-deconstructed: http://blog.itsjustcode.net/blog/2017/11/18/terraform-cidrsubnet-deconstructed/
 :uri-terraform-hashicorp-examples: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
 :uri-terraform-oci: https://www.terraform.io/docs/providers/oci/index.html
 :uri-terraform-options: {uri-docs}/terraformoptions.adoc
@@ -62,7 +61,6 @@ This module is primarily meant to be reusable to create more advanced infrastruc
 * {uri-oci-documentation}[Oracle Cloud Infrastructure Documentation]
 * {uri-terraform-oci}[Terraform OCI Provider Documentation]
 * {uri-networks-subnets-cidr}[Erik Berg on Networks, Subnets and CIDR]
-* {uri-terraform-cidrsubnet-deconstructed}[Lisa Hagemann on Terraform cidrsubnet Deconstructed]
 
 == Projects using this module
 
