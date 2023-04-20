@@ -129,6 +129,34 @@ resource "oci_core_service_gateway" "service_gateway" {
   count = var.create_service_gateway == true ? 1 : 0
 }
 
+resource "oci_core_route_table" "service_gw" {
+  compartment_id = var.compartment_id
+  display_name   = var.label_prefix == "none" ? "service-gw-route" : "${var.label_prefix}-service-gw-route"
+
+  freeform_tags = var.freeform_tags
+  defined_tags = var.defined_tags
+
+  dynamic "route_rules" {
+    # * If Service Gateway is created with the module, automatically creates a rule to handle traffic for "all services" through Service Gateway
+    for_each = var.create_service_gateway == true ? [1] : []
+
+    content {
+      destination       = lookup(data.oci_core_services.all_oci_services[0].services[0], "cidr_block")
+      destination_type  = "SERVICE_CIDR_BLOCK"
+      network_entity_id = oci_core_service_gateway.service_gateway[0].id
+      description       = "Terraformed - Auto-generated at Service Gateway creation: All Services in region to Service Gateway"
+    }
+  }
+
+  vcn_id = oci_core_vcn.vcn.id
+
+  lifecycle {
+    ignore_changes = [defined_tags, freeform_tags]
+  }
+
+  count = var.create_service_gateway == true ? 1 : 0
+}
+
 ###################
 # NAT Gateway (NGW)
 ###################
@@ -163,18 +191,6 @@ resource "oci_core_route_table" "nat" {
     destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_nat_gateway.nat_gateway[0].id
     description       = "Terraformed - Auto-generated at NAT Gateway creation: NAT Gateway as default gateway"
-  }
-
-  dynamic "route_rules" {
-    # * If Service Gateway is created with the module, automatically creates a rule to handle traffic for "all services" through Service Gateway
-    for_each = var.create_service_gateway == true ? [1] : []
-
-    content {
-      destination       = lookup(data.oci_core_services.all_oci_services[0].services[0], "cidr_block")
-      destination_type  = "SERVICE_CIDR_BLOCK"
-      network_entity_id = oci_core_service_gateway.service_gateway[0].id
-      description       = "Terraformed - Auto-generated at Service Gateway creation: All Services in region to Service Gateway"
-    }
   }
 
   dynamic "route_rules" {

@@ -32,6 +32,11 @@ output "nat_route_id" {
   value       = join(",", oci_core_route_table.nat[*].id)
 }
 
+output "sgw_route_id" {
+  description = "id of VCN Service gateway route table"
+  value       = join(",", oci_core_route_table.service_gw[*].id)
+}
+
 # New complete outputs for each resources with provider parity. Auto-updating.
 # Usefull for module composition.
 
