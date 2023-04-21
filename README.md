@@ -31,7 +31,6 @@ This module is primarily meant to be reusable to create more advanced infrastruc
 * [Oracle Cloud Infrastructure Documentation][oci_documentation]
 * [Terraform OCI Provider Documentation][terraform_oci]
 * [Erik Berg on Networks, Subnets and CIDR][subnets]
-* [Lisa Hagemann on Terraform cidrsubnet Deconstructed][terraform_cidr_subnet]
 
 ## Projects using this module
 
@@ -76,7 +75,6 @@ Licensed under the [Universal Permissive License 1.0][license] as shown at
 [reuse]: https://github.com/oracle/terraform-oci-vcn/examples/db
 [subnets]: https://erikberg.com/notes/networks.html
 [terraform]: https://www.terraform.io
-[terraform_cidr_subnet]: http://blog.itsjustcode.net/blog/2017/11/18/terraform-cidrsubnet-deconstructed/
 [terraform_hashircorp_examples]: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
 [terraform_oci]: https://www.terraform.io/docs/providers/oci/index.html
 [terraform_options]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
