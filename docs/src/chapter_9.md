@@ -4,16 +4,16 @@
 
 | Parameter | Description | Type        | Default |
 | --------- | ----------- | ----------- | ------- |
-| region | Region where to provision the vcn. List of regions. *Optional*. | string | |
+| `region` | Region where to provision the vcn. List of regions. *Optional*. | `string` | |
 
 ## General OCI
 
 | Parameter | Description | Type        | Default |
 | --------- | ----------- | ----------- | ------- |
-| compartment_id | Compartment id where the VCN Cluster will be provisioned. *Required*. | `string` | |
-| label_prefix | a string to be prepended to the name of resources.  *Required*. | `string` |`none` |
-| freeform_tags | simple key-value pairs to tag the resources created specified in the form of a map | `map(any)`|`freeform_tags = { environment = "dev" }` |
-| defined_tags | predefined and scoped to a namespace to tag the resources created using defined tags. | `map(string)` |`null` |
+| `compartment_id` | Compartment id where the VCN Cluster will be provisioned. *Required*. | `string` | |
+| `label_prefix` | a string to be prepended to the name of resources.  *Required*. | `string` |`none` |
+| `freeform_tags` | simple key-value pairs to tag the resources created specified in the form of a map | `map(any)`|`freeform_tags = { environment = "dev" }` |
+| `defined_tags` | predefined and scoped to a namespace to tag the resources created using defined tags. | `map(string)` |`null` |
 
 ## VCN
 
