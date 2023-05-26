@@ -1,6 +1,6 @@
-# Terraform VCN for Oracle Cloud Infrastructure
+## Terraform VCN for Oracle Cloud Infrastructure
 
-The [Terraform VCN][repo] for [Oracle Cloud Infrastructure][OCI] provides a reusable [Terraform][terraform] module that provisions a minimal VCN on OCI.
+The [Terraform VCN module][repo] for [Oracle Cloud Infrastructure][OCI] provides a reusable [Terraform][terraform] module that provisions a minimal VCN on OCI.
 
 It creates the following resources:
 
@@ -16,36 +16,40 @@ Custom route rules can be added to the two route tables created by the module.
 
 This module is primarily meant to be reusable to create more advanced infrastructure on [OCI][OCI] either manually in the OCI Console or by extending the Terraform code.
 
-## [Documentation][docs]
+### [Documentation][docs]
 
 - [Pre-requisites](./chapter_2.md)
 - [User Guide](./chapter_3.md)
   - [Creating a VCN](./chapter_4.md)
   - [Reusing as a Terraform module](chapter_5.md)
+  - [VCN Gateways](./chapter_6.md)
+  - [Configuring routing rules](./chapter_7.md)
+  - [Using OCI Resource Manager](./chapter_8.md)
+- [Terraform Options](./chapter_9.md)
 
-## Related Documentation, Blog
+### Related Documentation, Blog
 
 * [Oracle Cloud Infrastructure Documentation][oci_documentation]
 * [Terraform OCI Provider Documentation][terraform_oci]
 * [Erik Berg on Networks, Subnets and CIDR][subnets]
 
-## Changelog
+### Changelog
 
 View the [CHANGELOG][changelog].
 
-## Acknowledgement
+### Acknowledgement
 
 Code derived and adapted from [Terraform OCI Examples][terraform_oci_examples] and Hashicorp's [Terraform 0.12 examples][terraform_oci_examples]
 
-## Contributors
+### Contributors
 
 [Folks who contributed with explanations, code, feedback, ideas, testing etc.][contributors]
 
 Learn how to [contribute][contributing].
 
-## License
+### License
 
-Copyright (c) 2019, 2021 Oracle and/or its associates.
+Copyright (c) 2019, 2023 Oracle and/or its associates.
 
 Licensed under the [Universal Permissive License 1.0][license] as shown at
 [https://oss.oracle.com/licenses/upl][canonical_license].
