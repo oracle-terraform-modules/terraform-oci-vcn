@@ -11,6 +11,8 @@
 # provider file for testing - should be manually added
 provider.tf
 
+docs/book
+
 # visual code
 **/.vscode/*
 
