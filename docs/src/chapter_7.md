@@ -1,4 +1,4 @@
-# Configuring routing rules
+## Configuring routing rules
 
 [uri-tf-namedvalues]: https://www.terraform.io/docs/language/expressions/references.html
 [uri-oci-lpg]: https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_local_peering_gateway
@@ -11,17 +11,17 @@ When you create an Internet or a NAT gateway, the terraform-oci-vcn module autom
 
 These automatically created route tables comes with automatic rules, that cannot be controlled by the module user.
 
-## internet-route route table
+### internet-route route table
 
 internet-route is meant to be attached to public subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the Internet Gateway created by this module: `0.0.0.0/0 --> Internet Gateway`.
 
-## nat-route route table
+### nat-route route table
 
 nat-route table is meant to be attached to private subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the NAT Gateway created by this module: `0.0.0.0/0 --> NAT Gateway`.
 
 If a Service Gateway is also created by the module with `create_service_gateway = true`, a second rule is added to redirect all Oracle Network Services traffic to the Service Gateway created by this module: `All <REGION> services in OSN --> Service Gateway`
 
-## Custom routes
+### Custom routes
 
 terraform-oci-vcn module have two optional Input Variables to inject user-defined route rules into `internet-route` and `nat-route` route tables using respectively:
 
@@ -62,7 +62,7 @@ They share the same schema but each Input Variable controls the associated route
 - `network_entity_id` accept string value and represent the gateway to be the target of the rule,
 - `description` accept arbitrary string value and give context about the goal of the rule.
 
-### special values for `network_entity_id`
+#### special values for `network_entity_id`
 
 For routing rules targeting a Gateway created by the module, `network_entity_id` accepts some special strings to automatically retrieve the gateway ocid.
 
@@ -70,10 +70,10 @@ For routing rules targeting a Gateway created by the module, `network_entity_id`
 - `internet_gateway_route_rules` recognise the `"internet_gateway"` string and resolve it to the Internet Gateway ocid created by the module,
 - `nat_gateway_route_rules` recognise the `"nat_gateway"` string and resolve it to the NAT Gateway ocid created by the module.
 
-### generic values for `network_entity_id`
+#### generic values for `network_entity_id`
 
 If you need to create a routing rule with a target gateway created outside of the module, you can simply provide the resource OCID using a valid Terraform method (any [named value][uri-tf-namedvalues]).
 
-## Examples
+### Examples
 
 For example configuration using this option, see [custom route rules][uri-custom-route-rules].

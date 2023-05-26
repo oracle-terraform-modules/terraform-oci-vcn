@@ -1,12 +1,12 @@
-# Terraform Options
+## Terraform Options
 
-## Provider
+### Provider
 
 | Parameter | Description | Type        | Default |
 | --------- | ----------- | ----------- | ------- |
-| region | Region where to provision the vcn. List of regions. *Optional*. | string | |
+| region | Region where to provision the vcn. List of regions. *Required*. | string | |
 
-## General OCI
+### General OCI
 
 | Parameter | Description | Type        | Default |
 | --------- | ----------- | ----------- | ------- |
@@ -15,7 +15,7 @@
 | freeform_tags | simple key-value pairs to tag the resources created specified in the form of a map | map(any)|freeform_tags = { environment = "dev" } |
 | defined_tags | predefined and scoped to a namespace to tag the resources created using defined tags. | map(string) |null |
 
-## VCN
+### VCN
 
 | Parameter | Description | Type        | Default |
 | --------- | ----------- | ----------- | ------- |
@@ -36,7 +36,7 @@
 | vcn_dns_label | (Optional)A DNS label for the VCN, used in conjunction with the VNIC’s hostname and subnet’s DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet. DNS resolution for hostnames in the VCN is disabled if null. | string | vcnmodule|
 | vcn_name | (Optional)(Updatable) The name of the VCN that will be appended to the label_prefix. | string | vcn|
 
-## Subnets
+### Subnets
 
 | Parameter | Description | Type        | Default |
 | --------- | ----------- | ----------- | ------- |

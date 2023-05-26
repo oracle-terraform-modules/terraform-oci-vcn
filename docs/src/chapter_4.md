@@ -1,23 +1,23 @@
-# Creating a VCN
+## Creating a VCN
 
 [uri-terraform-options]: ./chapter_5.md
 [uri-oci-keys]: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#two
 [uri-oci-ocids]: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#five
-## Assumptions
+### Assumptions
 
 1. You have setup the [required keys][uri-oci-keys]
 2. You know the [required OCIDs][uri-oci-ocids]
 3. You have the necessary permissions
 
-## Pre-requisites
+### Pre-requisites
 
 1. Git is installed
 2. SSH client is installed
 3. Terraform 1.3.0 or greater is installed
 
-## Instructions
+### Instructions
 
-### Provisioning using this git repo
+#### Provisioning using this git repo
 
 1. Clone the repo:
 

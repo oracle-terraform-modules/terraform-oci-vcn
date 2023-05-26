@@ -1,4 +1,4 @@
-# Reusing as a Terraform module
+## Reusing as a Terraform module
 
 You can also use the method below to reuse this in your own module.
 
@@ -106,7 +106,7 @@ terraform plan
 terraform apply
 ```
 
-### Related documentation:
+#### Related documentation:
 
 * [All Terraform configuration options][uri-terraform-options] for this project.
 

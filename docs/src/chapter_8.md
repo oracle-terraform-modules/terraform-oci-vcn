@@ -1,4 +1,4 @@
-# Using Resource Manager
+## Using Resource Manager
 
 [uri-rm-overview]: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm
 [uri-rm-stack]: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm
@@ -14,11 +14,7 @@ git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git
 zip terraform-oci-vcn.zip *.tf schema.yaml -x main.tf
 ```
 
-1. Create a stack:
-![Create Stack](./images/createstack.png)
-
-
-
+1. ![Create Stack](./images/createstack.png)
 
 2. Upload zip file:
 ![Upload zip file](./images/uploadzip.png)
