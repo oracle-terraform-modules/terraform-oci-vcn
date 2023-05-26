@@ -120,7 +120,7 @@ table {
     max-width: 90%;    
 }
 table td {
-    padding: 3px 20px;
+    padding: 20px 20px;
     border: 1px var(--table-border-color) solid;
 }
 table thead {
