@@ -1,5 +1,10 @@
 ## Pre-requisites
 
+1. Local development tools: git, terraform, a terminal.
+2. Understanding of OCI and its services, in particular the OCI Networking services.
+3. Your Terraform user must be part of a group that can
+   - manage VCNs in the compartment you will be creating the VCN and other resources
+
 ### Generate and upload your OCI API keys
 
 Follow the documentation for [generating and uploading your API keys][uri-oci-keys].
@@ -26,7 +31,13 @@ To obtain the compartment OCID:
 2. Click on your Compartment
 3. Locate OCID on the page and click on `Copy`
 
-### Policies
+### Configuring Policies
+
+1. Create a group (e.g. mygroup) and add a user to the group.
+
+2. Create a policy:
+
+`Allow group mygroup to manage virtual-network-family in compartment id  ocid1.compartment.oc1..aaa `
 
 [uri-oci-compartment]: https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#two
 [uri-oci-keys]: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#two

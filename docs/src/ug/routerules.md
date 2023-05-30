@@ -62,7 +62,7 @@ They share the same schema but each Input Variable controls the associated route
 - `network_entity_id` accept string value and represent the gateway to be the target of the rule,
 - `description` accept arbitrary string value and give context about the goal of the rule.
 
-#### special values for `network_entity_id`
+#### Special values for `network_entity_id`
 
 For routing rules targeting a Gateway created by the module, `network_entity_id` accepts some special strings to automatically retrieve the gateway ocid.
 
@@ -70,7 +70,7 @@ For routing rules targeting a Gateway created by the module, `network_entity_id`
 - `internet_gateway_route_rules` recognise the `"internet_gateway"` string and resolve it to the Internet Gateway ocid created by the module,
 - `nat_gateway_route_rules` recognise the `"nat_gateway"` string and resolve it to the NAT Gateway ocid created by the module.
 
-#### generic values for `network_entity_id`
+#### Generic values for `network_entity_id`
 
 If you need to create a routing rule with a target gateway created outside of the module, you can simply provide the resource OCID using a valid Terraform method (any [named value][uri-tf-namedvalues]).
 
