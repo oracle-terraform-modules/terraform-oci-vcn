@@ -21,7 +21,7 @@ The following OCIDs are required:
 2. Tenancy OCID
 3. User OCID
 
-Follow the documentation for [obtaining the tenancy and user ocids][uri-oci-ocids].
+Follow the documentation for [obtaining the tenancy and user OCIDs][uri-oci-ocids].
 
 To obtain the compartment OCID:
 
