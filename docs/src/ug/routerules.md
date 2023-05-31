@@ -64,10 +64,10 @@ They share the same schema but each Input Variable controls the associated route
 
 #### Special values for `network_entity_id`
 
-For routing rules targeting a Gateway created by the module, `network_entity_id` accepts some special strings to automatically retrieve the gateway ocid.
+For routing rules targeting a gateway created by the module, `network_entity_id` accepts some special strings to automatically retrieve the gateway ocid.
 
-- `internet_gateway_route_rules` and `nat_gateway_route_rules` recognise the `"drg"` string and resolve it to the DRG ocid attached to the module (if available),
-- `internet_gateway_route_rules` recognise the `"internet_gateway"` string and resolve it to the Internet Gateway ocid created by the module,
+- `internet_gateway_route_rules` and `nat_gateway_route_rules` recognise the `"drg"` string and resolve it to the Dynamic Routing Gateway(DRG) ocid attached to the module (if available),
+- `internet_gateway_route_rules` recognise the `"internet_gateway"` string and resolve it to the Internet Gateway OCID created by the module,
 - `nat_gateway_route_rules` recognise the `"nat_gateway"` string and resolve it to the NAT Gateway ocid created by the module.
 
 #### Generic values for `network_entity_id`

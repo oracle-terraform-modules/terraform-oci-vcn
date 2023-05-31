@@ -1,9 +1,7 @@
 ## Pre-requisites
 
-1. Local development tools: git, terraform, a terminal.
-2. Understanding of OCI and its services, in particular the OCI Networking services.
-3. Your Terraform user must be part of a group that can
-   - manage VCNs in the compartment you will be creating the VCN and other resources
+1. Local development tools: [Git][uri-git], [Terraform][uri-terraform], a terminal.
+2. Understanding of Oracle Cloud Infrastructure (OCI) and its services, in particular the Virtual Cloud Networking (VCN) service.
 
 ### Generate and upload your OCI API keys
 
@@ -42,3 +40,6 @@ To obtain the compartment OCID:
 [uri-oci-compartment]: https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#two
 [uri-oci-keys]: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#two
 [uri-oci-ocids]: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#five
+
+[uri-git]: https://git-scm.com/
+[uri-terraform]: https://www.terraform.io
