@@ -1,0 +1,47 @@
+# Proposed change
+
+<!---
+
+Be sure that an issue describes the problem you're fixing, or documents the design for the feature you'd like to add. Discussing the design upfront helps to ensure that we're ready to accept your work.
+
+The subject of your PR should denote the type of change, i.e: `fix: ...` or `feat: ...`.
+
+Please include a summary of this contribution. If there is an existing issue related to this change, your PR description should auto-link it using these keywords:
+
+- for a bug fix, use `fix` keyword, i.e: `fix #000`
+- for a new feature, use `close `keword, i.e: `close #000`
+
+--->
+
+## How has these changes been tested?
+
+### Automated testing
+
+If you're running automated testing for this module, we would love to hear from you, and potentially integrate it to the module standard workflow.
+
+<!---
+Please describe the tests that you ran to verify your changes and provide instructions so we can reproduce. Please also list any relevant details for your test configuration.
+--->
+
+### Manual testing
+
+If no automated testing is run, please ensure that at least the three steps below are passing without any error.
+
+- [ ] Running `terraform apply` on each example provided with this module provisions the intended resource(s) without any errors.
+- [ ] Modifying module's *Input Variables* after initial provisioning behaves as intended, i.e: any updateable properties are ameneded without recreation of the resource(s).
+- [ ] Running `terraform destroy` on each example provided with this module destroys all the resources created by this module and only the resources created by this module.
+
+## Checklist before submitting your PR
+
+- [ ] My code follows [the style guidelines of this project](../tree/main/docs/codingconventions.adoc)
+- [ ] these changes provision new resources:
+  - [ ] I have updated the README introduction section (README.adoc)
+  - [ ] I have updated the README introduction section (README.md)
+- [ ] these changes adds any new variables:
+  - [ ] I have updated [docs/terraformoptions.adoc](../tree/main/docs/terraformoptions.adoc) to include each variable
+- [ ] I have updated the changelog to include an entry for these changes
+- [ ] I have updated all provided examples, including each README file and all applicable code blocks
+- [ ] these changes generates no new warnings
+- [ ] Any dependent changes have been merged and published in upstream modules
+
+Note: *If you are not an Oracle employee, to contribute to an Oracle-sponsored open-source project, you need to sign the [Oracle Contributor Agreement (OCA)](https://oca.opensource.oracle.com/).*

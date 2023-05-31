@@ -1,0 +1,643 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Terraform OCI VCN module</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./src/css/mdbook-admonish.css">
+        <link rel="stylesheet" href="././mdbook-admonish.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="prerequisites.html"><strong aria-hidden="true">2.</strong> Pre-requisites</a></li><li class="chapter-item expanded "><a href="ug/userguide.html"><strong aria-hidden="true">3.</strong> User Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ug/createvcn.html"><strong aria-hidden="true">3.1.</strong> Creating a Virtual Cloud Network</a></li><li class="chapter-item expanded "><a href="ug/reusemodule.html"><strong aria-hidden="true">3.2.</strong> Reusing as a Terraform module</a></li><li class="chapter-item expanded "><a href="ug/gateways.html"><strong aria-hidden="true">3.3.</strong> Virtual Cloud Network Gateways</a></li><li class="chapter-item expanded "><a href="ug/routerules.html"><strong aria-hidden="true">3.4.</strong> Configuring routing rules</a></li><li class="chapter-item expanded "><a href="ug/resourcemanager.html"><strong aria-hidden="true">3.5.</strong> Using Resource Manager</a></li></ol></li><li class="chapter-item expanded "><a href="terraformoptions.html"><strong aria-hidden="true">4.</strong> Terraform Options</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terraform OCI VCN module</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="terraform-vcn-for-oracle-cloud-infrastructure"><a class="header" href="#terraform-vcn-for-oracle-cloud-infrastructure">Terraform VCN for Oracle Cloud Infrastructure</a></h2>
+<p>The <a href="https://github.com/oracle/terraform-oci-vcn">Terraform VCN module</a> for <a href="https://cloud.oracle.com/cloud-infrastructure">Oracle Cloud Infrastructure</a> provides a reusable <a href="https://www.terraform.io">Terraform</a> module that provisions a minimal VCN on OCI.</p>
+<p>It creates the following resources:</p>
+<ul>
+<li>A VCN with one or more customizable CIDR blocks</li>
+<li>An optional Internet Gateway with a corresponding route table</li>
+<li>An optional NAT Gateway with a corresponding route table</li>
+<li>An optional Service Gateway</li>
+<li>One or more optional Local Peering Gateways in requestor or acceptor mode, and possibilities to associate a Route Table</li>
+</ul>
+<p>It also controls the Default Security List, with a <em>Lockdown mode</em> that can be enabled or disabled.</p>
+<p>Custom route rules can be added to the two route tables created by the module.</p>
+<p>This module is primarily meant to be reusable to create more advanced infrastructure on <a href="https://cloud.oracle.com/cloud-infrastructure">OCI</a> either manually in the OCI Console or by extending the Terraform code.</p>
+<h3 id="documentation"><a class="header" href="#documentation"><a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/tree/main/docs">Documentation</a></a></h3>
+<ul>
+<li><a href="./chapter_2.html">Pre-requisites</a></li>
+<li><a href="./chapter_3.html">User Guide</a>
+<ul>
+<li><a href="./chapter_4.html">Creating a VCN</a></li>
+<li><a href="chapter_5.html">Reusing as a Terraform module</a></li>
+<li><a href="./chapter_6.html">VCN Gateways</a></li>
+<li><a href="./chapter_7.html">Configuring routing rules</a></li>
+<li><a href="./chapter_8.html">Using OCI Resource Manager</a></li>
+</ul>
+</li>
+<li><a href="./chapter_9.html">Terraform Options</a></li>
+</ul>
+<h3 id="related-documentation-blog"><a class="header" href="#related-documentation-blog">Related Documentation, Blog</a></h3>
+<ul>
+<li><a href="https://docs.cloud.oracle.com/iaas/Content/home.htm">Oracle Cloud Infrastructure Documentation</a></li>
+<li><a href="https://www.terraform.io/docs/providers/oci/index.html">Terraform OCI Provider Documentation</a></li>
+<li><a href="https://erikberg.com/notes/networks.html">Erik Berg on Networks, Subnets and CIDR</a></li>
+</ul>
+<h3 id="changelog"><a class="header" href="#changelog">Changelog</a></h3>
+<p>View the <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/CHANGELOG.adoc">CHANGELOG</a>.</p>
+<h3 id="acknowledgement"><a class="header" href="#acknowledgement">Acknowledgement</a></h3>
+<p>Code derived and adapted from <a href="https://github.com/terraform-providers/terraform-provider-oci/tree/master/examples">Terraform OCI Examples</a> and Hashicorp's <a href="https://github.com/terraform-providers/terraform-provider-oci/tree/master/examples">Terraform 0.12 examples</a></p>
+<h3 id="contributors"><a class="header" href="#contributors">Contributors</a></h3>
+<p><a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/CONTRIBUTORS.adoc">Folks who contributed with explanations, code, feedback, ideas, testing etc.</a></p>
+<p>Learn how to <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/CONTRIBUTING.adoc">contribute</a>.</p>
+<h3 id="license"><a class="header" href="#license">License</a></h3>
+<p>Copyright (c) 2019, 2023 Oracle and/or its associates.</p>
+<p>Licensed under the <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/LICENSE">Universal Permissive License 1.0</a> as shown at
+<a href="https://oss.oracle.com/licenses/upl/">https://oss.oracle.com/licenses/upl</a>.</p>
+<!-- Links reference section -->
+<!-- Links reference section --><div style="break-before: page; page-break-before: always;"></div><h2 id="pre-requisites"><a class="header" href="#pre-requisites">Pre-requisites</a></h2>
+<ol>
+<li>Local development tools: <a href="https://git-scm.com/">Git</a>, <a href="https://www.terraform.io">Terraform</a>, a terminal.</li>
+<li>Understanding of Oracle Cloud Infrastructure (OCI) and its services, in particular the Virtual Cloud Networking (VCN) service.</li>
+</ol>
+<h3 id="generate-and-upload-your-oci-api-keys"><a class="header" href="#generate-and-upload-your-oci-api-keys">Generate and upload your OCI API keys</a></h3>
+<p>Follow the documentation for <a href="https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#two">generating and uploading your API keys</a>.</p>
+<p>Note the key fingerprint.</p>
+<h3 id="create-an-oci-compartment"><a class="header" href="#create-an-oci-compartment">Create an OCI compartment</a></h3>
+<p>Follow the documentation for <a href="https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#two">creating a compartment</a>.</p>
+<h3 id="obtain-the-necessary-ocids"><a class="header" href="#obtain-the-necessary-ocids">Obtain the necessary OCIDs</a></h3>
+<p>The following OCIDs are required:</p>
+<ol>
+<li>Compartment OCID</li>
+<li>Tenancy OCID</li>
+<li>User OCID</li>
+</ol>
+<p>Follow the documentation for <a href="https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#five">obtaining the tenancy and user OCIDs</a>.</p>
+<p>To obtain the compartment OCID:</p>
+<ol>
+<li>Navigate to Identity &gt; Compartments</li>
+<li>Click on your Compartment</li>
+<li>Locate OCID on the page and click on <code>Copy</code></li>
+</ol>
+<h3 id="configuring-policies"><a class="header" href="#configuring-policies">Configuring Policies</a></h3>
+<ol>
+<li>
+<p>Create a group (e.g. mygroup) and add a user to the group.</p>
+</li>
+<li>
+<p>Create a policy:</p>
+</li>
+</ol>
+<p><code>Allow group mygroup to manage virtual-network-family in compartment id  ocid1.compartment.oc1..aaa </code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="user-guide"><a class="header" href="#user-guide">User Guide</a></h1>
+<ul>
+<li><a href="ug/./createvcn.html">Creating a Virtual Cloud Network</a></li>
+<li><a href="ug/./reusemodule.html">Reusing as a Terraform module</a></li>
+<li><a href="ug/././gateways.html">Virtual Cloud Network Gateways</a></li>
+<li><a href="ug/./routerules.html">Configuring routing rules</a></li>
+<li><a href="ug/./resourcemanager.html">Using Resource Manager</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="creating-a-vcn"><a class="header" href="#creating-a-vcn">Creating a VCN</a></h2>
+<h3 id="assumptions"><a class="header" href="#assumptions">Assumptions</a></h3>
+<ol>
+<li>You have setup the <a href="https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#two">required keys</a></li>
+<li>You know the <a href="https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#five">required OCIDs</a></li>
+<li>You have the necessary permissions</li>
+</ol>
+<h3 id="pre-requisites-1"><a class="header" href="#pre-requisites-1">Pre-requisites</a></h3>
+<ol>
+<li>Git is installed</li>
+<li>SSH client is installed</li>
+<li>Terraform 1.3.0 or greater is installed</li>
+</ol>
+<h3 id="instructions"><a class="header" href="#instructions">Instructions</a></h3>
+<h4 id="provisioning-using-this-git-repo"><a class="header" href="#provisioning-using-this-git-repo">Provisioning using this git repo</a></h4>
+<ol>
+<li>Clone the repo:</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git tfvcn
+
+cd tfvcn
+
+cp terraform.tfvars.example terraform.tfvars
+</code></pre>
+<ol start="2">
+<li>Create a provider.tf file and add the following:</li>
+</ol>
+<pre><code>provider &quot;oci&quot; {
+  fingerprint          = var.api_fingerprint
+  private_key_path     = var.api_private_key_path
+  region               = var.region
+  tenancy_ocid         = var.tenancy_id
+  user_ocid            = var.user_id
+}
+
+# provider identity parameters
+variable &quot;api_fingerprint&quot; {
+  description = &quot;fingerprint of oci api private key&quot;
+  type        = string
+}
+
+variable &quot;api_private_key_path&quot; {
+  description = &quot;path to oci api private key used&quot;
+  type        = string
+}
+
+variable &quot;tenancy_id&quot; {
+  description = &quot;tenancy id where to create the sources&quot;
+  type        = string
+}
+
+variable &quot;user_id&quot; {
+  description = &quot;id of user that terraform will use to create the resources&quot;
+  type        = string
+}
+</code></pre>
+<ol start="3">
+<li>Set mandatory provider parameters in terraform.tfvars:</li>
+</ol>
+<ul>
+<li><code>api_fingerprint</code></li>
+<li><code>api_private_key_path</code></li>
+<li><code>region</code></li>
+<li><code>tenancy_id</code></li>
+<li><code>user_id</code></li>
+</ul>
+<ol start="4">
+<li>Override other parameters in terraform.tfvars:</li>
+</ol>
+<ul>
+<li><code>compartment_id</code></li>
+<li><code>label_prefix</code></li>
+<li><code>vcn_name</code></li>
+</ul>
+<ol start="5">
+<li>Optional parameters to override:</li>
+</ol>
+<ul>
+<li><code>create_internet_gateway</code></li>
+<li><code>create_nat_gateway</code></li>
+<li><code>create_service_gateway</code></li>
+<li><code>freeform_tags</code></li>
+<li><code>attached_drg_id</code></li>
+<li><code>vcn_dns_label</code></li>
+</ul>
+<ol start="6">
+<li>Run Terraform:</li>
+</ol>
+<pre><code>terraform init
+terraform plan
+terraform apply
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="reusing-as-a-terraform-module"><a class="header" href="#reusing-as-a-terraform-module">Reusing as a Terraform module</a></h2>
+<p>You can also use the method below to reuse this in your own module.</p>
+<ol>
+<li>
+<p>Create a variable.tf file in your root project and add the contents of <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/examples/module_composition/variables.tf">the variables.tf from the example</a>.</p>
+</li>
+<li>
+<p>Create a provider.tf file in your root directory and add the following:</p>
+</li>
+</ol>
+<pre><code>provider &quot;oci&quot; {
+  fingerprint          = var.api_fingerprint
+  private_key_path     = var.api_private_key_path
+  region               = var.region
+  tenancy_ocid         = var.tenancy_id
+  user_ocid            = var.user_id
+}
+</code></pre>
+<ol start="3">
+<li>Create a main.tf file and add the following:</li>
+</ol>
+<pre><code>module &quot;vcn&quot; {
+  
+  source = &quot;github.com/oracle-terraform-modules/terraform-oci-vcn&quot;
+  # to use the terraform registry version comment the previous line and uncomment the 2 lines below
+  # source  = &quot;oracle-terraform-modules/vcn/oci&quot;
+  # version = &quot;specify_version_number&quot;
+
+  # general oci parameters
+  compartment_id = var.compartment_id
+  label_prefix   = var.label_prefix
+  freeform_tags  = var.freeform_tags
+  defined_tags = var.defined_tags
+
+  # vcn parameters
+  create_internet_gateway  = var.create_internet_gateway  # boolean: true or false
+  lockdown_default_seclist = var.lockdown_default_seclist # boolean: true or false
+  create_nat_gateway       = var.create_nat_gateway       # boolean: true or false
+  create_service_gateway   = var.create_service_gateway   # boolean: true or false
+  enable_ipv6              = var.enable_ipv6
+  vcn_cidrs                = var.vcn_cidrs # List of IPv4 CIDRs
+  vcn_dns_label            = var.vcn_dns_label
+  vcn_name                 = var.vcn_name
+
+  # gateways parameters
+  internet_gateway_display_name = var.internet_gateway_display_name
+  nat_gateway_display_name      = var.nat_gateway_display_name
+  service_gateway_display_name  = var.service_gateway_display_name
+  attached_drg_id               = var.attached_drg_id
+}
+</code></pre>
+<ol start="4">
+<li>In order to obtain and reuse the VCN resources created, export the OCIDs in outputs.tf:</li>
+</ol>
+<pre><code># Outputs
+
+output &quot;module_vcn_ids&quot; {
+  description = &quot;vcn and gateways information&quot;
+  value = {
+    internet_gateway_id          = module.vcn.internet_gateway_id
+    internet_gateway_route_id    = module.vcn.ig_route_id
+    nat_gateway_id               = module.vcn.nat_gateway_id
+    nat_gateway_route_id         = module.vcn.nat_route_id
+    service_gateway_id           = module.vcn.service_gateway_id
+    vcn_dns_label                = module.vcn.vcn_all_attributes.dns_label
+    vcn_default_security_list_id = module.vcn.vcn_all_attributes.default_security_list_id
+    vcn_default_route_table_id   = module.vcn.vcn_all_attributes.default_route_table_id
+    vcn_default_dhcp_options_id  = module.vcn.vcn_all_attributes.default_dhcp_options_id
+    vcn_id                       = module.vcn.vcn_id
+  }
+}
+</code></pre>
+<ol start="5">
+<li>Copy terraform.tfvars.example to terraform.tfvars</li>
+</ol>
+<pre><code>cp terraform.tfvars.example terraform.tfvars
+</code></pre>
+<ol start="6">
+<li>Set the mandatory provider parameters:</li>
+</ol>
+<ul>
+<li><code>api_fingerprint</code></li>
+<li><code>api_private_key_path</code></li>
+<li><code>region</code></li>
+<li><code>tenancy_id</code></li>
+<li><code>user_id</code></li>
+</ul>
+<ol start="7">
+<li>Override other parameters in terraform.tfvars:</li>
+</ol>
+<ul>
+<li><code>compartment_id</code></li>
+<li><code>label_prefix</code></li>
+<li><code>vcn_name</code></li>
+</ul>
+<ol start="8">
+<li>Optional parameters to override:</li>
+</ol>
+<ul>
+<li><code>attached_drg_id</code></li>
+<li><code>create_internet_gateway</code></li>
+<li><code>create_nat_gateway</code></li>
+<li><code>create_service_gateway</code></li>
+<li><code>freeform_tags</code></li>
+<li><code>defined_tags</code></li>
+<li><code>vcn_dns_label</code></li>
+</ul>
+<ol start="9">
+<li>Run Terraform:</li>
+</ol>
+<pre><code>terraform init
+terraform plan
+terraform apply
+</code></pre>
+<h4 id="related-documentation"><a class="header" href="#related-documentation">Related documentation:</a></h4>
+<ul>
+<li><a href="ug/./chapter_8.html">All Terraform configuration options</a> for this project.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="vcn-gateways"><a class="header" href="#vcn-gateways">VCN Gateways</a></h2>
+<h3 id="local-peering-gateways"><a class="header" href="#local-peering-gateways">Local Peering Gateways</a></h3>
+<p>Local Peering Gateways are used to establish a single peering relationship between two VCNs. For more information about how Local Peering works on OCI, see <a href="https://docs.oracle.com/en-us/iaas/Content/Network/Tasks/localVCNpeering.htm#Importan">Important Local Peering concepts</a> and <a href="https://docs.oracle.com/en-us/iaas/Content/Network/Tasks/transitrouting.htm">Transit Routing</a>.</p>
+<p>The VCN module allows you to declare several LPG using the module's <code>local_peering_gateways</code> variable Input:</p>
+<ul>
+<li>each key of <code>local_peering_gateways</code> is an LPG.</li>
+<li>the key is the LPG's display name.</li>
+<li>you can optionally declare a <code>route_table_id</code> to be attached to the LPG. This is useful on to create a Hub VCN for Transit Routing.</li>
+<li>you can optionally declare a <code>peer_id</code>, so your module will act as a requestor and trigger the peering processus (to be used either in the hub vcn module or the spoke vcn module, but not both).</li>
+</ul>
+<h3 id="using-the-module-outputs-to-retrieve-an-lpg-ocid"><a class="header" href="#using-the-module-outputs-to-retrieve-an-lpg-ocid">Using the module outputs to retrieve an LPG OCID</a></h3>
+<p>You can dynamically retrieve the OCID of an LPG created with this module using the module's <code>lpg_all_attributes</code> output: <code>module.*&lt;module_name&gt;*.lpg_all_attributes[&quot;*&lt;lpg_key&gt;*&quot;][&quot;id&quot;]</code>.</p>
+<p>This is particularly useful when both VCNs to be peered are in the same Terraform configuration and created using this module.</p>
+<h3 id="generic-values-for-route_table_id-or-peer_id"><a class="header" href="#generic-values-for-route_table_id-or-peer_id">Generic values for <code>route_table_id</code> or <code>peer_id</code></a></h3>
+<p>If you need to attach a Routing Table or peer with an LPG created outside of the VCN module, you can simply provide the resource OCID using a valid Terraform method (any {uri-tf-namedvalues}[Named Value]).</p>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>This is an example that shows how to declare LPGs in three different ways:</p>
+<pre><code class="language-hcl">module &quot;vcn_hub&quot; {
+  ...
+  local_peering_gateways = {
+    to_spoke1 = {
+      // this LPG will have a Route Table associated with it
+      route_table_id = oci_core_route_table.VTR_spokes.id
+    }
+    to_spoke2 = {
+      // this LPG will have a Route Table associated with it and the peering connection will be established (requestor mode)
+      route_table_id = oci_core_route_table.VTR_spokes.id
+      peer_id = module.vcn_spoke2.lpg_all_attributes[&quot;to_hub&quot;][&quot;id&quot;]
+    }
+    to_spoke3 = {}
+      // this LPG will be created without any Route Table associated, and ready to be peered (acceptor mode)
+  }
+}
+</code></pre>
+<p>See the <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/tree/main/examples/hub-spoke">hub-and-spoke example</a> that for more details on how to use this feature.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="configuring-routing-rules"><a class="header" href="#configuring-routing-rules">Configuring routing rules</a></h2>
+<p>When you create an Internet or a NAT gateway, the terraform-oci-vcn module automatically creates a dedicated route table for each gateway:</p>
+<ul>
+<li><code>&lt;label_prefix&gt;-internet-route</code> route table is created if <code>create_internet_gateway = true</code></li>
+<li><code>&lt;label_prefix&gt;-nat-route</code> route table is created if <code>create_nat_gateway = true</code></li>
+</ul>
+<p>These automatically created route tables comes with automatic rules, that cannot be controlled by the module user.</p>
+<h3 id="internet-route-route-table"><a class="header" href="#internet-route-route-table">internet-route route table</a></h3>
+<p>internet-route is meant to be attached to public subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the Internet Gateway created by this module: <code>0.0.0.0/0 --&gt; Internet Gateway</code>.</p>
+<h3 id="nat-route-route-table"><a class="header" href="#nat-route-route-table">nat-route route table</a></h3>
+<p>nat-route table is meant to be attached to private subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the NAT Gateway created by this module: <code>0.0.0.0/0 --&gt; NAT Gateway</code>.</p>
+<p>If a Service Gateway is also created by the module with <code>create_service_gateway = true</code>, a second rule is added to redirect all Oracle Network Services traffic to the Service Gateway created by this module: <code>All &lt;REGION&gt; services in OSN --&gt; Service Gateway</code></p>
+<h3 id="custom-routes"><a class="header" href="#custom-routes">Custom routes</a></h3>
+<p>terraform-oci-vcn module have two optional Input Variables to inject user-defined route rules into <code>internet-route</code> and <code>nat-route</code> route tables using respectively:</p>
+<ul>
+<li><code>internet_gateway_route_rules</code> defined as a <code>list(map(string))</code> with the following expected schema:</li>
+</ul>
+<pre><code>variable &quot;internet_gateway_route_rules&quot; {
+  description = &quot;(Updatable) List of routing rules to add to Internet Gateway Routing Table&quot;
+  type = list(object({
+    destination       = string # required
+    destination_type  = string # required
+    network_entity_id = string # required
+    description       = string # optional
+  }))
+  default = null
+}
+</code></pre>
+<ul>
+<li><code>nat_gateway_route_rules</code> defined as a <code>list(map(string))</code> with the following expected schema:</li>
+</ul>
+<pre><code>variable &quot;nat_gateway_route_rules&quot; {
+  description = &quot;(Updatable) List of routing rules to add to NAT Gateway Routing Table&quot;
+  type = list(object({
+    destination       = string # required
+    destination_type  = string # required
+    network_entity_id = string # required
+    description       = string # optional
+  }))
+  default = null
+}
+</code></pre>
+<p>They share the same schema but each Input Variable controls the associated route table:</p>
+<ul>
+<li><code>destination</code> accept string value and represent the CIDR that will be affected by the rule,</li>
+<li><code>destination_type</code> accept string value, with <code>CIDR_BLOCK</code> or <code>SERVICE_CIDR_BLOCK</code> as valid values,</li>
+<li><code>network_entity_id</code> accept string value and represent the gateway to be the target of the rule,</li>
+<li><code>description</code> accept arbitrary string value and give context about the goal of the rule.</li>
+</ul>
+<h4 id="special-values-for-network_entity_id"><a class="header" href="#special-values-for-network_entity_id">Special values for <code>network_entity_id</code></a></h4>
+<p>For routing rules targeting a gateway created by the module, <code>network_entity_id</code> accepts some special strings to automatically retrieve the gateway OCID.</p>
+<ul>
+<li><code>internet_gateway_route_rules</code> and <code>nat_gateway_route_rules</code> recognise the <code>&quot;drg&quot;</code> string and resolve it to the Dynamic Routing Gateway(DRG) OCID attached to the module (if available),</li>
+<li><code>internet_gateway_route_rules</code> recognise the <code>&quot;internet_gateway&quot;</code> string and resolve it to the Internet Gateway OCID created by the module,</li>
+<li><code>nat_gateway_route_rules</code> recognise the <code>&quot;nat_gateway&quot;</code> string and resolve it to the NAT Gateway OCID created by the module.</li>
+</ul>
+<h4 id="generic-values-for-network_entity_id"><a class="header" href="#generic-values-for-network_entity_id">Generic values for <code>network_entity_id</code></a></h4>
+<p>If you need to create a routing rule with a target gateway created outside of the module, you can simply provide the resource OCID using a valid Terraform method (any <a href="https://www.terraform.io/docs/language/expressions/references.html">named value</a>).</p>
+<h3 id="examples-1"><a class="header" href="#examples-1">Examples</a></h3>
+<p>For example configuration using this option, see <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/tree/main/examples/custom_route_rules">custom route rules</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="using-resource-manager"><a class="header" href="#using-resource-manager">Using Resource Manager</a></h2>
+<ul>
+<li><a href="https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm">Overview</a></li>
+<li><a href="https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm">Create Stack</a></li>
+<li>Step by Step Instructions</li>
+</ul>
+<pre><code>git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git
+zip terraform-oci-vcn.zip *.tf schema.yaml -x main.tf
+</code></pre>
+<ol>
+<li>
+<p><img src="ug/./images/createstack.png" alt="Create Stack" /></p>
+</li>
+<li>
+<p>Upload zip file:
+<img src="ug/./images/uploadzip.png" alt="Upload zip file" /></p>
+</li>
+<li>
+<p>Configure variables as per your needs:
+<img src="ug/./images/variables1.png" alt="Upload zip file" /></p>
+</li>
+<li>
+<p>Check the relevant boxes if you need gateways:
+<img src="ug/./images/variables2.png" alt="Upload zip file" /></p>
+</li>
+<li>
+<p>Review your stack:
+<img src="ug/./images/review.png" alt="Upload zip file" /></p>
+</li>
+<li>
+<p>Run Terraform plan and apply:
+<img src="ug/./images/tfplan.png" alt="Upload zip file" /></p>
+</li>
+<li>
+<p>Check the logs:
+<img src="ug/./images/planlogs.png" alt="Upload zip file" /></p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="terraform-options"><a class="header" href="#terraform-options">Terraform Options</a></h2>
+<h3 id="provider"><a class="header" href="#provider">Provider</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default</th></tr></thead><tbody>
+<tr><td>region</td><td>Region where to provision the vcn. List of regions. <em>Required</em>.</td><td>string</td><td></td></tr>
+</tbody></table>
+</div>
+<h3 id="general-oci"><a class="header" href="#general-oci">General OCI</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default</th></tr></thead><tbody>
+<tr><td>compartment_id</td><td>Compartment id where the VCN Cluster will be provisioned. <em>Required</em>.</td><td>string</td><td></td></tr>
+<tr><td>label_prefix</td><td>a string to be prepended to the name of resources.  <em>Required</em>.</td><td>string</td><td>none</td></tr>
+<tr><td>freeform_tags</td><td>simple key-value pairs to tag the resources created specified in the form of a map</td><td>map(any)</td><td>freeform_tags = { environment = &quot;dev&quot; }</td></tr>
+<tr><td>defined_tags</td><td>predefined and scoped to a namespace to tag the resources created using defined tags.</td><td>map(string)</td><td>null</td></tr>
+</tbody></table>
+</div>
+<h3 id="vcn"><a class="header" href="#vcn">VCN</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default</th></tr></thead><tbody>
+<tr><td>attached_drg_id</td><td>DRG OCID to be attached to the VCN.</td><td>string</td><td></td></tr>
+<tr><td>create_internet_gateway</td><td>Whether to create an Internet Gateway.</td><td>bool</td><td>false</td></tr>
+<tr><td>create_nat_gateway</td><td>Whether to create an NAT gateway.</td><td>bool</td><td>false</td></tr>
+<tr><td>create_service_gateway</td><td>Whether to create a service gateway to use Oracle Services.</td><td>bool</td><td>false</td></tr>
+<tr><td>enable_ipv6</td><td>(Updatable) Whether IPv6 is enabled for the VCN. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block.</td><td>bool</td><td>false</td></tr>
+<tr><td>internet_gateway_display_name</td><td>(Updatable) Name of Internet Gateway. Does not have to be unique.</td><td>string</td><td>internet-gateway</td></tr>
+<tr><td>internet_gateway_route_rules</td><td>(Updatable) List of routing rules to add to Internet Gateway Route Table.</td><td>list(map(string))</td><td>null</td></tr>
+<tr><td>local_peering_gateways</td><td>Map of Local Peering Gateways to attach to the VCN</td><td>map(any)</td><td>null</td></tr>
+<tr><td>lockdown_default_seclist</td><td>Whether to remove all default security rules from the VCN Default Security List</td><td>bool</td><td>true</td></tr>
+<tr><td>nat_gateway_display_name</td><td>(Updatable) Name of NAT Gateway. It does not have to be unique.</td><td>string</td><td>nat-gateway</td></tr>
+<tr><td>nat_gateway_public_ip_id</td><td>OCID of reserved IP address for NAT gateway. If default value &quot;none&quot; is used, then a public IP address is selected from Oracle’s public IP pool.</td><td>string</td><td>none</td></tr>
+<tr><td>nat_gateway_route_rules</td><td>(Updatable) List of routing rules to add to NAT Gateway Route Table</td><td>list(map(string))</td><td>null</td></tr>
+<tr><td>service_gateway_display_name</td><td>(Updatable) Name of Service Gateway. Does not have to be unique.</td><td>string</td><td>service-gateway</td></tr>
+<tr><td>vcn_cidrs</td><td>(Updatable) The list of IPv4 CIDR blocks the VCN will use. The CIDR block specified for the VCN must not overlap with the CIDR block of another network.</td><td>string</td><td>[&quot;10.0.0.0/16&quot;]</td></tr>
+<tr><td>vcn_dns_label</td><td>(Optional)A DNS label for the VCN, used in conjunction with the VNIC’s hostname and subnet’s DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet. DNS resolution for hostnames in the VCN is disabled if null.</td><td>string</td><td>vcnmodule</td></tr>
+<tr><td>vcn_name</td><td>(Optional)(Updatable) The name of the VCN that will be appended to the label_prefix.</td><td>string</td><td>vcn</td></tr>
+</tbody></table>
+</div>
+<h3 id="subnets"><a class="header" href="#subnets">Subnets</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default</th></tr></thead><tbody>
+<tr><td>subnets</td><td>Subnets to be created in the VCN</td><td>any</td><td>{}</td></tr>
+</tbody></table>
+</div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

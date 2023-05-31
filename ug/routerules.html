@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Configuring routing rules - Terraform OCI VCN module</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".././src/css/mdbook-admonish.css">
+        <link rel="stylesheet" href="../././mdbook-admonish.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../prerequisites.html"><strong aria-hidden="true">2.</strong> Pre-requisites</a></li><li class="chapter-item expanded "><a href="../ug/userguide.html"><strong aria-hidden="true">3.</strong> User Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ug/createvcn.html"><strong aria-hidden="true">3.1.</strong> Creating a Virtual Cloud Network</a></li><li class="chapter-item expanded "><a href="../ug/reusemodule.html"><strong aria-hidden="true">3.2.</strong> Reusing as a Terraform module</a></li><li class="chapter-item expanded "><a href="../ug/gateways.html"><strong aria-hidden="true">3.3.</strong> Virtual Cloud Network Gateways</a></li><li class="chapter-item expanded "><a href="../ug/routerules.html" class="active"><strong aria-hidden="true">3.4.</strong> Configuring routing rules</a></li><li class="chapter-item expanded "><a href="../ug/resourcemanager.html"><strong aria-hidden="true">3.5.</strong> Using Resource Manager</a></li></ol></li><li class="chapter-item expanded "><a href="../terraformoptions.html"><strong aria-hidden="true">4.</strong> Terraform Options</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Terraform OCI VCN module</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="configuring-routing-rules"><a class="header" href="#configuring-routing-rules">Configuring routing rules</a></h2>
+<p>When you create an Internet or a NAT gateway, the terraform-oci-vcn module automatically creates a dedicated route table for each gateway:</p>
+<ul>
+<li><code>&lt;label_prefix&gt;-internet-route</code> route table is created if <code>create_internet_gateway = true</code></li>
+<li><code>&lt;label_prefix&gt;-nat-route</code> route table is created if <code>create_nat_gateway = true</code></li>
+</ul>
+<p>These automatically created route tables comes with automatic rules, that cannot be controlled by the module user.</p>
+<h3 id="internet-route-route-table"><a class="header" href="#internet-route-route-table">internet-route route table</a></h3>
+<p>internet-route is meant to be attached to public subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the Internet Gateway created by this module: <code>0.0.0.0/0 --&gt; Internet Gateway</code>.</p>
+<h3 id="nat-route-route-table"><a class="header" href="#nat-route-route-table">nat-route route table</a></h3>
+<p>nat-route table is meant to be attached to private subnets you provision. It comes with one automatic/non-editable rule that redirects all unknown destination to the NAT Gateway created by this module: <code>0.0.0.0/0 --&gt; NAT Gateway</code>.</p>
+<p>If a Service Gateway is also created by the module with <code>create_service_gateway = true</code>, a second rule is added to redirect all Oracle Network Services traffic to the Service Gateway created by this module: <code>All &lt;REGION&gt; services in OSN --&gt; Service Gateway</code></p>
+<h3 id="custom-routes"><a class="header" href="#custom-routes">Custom routes</a></h3>
+<p>terraform-oci-vcn module have two optional Input Variables to inject user-defined route rules into <code>internet-route</code> and <code>nat-route</code> route tables using respectively:</p>
+<ul>
+<li><code>internet_gateway_route_rules</code> defined as a <code>list(map(string))</code> with the following expected schema:</li>
+</ul>
+<pre><code>variable &quot;internet_gateway_route_rules&quot; {
+  description = &quot;(Updatable) List of routing rules to add to Internet Gateway Routing Table&quot;
+  type = list(object({
+    destination       = string # required
+    destination_type  = string # required
+    network_entity_id = string # required
+    description       = string # optional
+  }))
+  default = null
+}
+</code></pre>
+<ul>
+<li><code>nat_gateway_route_rules</code> defined as a <code>list(map(string))</code> with the following expected schema:</li>
+</ul>
+<pre><code>variable &quot;nat_gateway_route_rules&quot; {
+  description = &quot;(Updatable) List of routing rules to add to NAT Gateway Routing Table&quot;
+  type = list(object({
+    destination       = string # required
+    destination_type  = string # required
+    network_entity_id = string # required
+    description       = string # optional
+  }))
+  default = null
+}
+</code></pre>
+<p>They share the same schema but each Input Variable controls the associated route table:</p>
+<ul>
+<li><code>destination</code> accept string value and represent the CIDR that will be affected by the rule,</li>
+<li><code>destination_type</code> accept string value, with <code>CIDR_BLOCK</code> or <code>SERVICE_CIDR_BLOCK</code> as valid values,</li>
+<li><code>network_entity_id</code> accept string value and represent the gateway to be the target of the rule,</li>
+<li><code>description</code> accept arbitrary string value and give context about the goal of the rule.</li>
+</ul>
+<h4 id="special-values-for-network_entity_id"><a class="header" href="#special-values-for-network_entity_id">Special values for <code>network_entity_id</code></a></h4>
+<p>For routing rules targeting a gateway created by the module, <code>network_entity_id</code> accepts some special strings to automatically retrieve the gateway OCID.</p>
+<ul>
+<li><code>internet_gateway_route_rules</code> and <code>nat_gateway_route_rules</code> recognise the <code>&quot;drg&quot;</code> string and resolve it to the Dynamic Routing Gateway(DRG) OCID attached to the module (if available),</li>
+<li><code>internet_gateway_route_rules</code> recognise the <code>&quot;internet_gateway&quot;</code> string and resolve it to the Internet Gateway OCID created by the module,</li>
+<li><code>nat_gateway_route_rules</code> recognise the <code>&quot;nat_gateway&quot;</code> string and resolve it to the NAT Gateway OCID created by the module.</li>
+</ul>
+<h4 id="generic-values-for-network_entity_id"><a class="header" href="#generic-values-for-network_entity_id">Generic values for <code>network_entity_id</code></a></h4>
+<p>If you need to create a routing rule with a target gateway created outside of the module, you can simply provide the resource OCID using a valid Terraform method (any <a href="https://www.terraform.io/docs/language/expressions/references.html">named value</a>).</p>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>For example configuration using this option, see <a href="https://github.com/oracle-terraform-modules/terraform-oci-vcn/tree/main/examples/custom_route_rules">custom route rules</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../ug/gateways.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../ug/resourcemanager.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../ug/gateways.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../ug/resourcemanager.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
