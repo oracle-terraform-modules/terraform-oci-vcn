@@ -16,7 +16,7 @@ module "vcn_hub" {
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
   freeform_tags  = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags   = var.defined_tags
 
   # vcn parameters
   create_internet_gateway  = var.create_internet_gateway  # boolean: true or false
@@ -59,7 +59,7 @@ resource "oci_core_route_table" "VTR_spokes" {
 
 module "vcn_spoke1" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
-  
+
   source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
@@ -91,7 +91,7 @@ module "vcn_spoke1" {
 
 module "vcn_spoke2" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
-  
+
   source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
@@ -121,7 +121,7 @@ module "vcn_spoke2" {
 
 module "vcn_spoke3" {
   # this module use the generic vcn module and configure it to act as a spoke in a hub-and-spoke topology
-  
+
   source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
