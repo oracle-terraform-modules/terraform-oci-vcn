@@ -5,7 +5,7 @@
 # Resources
 
 module "vcn" {
-  
+
   source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"
@@ -15,7 +15,7 @@ module "vcn" {
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
   freeform_tags  = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags   = var.defined_tags
 
   # vcn parameters
   create_internet_gateway  = var.create_internet_gateway  # boolean: true or false

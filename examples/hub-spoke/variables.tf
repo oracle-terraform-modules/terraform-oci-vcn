@@ -116,8 +116,8 @@ variable "vcn_name" {
 
 variable "attached_drg_id" {
   description = "the ID of DRG attached to the VCN"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 

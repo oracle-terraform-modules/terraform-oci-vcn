@@ -8,7 +8,7 @@
 # Resources
 
 module "drg_hub" {
-  
+
   source = "github.com/oracle-terraform-modules/terraform-oci-drg"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/drg/oci"
@@ -33,7 +33,7 @@ module "drg_hub" {
 }
 
 module "vcn_spokes" {
-  
+
   source = "github.com/oracle-terraform-modules/terraform-oci-vcn"
   # to use the terraform registry version comment the previous line and uncomment the 2 lines below
   # source  = "oracle-terraform-modules/vcn/oci"

@@ -178,6 +178,9 @@ resource "oci_core_nat_gateway" "nat_gateway" {
   count = var.create_nat_gateway == true ? 1 : 0
 }
 
+# special fix due to bug introduced in #101 which causes destruction and recreation of subnets
+# for existing users
+
 resource "oci_core_route_table" "nat" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "nat-route" : "${var.label_prefix}-nat-route"
@@ -191,6 +194,19 @@ resource "oci_core_route_table" "nat" {
     destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_nat_gateway.nat_gateway[0].id
     description       = "Terraformed - Auto-generated at NAT Gateway creation: NAT Gateway as default gateway"
+  }
+
+  # bring this block back to fix #101
+  dynamic "route_rules" {
+    # * If Service Gateway is created with the module, automatically creates a rule to handle traffic for "all services" through Service Gateway
+    for_each = var.create_service_gateway == true ? [1] : []
+
+    content {
+      destination       = lookup(data.oci_core_services.all_oci_services[0].services[0], "cidr_block")
+      destination_type  = "SERVICE_CIDR_BLOCK"
+      network_entity_id = oci_core_service_gateway.service_gateway[0].id
+      description       = "Terraformed - Auto-generated at Service Gateway creation: All Services in region to Service Gateway"
+    }
   }
 
   dynamic "route_rules" {
@@ -238,11 +254,15 @@ resource "oci_core_route_table" "nat" {
 
   vcn_id = oci_core_vcn.vcn.id
 
+  # ignore changes to route rules to avoid recreation issues due to #101.
+  # A fix may still be needed for when new custom route rules are added.
+
   lifecycle {
-    ignore_changes = [defined_tags, freeform_tags]
+    ignore_changes = [defined_tags, freeform_tags, route_rules]
   }
 
-  count = var.create_nat_gateway && var.update_nat_route_table ? 1 : 0
+  # count = var.create_nat_gateway && !var.update_nat_route_table ? 1 : 0
+  count = var.create_nat_gateway ? 1 : 0
 }
 
 
