@@ -157,8 +157,8 @@ variable "nat_gateway_route_rules" {
 
 variable "attached_drg_id" {
   description = "the ID of DRG attached to the VCN"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 #subnets
@@ -166,4 +166,11 @@ variable "subnets" {
   description = "Private or Public subnets in a VCN"
   type        = any
   default     = {}
+}
+
+# update route rule changes when running terraform apply again
+variable "update_nat_route_table" {
+  type        = bool
+  default     = true
+  description = "Update changes to NAT route rules on existing VCN and infra"
 }

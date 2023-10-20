@@ -10,7 +10,7 @@ resource "oci_core_internet_gateway" "ig" {
   display_name   = var.label_prefix == "none" ? var.internet_gateway_display_name : "${var.label_prefix}-${var.internet_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags  = var.defined_tags
 
   vcn_id = oci_core_vcn.vcn.id
 
@@ -26,7 +26,7 @@ resource "oci_core_route_table" "ig" {
   display_name   = var.label_prefix == "none" ? "internet-route" : "${var.label_prefix}-internet-route"
 
   freeform_tags = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags  = var.defined_tags
 
   route_rules {
     # * With this route table, Internet Gateway is always declared as the default gateway
@@ -50,12 +50,12 @@ resource "oci_core_route_table" "ig" {
     # * filter var.internet_gateway_route_rules for routes with "drg" as destination
     # * and steer traffic to the attached DRG if available
     for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
-    if v.network_entity_id == "drg" && var.attached_drg_id != null} : {}
+    if v.network_entity_id == "drg" && var.attached_drg_id != null } : {}
 
     content {
       destination       = route_rules.value.destination
       destination_type  = route_rules.value.destination_type
-      network_entity_id =  var.attached_drg_id
+      network_entity_id = var.attached_drg_id
       description       = route_rules.value.description
     }
   }
@@ -115,7 +115,7 @@ resource "oci_core_service_gateway" "service_gateway" {
   display_name   = var.label_prefix == "none" ? var.service_gateway_display_name : "${var.label_prefix}-${var.service_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags  = var.defined_tags
   services {
     service_id = lookup(data.oci_core_services.all_oci_services[0].services[0], "id")
   }
@@ -134,7 +134,7 @@ resource "oci_core_route_table" "service_gw" {
   display_name   = var.label_prefix == "none" ? "service-gw-route" : "${var.label_prefix}-service-gw-route"
 
   freeform_tags = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags  = var.defined_tags
 
   dynamic "route_rules" {
     # * If Service Gateway is created with the module, automatically creates a rule to handle traffic for "all services" through Service Gateway
@@ -165,7 +165,7 @@ resource "oci_core_nat_gateway" "nat_gateway" {
   display_name   = var.label_prefix == "none" ? var.nat_gateway_display_name : "${var.label_prefix}-${var.nat_gateway_display_name}"
 
   freeform_tags = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags  = var.defined_tags
 
   public_ip_id = var.nat_gateway_public_ip_id != "none" ? var.nat_gateway_public_ip_id : null
 
@@ -183,7 +183,7 @@ resource "oci_core_route_table" "nat" {
   display_name   = var.label_prefix == "none" ? "nat-route" : "${var.label_prefix}-nat-route"
 
   freeform_tags = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags  = var.defined_tags
 
   route_rules {
     # * With this route table, NAT Gateway is always declared as the default gateway
@@ -197,7 +197,7 @@ resource "oci_core_route_table" "nat" {
     # * filter var.nat_gateway_route_rules for routes with "drg" as destination
     # * and steer traffic to the attached DRG if available
     for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
-    if v.network_entity_id == "drg" && var.attached_drg_id != null} : {}
+    if v.network_entity_id == "drg" && var.attached_drg_id != null } : {}
 
     content {
       destination       = route_rules.value.destination
@@ -242,7 +242,7 @@ resource "oci_core_route_table" "nat" {
     ignore_changes = [defined_tags, freeform_tags]
   }
 
-  count = var.create_nat_gateway == true ? 1 : 0
+  count = var.create_nat_gateway && var.update_nat_route_table ? 1 : 0
 }
 
 
@@ -257,7 +257,7 @@ resource "oci_core_local_peering_gateway" "lpg" {
   display_name   = var.label_prefix == "none" ? each.key : "${var.label_prefix}-${each.key}"
 
   freeform_tags = var.freeform_tags
-  defined_tags = var.defined_tags
+  defined_tags  = var.defined_tags
 
   vcn_id = oci_core_vcn.vcn.id
 
