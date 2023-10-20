@@ -261,7 +261,7 @@ resource "oci_core_route_table" "nat" {
     ignore_changes = [defined_tags, freeform_tags, route_rules]
   }
 
-  count = var.create_nat_gateway ? 1 : 0
+  count = var.create_nat_gateway && var.update_nat_route_table ? 1 : 0
 }
 
 

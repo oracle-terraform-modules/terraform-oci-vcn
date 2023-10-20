@@ -29,7 +29,7 @@ output "ig_route_id" {
 
 output "nat_route_id" {
   description = "id of VCN NAT gateway route table"
-  value       = join(",", oci_core_route_table.nat[*].id)
+  value       = var.update_nat_route_table ? join(",", oci_core_route_table.nat[*].id) : join(",", oci_core_route_table.nat_table_changes_ignored[*].id)
 }
 
 output "sgw_route_id" {
