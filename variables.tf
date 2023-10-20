@@ -167,10 +167,3 @@ variable "subnets" {
   type        = any
   default     = {}
 }
-
-# update route rule changes when running terraform apply again
-variable "update_nat_route_table" {
-  type        = bool
-  default     = true
-  description = "Update changes to NAT route rules on existing VCN and infra"
-}
