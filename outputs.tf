@@ -84,3 +84,7 @@ output "subnet_id" {
 output "subnet_all_attributes" {
   value = try(module.subnet[0].all_attributes, null)
 }
+
+output "default_security_list_id" {
+  value = try(oci_core_vcn.vcn.default_security_list_id, null)
+}
