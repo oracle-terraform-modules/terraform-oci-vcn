@@ -10,6 +10,7 @@ resource "oci_core_subnet" "vcn_subnet" {
   cidr_block     = each.value.cidr_block
   compartment_id = var.compartment_id
   vcn_id         = var.vcn_id
+  availability_domain = lookup(each.value, "availability_domain", null)
 
 
   defined_tags    = var.defined_tags
