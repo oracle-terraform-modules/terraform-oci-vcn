@@ -103,4 +103,5 @@ attached_drg_id = null
 #  sub1 = {name = "subnet1",cidr_block = "10.0.4.0/24"}
 #  sub2 = {cidr_block="10.0.5.0/24",type="private"}
 #  sub3 = {cidr_block="10.0.6.0/24",availability_domain="Uocm:PHX-AD-1"}
+#  sub4 = {cidr_block="10.0.7.0/24",security_list_ids =["ocid1.securitylist.oc1.phx.xxxxxx", "ocid1.securitylist.oc1.phx.xxxxxx"]}
 #}
