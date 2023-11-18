@@ -24,7 +24,7 @@ resource "oci_core_subnet" "vcn_subnet" {
   #prohibit_internet_ingress  = var.enable_ipv6 && lookup(each.value,"type","public") == "public" ? each.value.prohibit_internet_ingress : false
   prohibit_public_ip_on_vnic = lookup(each.value, "type", "public") == "public" ? false : true
   route_table_id             = lookup(each.value, "type", "public") == "public" ? var.ig_route_id : var.nat_route_id
-  security_list_ids          = lookup(each.value, "security_list_ids", null)
+  security_list_ids  = lookup(each.value, "security_list_ids", null)
 
   lifecycle {
     ignore_changes = [defined_tags, dns_label, freeform_tags]
