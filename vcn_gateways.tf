@@ -75,11 +75,25 @@ resource "oci_core_route_table" "ig" {
   }
 
   dynamic "route_rules" {
+    # * filter var.internet_gateway_route_rules for routes with "lpg@" as destination
+    # * and steer traffic to the attached LPG if available
+    for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
+    if startswith(v.network_entity_id, "lpg@") && var.local_peering_gateways != null } : {}
+
+    content {
+      destination       = route_rules.value.destination
+      destination_type  = route_rules.value.destination_type
+      network_entity_id = oci_core_local_peering_gateway.lpg[split("@", route_rules.value.network_entity_id)[1]].id
+      description       = route_rules.value.description
+    }
+  }
+
+  dynamic "route_rules" {
     # * filter var.internet_gateway_route_rules for generic routes
     # * can take any Named Value : String, Input Variable, Local Value, Data Source, Resource, Module Output ...
     # * useful for gateways that are not managed by the module
     for_each = var.internet_gateway_route_rules != null ? { for k, v in var.internet_gateway_route_rules : k => v
-    if contains(["drg", "internet_gateway"], v.network_entity_id) == false } : {}
+    if contains(["drg", "internet_gateway"], v.network_entity_id) == false && startswith(v.network_entity_id, "lpg@") == false } : {}
 
     content {
       destination       = route_rules.value.destination
@@ -238,11 +252,25 @@ resource "oci_core_route_table" "nat" {
   }
 
   dynamic "route_rules" {
+    # * filter var.nat_gateway_route_rules for routes with "lpg@" as destination
+    # * and steer traffic to the attached LPG if available
+    for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
+    if startswith(v.network_entity_id, "lpg@") && var.local_peering_gateways != null } : {}
+
+    content {
+      destination       = route_rules.value.destination
+      destination_type  = route_rules.value.destination_type
+      network_entity_id = oci_core_local_peering_gateway.lpg[split("@", route_rules.value.network_entity_id)[1]].id
+      description       = route_rules.value.description
+    }
+  }
+
+  dynamic "route_rules" {
     # * filter var.nat_gateway_route_rules for generic routes
     # * can take any Named Value : String, Input Variable, Local Value, Data Source, Resource, Module Output ...
     # * useful for gateways that are not managed by the module
     for_each = var.nat_gateway_route_rules != null ? { for k, v in var.nat_gateway_route_rules : k => v
-    if contains(["drg", "nat_gateway"], v.network_entity_id) == false } : {}
+    if contains(["drg", "nat_gateway"], v.network_entity_id) == false && startswith(v.network_entity_id, "lpg@") == false } : {}
 
     content {
       destination       = route_rules.value.destination
@@ -258,7 +286,7 @@ resource "oci_core_route_table" "nat" {
   # A fix may still be needed for when new custom route rules are added.
 
   lifecycle {
-    ignore_changes = [defined_tags, freeform_tags, route_rules]
+    ignore_changes = [defined_tags, freeform_tags]
   }
 
   count = var.create_nat_gateway ? 1 : 0

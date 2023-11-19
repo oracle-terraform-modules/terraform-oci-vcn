@@ -47,6 +47,10 @@ defined_tags = {
   "Operations.CostCenter" = "42"
 }
 
+local_peering_gateways = {
+  to_shared_svc = {}
+}
+
 # routing rules
 
 internet_gateway_route_rules = [ # this module input shows how to pass routing information to the vcn module inline, directly on the vcn module block
@@ -67,6 +71,12 @@ internet_gateway_route_rules = [ # this module input shows how to pass routing i
     destination_type  = "CIDR_BLOCK"
     network_entity_id = "internet_gateway"
     description       = "Terraformed - User added Routing Rule: To Internet Gateway created by this module. internet_gateway_id is automatically retrieved with keyword internet_gateway"
+  },
+  {
+    destination       = "172.17.0.0/16" # 'shared_services' VCN peered with an LPG
+    destination_type  = "CIDR_BLOCK"
+    network_entity_id = "lpg@to_shared_svc"
+    description       = "Terraformed - User added Routing Rule: To LPG provided to this module."
   },
   # {
   #   destination       = "192.168.1.0/24"

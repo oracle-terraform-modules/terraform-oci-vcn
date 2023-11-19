@@ -17,6 +17,7 @@ For demonstration purpose, all the gateways supported by this module are created
 - Internet Gateway
 - NAT Gateway
 - Service Gateway
+- local Peering Gateway (LPG)
 
 Two Route Tables also are created by the module:
 
