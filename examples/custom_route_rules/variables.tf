@@ -156,7 +156,7 @@ locals {
       description       = "Terraformed - User added Routing Rule: To drg provided to this module. drg_id, if available, is automatically retrieved with keyword drg"
     },
     {
-      destination       = "172.16.0.0/16"
+      destination       = "172.16.0.0/12"
       destination_type  = "CIDR_BLOCK"
       network_entity_id = var.attached_drg_id == null ? "" : var.attached_drg_id
       description       = "Terraformed - User added Routing Rule: To drg provided to this module. drg_id, if available, is automatically retrieved with keyword drg"
