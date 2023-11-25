@@ -174,6 +174,15 @@ resource "oci_core_route_table" "service_gw" {
 ###################
 # NAT Gateway (NGW)
 ###################
+resource "oci_core_public_ip" "nat_gateway_public_ip" {
+  count          = var.create_nat_gateway == true && var.nat_gateway_public_ip_id == "RESERVED" ? 1 : 0
+  compartment_id = var.compartment_id
+  lifetime       = "RESERVED"
+  freeform_tags  = var.freeform_tags
+  defined_tags   = var.defined_tags
+  display_name   = var.label_prefix == "none" ? var.nat_gateway_display_name : "${var.label_prefix}-${var.nat_gateway_display_name}"
+}
+
 resource "oci_core_nat_gateway" "nat_gateway" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? var.nat_gateway_display_name : "${var.label_prefix}-${var.nat_gateway_display_name}"
@@ -181,7 +190,7 @@ resource "oci_core_nat_gateway" "nat_gateway" {
   freeform_tags = var.freeform_tags
   defined_tags  = var.defined_tags
 
-  public_ip_id = var.nat_gateway_public_ip_id != "none" ? var.nat_gateway_public_ip_id : null
+  public_ip_id = var.nat_gateway_public_ip_id != "none" ? var.nat_gateway_public_ip_id != "RESERVED" ?  var.nat_gateway_public_ip_id : join(",",oci_core_public_ip.nat_gateway_public_ip.*.id) : null
 
   vcn_id = oci_core_vcn.vcn.id
 
