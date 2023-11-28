@@ -34,3 +34,29 @@ module "subnet" {
   count = length(var.subnets) > 0 ? 1 : 0
 
 }
+
+locals {
+  vcn_id = oci_core_vcn.vcn.id
+  subnet = {
+    for key, value in var.subnets : key => contains(keys(value), "name") ? value.name : key
+  }
+  service_logdef = { for k in local.subnet : format("%s_%s", k, "log") => { loggroup = "loggrp", service = "flowlogs", resource = k } }
+}
+
+#Module for Logging
+module "logging" {
+
+  count  = var.enable_vcn_logging ? 1 : 0
+  source = "github.com/oracle-terraform-modules/terraform-oci-logging"
+
+  compartment_id         = var.compartment_id
+  log_retention_duration = var.log_retention_duration
+  service_logdef         = local.service_logdef
+  vcn_id                 = local.vcn_id
+  tenancy_id             = var.tenancy_id
+
+  depends_on = [
+    oci_core_vcn.vcn,
+    module.subnet
+  ]
+}
