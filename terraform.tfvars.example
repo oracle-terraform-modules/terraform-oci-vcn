@@ -3,7 +3,7 @@
 
 # Tenancy
 
-tenancy_ocid = "ocid1.tenancy.oc1..axxx"
+tenancy_id = "ocid1.tenancy.oc1..axxx"
 
 # Region
 

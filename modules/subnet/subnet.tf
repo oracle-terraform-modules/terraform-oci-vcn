@@ -6,7 +6,7 @@ locals {
 }
 
 data "oci_identity_availability_domains" "ads" {
-  compartment_id = var.tenancy_ocid
+  compartment_id = var.tenancy_id
 }
 
 resource "oci_core_subnet" "vcn_subnet" {
