@@ -173,6 +173,12 @@ variable "tenancy_id" {
   type        = string
 }
 
+variable "log_retention_duration" {
+  type        = number
+  default     = 30
+  description = "Log retention duration"
+}
+
 variable "enable_vcn_logging" {
   type        = bool
   default     = false
