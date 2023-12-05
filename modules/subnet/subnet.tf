@@ -5,8 +5,24 @@ locals {
   dhcp_default_options = data.oci_core_dhcp_options.dhcp_options.options.0.id
 }
 
-data "oci_identity_availability_domains" "ads" {
+data "oci_identity_availability_domains" "all" {
   compartment_id = var.tenancy_id
+}
+locals {
+  // Tenancy-specific availability domains in region
+  // Common reference for data source re-used throughout module
+  ads = data.oci_identity_availability_domains.all.availability_domains
+
+  // Map of parsed availability domain numbers to tenancy-specific names
+  // Used by resources with AD placement for generic selection
+  ad_numbers_to_names = local.ads != null ? {
+  for ad in local.ads : parseint(substr(ad.name, -1, -1), 10) => ad.name
+  } : { -1 : "" } # Fallback handles failure when unavailable but not required
+
+  // List of availability domain numbers in region
+  // Used to intersect desired AD lists against presence in region
+  ad_numbers = local.ads != null ? sort(keys(local.ad_numbers_to_names)) : []
+
 }
 
 resource "oci_core_subnet" "vcn_subnet" {
@@ -14,7 +30,7 @@ resource "oci_core_subnet" "vcn_subnet" {
   cidr_block     = each.value.cidr_block
   compartment_id = var.compartment_id
   vcn_id         = var.vcn_id
-  availability_domain = lookup(each.value, "availability_domain", null) != null ? data.oci_identity_availability_domains.ads.availability_domains[each.value.availability_domain - 1].name : null
+  availability_domain = lookup(each.value, "availability_domain", null) != null ? local.ad_numbers_to_names[each.value.availability_domain] : null
 
 
   defined_tags    = var.defined_tags
