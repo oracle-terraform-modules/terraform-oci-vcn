@@ -3,13 +3,7 @@
 
 locals {
   dhcp_default_options = data.oci_core_dhcp_options.dhcp_options.options.0.id
-}
-
-data "oci_identity_availability_domains" "all" {
-  compartment_id = var.tenancy_id
-}
-locals {
-  // Tenancy-specific availability domains in region
+   // Tenancy-specific availability domains in region
   // Common reference for data source re-used throughout module
   ads = data.oci_identity_availability_domains.all.availability_domains
 
@@ -22,7 +16,10 @@ locals {
   // List of availability domain numbers in region
   // Used to intersect desired AD lists against presence in region
   ad_numbers = local.ads != null ? sort(keys(local.ad_numbers_to_names)) : []
+}
 
+data "oci_identity_availability_domains" "all" {
+  compartment_id = var.tenancy_id
 }
 
 resource "oci_core_subnet" "vcn_subnet" {
