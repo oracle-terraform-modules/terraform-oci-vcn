@@ -167,3 +167,8 @@ variable "subnets" {
   type        = any
   default     = {}
 }
+
+variable "tenancy_id" {
+  description = "Tenancy OCID"
+  type        = string
+}

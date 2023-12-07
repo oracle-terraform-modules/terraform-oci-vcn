@@ -1,6 +1,10 @@
 # Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
+# Tenancy
+
+tenancy_id = "ocid1.tenancy.oc1..axxx"
+
 # Region
 
 region = "us-phoenix-1"
@@ -102,4 +106,5 @@ attached_drg_id = null
 #subnets = {
 #  sub1 = {name = "subnet1",cidr_block = "10.0.4.0/24"}
 #  sub2 = {cidr_block="10.0.5.0/24",type="private"}
+#  sub3 = {cidr_block="10.0.6.0/24",availability_domain=1}
 #}
