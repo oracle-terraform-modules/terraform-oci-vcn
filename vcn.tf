@@ -23,6 +23,7 @@ module "subnet" {
   source = "./modules/subnet"
 
   compartment_id = var.compartment_id
+  tenancy_id     = var.tenancy_id
   subnets        = var.subnets
   enable_ipv6    = var.enable_ipv6
   vcn_id         = oci_core_vcn.vcn.id
