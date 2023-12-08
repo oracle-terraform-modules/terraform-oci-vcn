@@ -49,3 +49,8 @@ variable "freeform_tags" {
     module      = "oracle-terraform-modules/vcn/oci"
   }
 }
+
+variable "tenancy_id" {
+  description = "Tenancy OCID"
+  type        = string
+}
