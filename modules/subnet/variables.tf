@@ -50,7 +50,7 @@ variable "freeform_tags" {
   }
 }
 
-variable "tenancy_ocid" {
+variable "tenancy_id" {
   description = "Tenancy OCID"
   type        = string
 }
