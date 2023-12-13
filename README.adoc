@@ -21,14 +21,14 @@
 :uri-oci: https://cloud.oracle.com/cloud-infrastructure
 :uri-oci-documentation: https://docs.cloud.oracle.com/iaas/Content/home.htm
 :uri-oracle: https://www.oracle.com
-:uri-prereqs: {uri-docs}/prerequisites.adoc
+:uri-prereqs: {uri-docs}/prerequisites.md
 :uri-quickstart: {uri-docs}/quickstart.adoc
 :uri-reuse-module: {uri-rel-tree-base}/examples/
-:uri-rm: {uri-docs}/resourcemanager.adoc
+:uri-rm: {uri-docs}/resourcemanager.md
 :uri-terraform: https://www.terraform.io
 :uri-terraform-hashicorp-examples: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
 :uri-terraform-oci: https://www.terraform.io/docs/providers/oci/index.html
-:uri-terraform-options: {uri-docs}/terraformoptions.adoc
+:uri-terraform-options: {uri-docs}/terraformoptions.md
 :uri-terraform-oci-examples: https://github.com/terraform-providers/terraform-provider-oci/tree/master/examples
 
 The {uri-repo}[Terraform VCN] for {uri-oci}[Oracle Cloud Infrastructure] (OCI) provides a reusable Terraform module that provisions a minimal VCN on OCI.

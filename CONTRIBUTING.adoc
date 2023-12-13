@@ -33,7 +33,7 @@ You should ensure that your documentation changes include the following:
 
 - Add an entry that explains your fix or enhancement to the list of unreleased items in xref:CHANGELOG.adoc[CHANGELOG]. The maintainers will move your entry to the appropriate version during the release process for that version.
 - If your contribution provision new resources, update the README introduction section
-- If your contribution adds any new variables, update xref:docs/terraformoptions.adoc[docs/terraformoptions] with the variable requirements
+- If your contribution adds any new variables, update xref:docs/terraformoptions.md[docs/terraformoptions] with the variable requirements
 - Add your GitHub handler to xref:CONTRIBUTORS.adoc[CONTRIBUTORS] under the *CONTRIBUTORS* section
 -
 - Don't forget how important the documentation is, especially for examples: we would love it if you updated the `main.tf` and `variables.tf` in the `examples/` folder. A simple example is fine.
@@ -41,7 +41,7 @@ You should ensure that your documentation changes include the following:
 
 *Notes:*
 
-- We are evaluating options to auto-document as much as possible. Tables on xref:docs/terraformoptions.adoc[docs/terraformoptions] may be the first point will we address.
+- We are evaluating options to auto-document as much as possible. Tables on xref:docs/terraformoptions.md[docs/terraformoptions] may be the first point will we address.
 - Any changes made to link:README.md[README.md] must be done in xref:README.adoc[README.adoc] and vice-versa. We are also evaluating how to reduce friction here.
 
 == How to contribute to this repository
