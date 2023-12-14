@@ -41,7 +41,7 @@ You should ensure that your documentation changes include the following:
 
 *Notes:*
 
-- We are evaluating options to auto-document as much as possible. Tables on xref:docs/terraformoptions.md[docs/terraformoptions] may be the first point will we address.
+- We are evaluating options to auto-document as much as possible. Tables on xref:docs/terraformoptions.adoc[docs/terraformoptions] may be the first point will we address.
 - Any changes made to link:README.md[README.md] must be done in xref:README.adoc[README.adoc] and vice-versa. We are also evaluating how to reduce friction here.
 
 == How to contribute to this repository
