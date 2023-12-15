@@ -68,7 +68,7 @@ Licensed under the [Universal Permissive License 1.0][license] as shown at
 [oci_documentation]: https://docs.cloud.oracle.com/iaas/Content/home.htm
 
 [oracle]: https://www.oracle.com
-[prerequisites]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.adoc
+[prerequisites]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.md
 
 [quickstart]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/quickstart.adoc
 [repo]: https://github.com/oracle/terraform-oci-vcn
@@ -77,7 +77,7 @@ Licensed under the [Universal Permissive License 1.0][license] as shown at
 [terraform]: https://www.terraform.io
 [terraform_hashircorp_examples]: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
 [terraform_oci]: https://www.terraform.io/docs/providers/oci/index.html
-[terraform_options]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
+[terraform_options]: https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.md
 [terraform_oci_examples]: https://github.com/terraform-providers/terraform-provider-oci/tree/master/examples
 [terraform_oci_oke]: https://github.com/oracle-terraform-modules/terraform-oci-oke
 <!-- Links reference section -->
