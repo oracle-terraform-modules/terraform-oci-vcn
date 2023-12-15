@@ -32,18 +32,10 @@ jobs:
         name: Install mdbook
         env:
           CARGO_HOME: ./cargo
-        run: cargo install --locked --force mdbook@0.4.34 mdbook-admonish@1.10.2 mdbook-variables@0.2.2 mdbook-toc@0.14.1 mdbook-pagetoc@0.1.7
-      - uses: actions/cache@v3
-        continue-on-error: true
-        id: deploy-to-github-pages
-        with:
-          key: mdbook
-          path: ./cargo/**/*
-      - if: ${{ steps.cache-mdbook.outputs.cache-hit != 'true' }}
-        name: Deploy to GitHub Pages
-        env:
-          CARGO_HOME: ./cargo
         run: |
+          # install mdbook
+          cargo install --locked --force mdbook@0.4.34 mdbook-admonish@1.10.2 mdbook-variables@0.2.2 mdbook-toc@0.14.1 mdbook-pagetoc@0.1.7
+          
           # Build the HTML content
           mdbook build -d book/ docs/
 
