@@ -17,37 +17,50 @@ concurrency:
   cancel-in-progress: false
   
 jobs:
-  build-and-publish-book:
+  install-mdbook:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Install mdbook
-      run: |
-        mkdir mdbook
-        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.34/mdbook-v0.4.34-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
-        echo `pwd`/mdbook >> $GITHUB_PATH
+      - uses: actions/cache@v3
+        continue-on-error: true
+        id: cache-mdbook
+        with:
+          key: mdbook
+          path: ./cargo/**/*
+      - if: ${{ steps.cache-mdbook.outputs.cache-hit != 'true' }}
+        name: Install mdbook
+        env:
+          CARGO_HOME: ./cargo
         run: cargo install --locked --force mdbook@0.4.34 mdbook-admonish@1.10.2 mdbook-variables@0.2.2 mdbook-toc@0.14.1 mdbook-pagetoc@0.1.7
-    - name: Deploy Book to GitHub Pages
-      run: |
-        # Build the HTML content
-        mdbook build -d book/ docs/
+      - uses: actions/cache@v3
+        continue-on-error: true
+        id: deploy-to-github-pages
+        with:
+          key: mdbook
+          path: ./cargo/**/*
+      - if: ${{ steps.cache-mdbook.outputs.cache-hit != 'true' }}
+        name: Deploy to GitHub Pages
+        env:
+          CARGO_HOME: ./cargo
+        run: |
+          # Build the HTML content
+          mdbook build -d book/ docs/
 
-        # Create and switch to the gh-pages work tree
-        git worktree add gh-pages gh-pages
-        cd $GITHUB_WORKSPACE/gh-pages
+          # Create and switch to the gh-pages work tree
+          git worktree add gh-pages gh-pages
+          cd $GITHUB_WORKSPACE/gh-pages
 
-        git config user.name "GitHub Actions"
-        git config user.email "oci-dax-tools_ww@oracle.com"
+          git config user.name "GitHub Actions"
+          git config user.email "oci-dax-tools_ww@oracle.com"
 
-        # Delete the ref to avoid keeping history.
-        git update-ref -d refs/heads/gh-pages
-        rm -rf *
+          # Delete the ref to avoid keeping history.
+          git update-ref -d refs/heads/gh-pages
+          rm -rf *
 
-        mv $GITHUB_WORKSPACE/docs/book/* $GITHUB_WORKSPACE/gh-pages
-        touch $GITHUB_WORKSPACE/gh-pages/.nojekyll
+          mv $GITHUB_WORKSPACE/docs/book/* $GITHUB_WORKSPACE/gh-pages
+          touch $GITHUB_WORKSPACE/gh-pages/.nojekyll
 
-        git add .
-        git commit -m "Deploy $GITHUB_SHA to gh-pages"
-        git push --force-with-lease
+          git add .
+          git commit -m "Deploy $GITHUB_SHA to gh-pages"
+          git push --force-with-lease
