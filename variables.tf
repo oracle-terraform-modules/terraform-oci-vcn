@@ -172,3 +172,15 @@ variable "tenancy_id" {
   description = "Tenancy OCID"
   type        = string
 }
+
+variable "enable_vcn_logging" {
+  type        = bool
+  default     = false
+  description = "Enable or Disable VCN logging"
+}
+
+variable "log_retention_duration" {
+  type        = number
+  default     = 30
+  description = "Log retention duration"
+}
