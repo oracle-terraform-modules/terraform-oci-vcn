@@ -108,3 +108,7 @@ attached_drg_id = null
 #  sub2 = {cidr_block="10.0.5.0/24",type="private"}
 #  sub3 = {cidr_block="10.0.6.0/24",availability_domain=1}
 #}
+
+#Logging
+#enable_vcn_logging = true
+#log_retention_duration = 30
