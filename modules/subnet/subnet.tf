@@ -22,14 +22,17 @@ data "oci_identity_availability_domains" "all" {
   compartment_id = var.tenancy_id
 }
 
+data "oci_identity_availability_domains" "ads" {
+  compartment_id = var.tenancy_ocid
+}
+
 resource "oci_core_subnet" "vcn_subnet" {
   for_each       = var.subnets
   cidr_block     = each.value.cidr_block
   compartment_id = var.compartment_id
   vcn_id         = var.vcn_id
   availability_domain = lookup(each.value, "availability_domain", null) != null ? local.ad_numbers_to_names[each.value.availability_domain] : null
-
-
+  
   defined_tags    = var.defined_tags
   dhcp_options_id = local.dhcp_default_options
   display_name    = lookup(each.value, "name", each.key)
