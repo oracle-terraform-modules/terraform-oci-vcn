@@ -22,10 +22,6 @@ data "oci_identity_availability_domains" "all" {
   compartment_id = var.tenancy_id
 }
 
-data "oci_identity_availability_domains" "ads" {
-  compartment_id = var.tenancy_ocid
-}
-
 resource "oci_core_subnet" "vcn_subnet" {
   for_each       = var.subnets
   cidr_block     = each.value.cidr_block
