@@ -14,6 +14,9 @@ region = "us-phoenix-1"
 compartment_id = ""
 
 label_prefix = "none"
+ig_rt_display_name = "none"
+sg_rt_display_name = "none"
+nat_rt_display_name = "none"
 
 # vcn parameters
 create_internet_gateway = false
