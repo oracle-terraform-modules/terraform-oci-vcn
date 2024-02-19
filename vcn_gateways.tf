@@ -23,7 +23,7 @@ resource "oci_core_internet_gateway" "ig" {
 
 resource "oci_core_route_table" "ig" {
   compartment_id = var.compartment_id
-  display_name   = local.ig_rt_display_name
+  display_name   = local.internet_gateway_display_name
 
   freeform_tags = var.freeform_tags
   defined_tags  = var.defined_tags
@@ -145,7 +145,7 @@ resource "oci_core_service_gateway" "service_gateway" {
 
 resource "oci_core_route_table" "service_gw" {
   compartment_id = var.compartment_id
-  display_name   = local.sg_rt_display_name
+  display_name   = local.service_gateway_display_name
 
   freeform_tags = var.freeform_tags
   defined_tags  = var.defined_tags
@@ -206,7 +206,7 @@ resource "oci_core_nat_gateway" "nat_gateway" {
 
 resource "oci_core_route_table" "nat" {
   compartment_id = var.compartment_id
-  display_name   = local.nat_rt_display_name
+  display_name   = local.nat_gateway_display_name
 
   freeform_tags = var.freeform_tags
   defined_tags  = var.defined_tags

@@ -24,24 +24,6 @@ variable "label_prefix" {
   default     = "none"
 }
 
-variable "ig_rt_display_name" {
-  description = "internet gateway route table display name"
-  type        = string
-  default     = "none"
-}
-
-variable "sg_rt_display_name" {
-  description = "service gateway route table display name"
-  type        = string
-  default     = "none"
-}
-
-variable "nat_rt_display_name" {
-  description = "nat gateway route table display name"
-  type        = string
-  default     = "none"
-}
-
 variable "freeform_tags" {
   description = "simple key-value pairs to tag the created resources using freeform OCI Free-form tags."
   type        = map(any)
