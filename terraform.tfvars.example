@@ -18,13 +18,19 @@ label_prefix = "none"
 # vcn parameters
 create_internet_gateway = false
 
+internet_gateway_display_name = "none"
+
 create_nat_gateway = false
+
+nat_gateway_display_name = "none"
 
 enable_ipv6 = false
 
 nat_gateway_public_ip_id = "none"
 
 create_service_gateway = false
+
+service_gateway_display_name = "none"
 
 vcn_cidrs = ["10.0.0.0/16"]
 
