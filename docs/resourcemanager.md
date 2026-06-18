@@ -1,37 +1,32 @@
-## Using Resource Manager
+# Using Resource Manager
 
-[uri-rm-overview]: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm
-[uri-rm-stack]: https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm
+[Overview](https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm)
+[Create Stack](https://docs.cloud.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm)
 
+Step by step instructions:
 
-- [Overview][uri-rm-overview]
-- [Create Stack][uri-rm-stack]
-- Step by Step Instructions
-
-
-```
+```bash
 git clone https://github.com/oracle-terraform-modules/terraform-oci-vcn.git
 zip terraform-oci-vcn.zip *.tf schema.yaml -x main.tf
 ```
 
-1. ![Create Stack](./images/createstack.png)
+1. Create a stack:
+   ![Create Stack](./images/createstack.PNG)
 
-2. Upload zip file:
-![Upload zip file](./images/uploadzip.png)
+2. Upload the zip file:
+   ![Upload zip file](./images/uploadzip.PNG)
 
-
-3. Configure variables as per your needs:
-![Upload zip file](./images/variables1.png)
+3. Configure variables as needed:
+   ![Configure variables](./images/variable1.PNG)
 
 4. Check the relevant boxes if you need gateways:
-![Upload zip file](./images/variables2.png)
+   ![Gateway variables](./images/variable2.PNG)
 
 5. Review your stack:
-![Upload zip file](./images/review.png)
+   ![Review stack](./images/review.PNG)
 
 6. Run Terraform plan and apply:
-![Upload zip file](./images/tfplan.png)
+   ![Terraform plan](./images/tfplan.PNG)
 
 7. Check the logs:
-![Upload zip file](./images/planlogs.png)
-
+   ![Plan logs](./images/planlogs.PNG)

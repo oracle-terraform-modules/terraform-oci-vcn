@@ -4,9 +4,8 @@
 [Input Variables]:https://www.terraform.io/docs/language/values/variables.html
 [Local Values]:https://www.terraform.io/docs/language/values/locals.html
 [Named Values]:https://www.terraform.io/docs/language/expressions/references.html
-[docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.adoc
-[docs/terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
-[docs/routing_rules]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/routing_rules.adoc
+[docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.md
+[docs/terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.md
 [Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
 
 This example illustrates how to use `terraform-oci-vcn` module to create a vcn with gateways and custom routing rules.
@@ -28,7 +27,7 @@ In addition, a Local Peering Gateway is created at the root of the configuration
 
 This diagram illustrates what will be created by this example.
 
-![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/images/custom_route_rules.drawio.PNG?raw=true&sanitize=true)
+![diagram](../../docs/images/custom_route_rules.drawio.PNG)
 
 ## How to specify module Input Variables values
 
@@ -42,7 +41,7 @@ Using [Input Variables] in conjuction with *.tfvars files is a common pattern. W
 - Values can be computed and becomes dynamic, with Terraform Functions, of coming possibly from any valid [Named Values]
 - Declaration and Initialization occurs in one place, for easier reading and configuration sharing
 
-For details about type and the accepted values for these two Input Variables, please see [docs/terraformoptions] and [docs/routing_rules]
+For details about type and the accepted values for these two Input Variables, please see [docs/terraformoptions]
 
 ## Prerequisites
 

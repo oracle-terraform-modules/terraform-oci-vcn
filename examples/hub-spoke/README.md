@@ -4,9 +4,8 @@
 [Input Variables]:https://www.terraform.io/docs/language/values/variables.html
 [Local Values]:https://www.terraform.io/docs/language/values/locals.html
 [Named Values]:https://www.terraform.io/docs/language/expressions/references.html
-[docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.adoc
-[docs/terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.adoc
-[docs/routing_rules]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/routing_rules.adoc
+[docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.md
+[docs/terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/terraformoptions.md
 [Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
 
 This example illustrates how to use `terraform-oci-vcn` module to create a hub-and-spoke architecture for Transit Routing, using VCNs and Local Peering Gateways.
@@ -21,7 +20,7 @@ Three VCN will be created:
 
 This diagram illustrates what will be created by this example.
 
-![diagram](https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/images/hub-spoke-lpg.png?raw=true&sanitize=true)
+![diagram](../../docs/images/hub-spoke-lpg.png)
 
 ## How to declare one or many LPG on the vcn module
 

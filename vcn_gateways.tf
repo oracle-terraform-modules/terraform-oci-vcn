@@ -33,7 +33,7 @@ resource "oci_core_route_table" "ig" {
     destination       = local.anywhere
     destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_internet_gateway.ig[0].id
-    description       = "Terraformed - Auto-generated at Internet Gateway creation: Internet Gateway as default gateway"
+    description       = "Internet Gateway as default gateway for IPv4 destinations"
   }
 
   dynamic "route_rules" {
@@ -44,7 +44,7 @@ resource "oci_core_route_table" "ig" {
       destination       = local.anywhere_ipv6
       destination_type  = "CIDR_BLOCK"
       network_entity_id = oci_core_internet_gateway.ig[0].id
-      description       = "Terraformed - Auto-generated at Internet Gateway creation: Internet Gateway as default gateway"
+      description       = "Internet Gateway as default gateway for IPv6 destinations"
     }
   }
 
@@ -160,7 +160,7 @@ resource "oci_core_route_table" "service_gw" {
       destination       = lookup(data.oci_core_services.all_oci_services[0].services[0], "cidr_block")
       destination_type  = "SERVICE_CIDR_BLOCK"
       network_entity_id = oci_core_service_gateway.service_gateway[0].id
-      description       = "Terraformed - Auto-generated at Service Gateway creation: All Services in region to Service Gateway"
+      description       = "Service Gateway as gateway for All OCI Services in region"
     }
   }
 
@@ -218,7 +218,7 @@ resource "oci_core_route_table" "nat" {
     destination       = local.anywhere
     destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_nat_gateway.nat_gateway[0].id
-    description       = "Terraformed - Auto-generated at NAT Gateway creation: NAT Gateway as default gateway"
+    description       = "NAT Gateway as default gateway for IPv4 destinations"
   }
 
   # bring this block back to fix #101
@@ -230,7 +230,7 @@ resource "oci_core_route_table" "nat" {
       destination       = lookup(data.oci_core_services.all_oci_services[0].services[0], "cidr_block")
       destination_type  = "SERVICE_CIDR_BLOCK"
       network_entity_id = oci_core_service_gateway.service_gateway[0].id
-      description       = "Terraformed - Auto-generated at Service Gateway creation: All Services in region to Service Gateway"
+      description       = "Service Gateway as gateway for All OCI Services in region"
     }
   }
 
@@ -314,14 +314,14 @@ resource "oci_core_route_table" "nat_ipv4_igw_ipv6" {
     destination       = local.anywhere
     destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_nat_gateway.nat_gateway[0].id
-    description       = "Terraformed - Auto-generated at NAT Gateway creation: NAT Gateway as default gateway for IPv4"
+    description       = "NAT Gateway as default gateway for IPv4 destinations"
   }
 
   route_rules {
     destination       = local.anywhere_ipv6
     destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_internet_gateway.ig[0].id
-    description       = "Terraformed - Auto-generated at Internet Gateway creation: Internet Gateway as default gateway for IPv6"
+    description       = "Internet Gateway as default gateway for IPv6 destinations"
   }
 
   dynamic "route_rules" {

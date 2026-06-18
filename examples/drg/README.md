@@ -1,6 +1,6 @@
 # Creating a DRG
 
-[docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.adoc
+[docs/prerequisites]:https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/main/docs/prerequisites.md
 [Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
 
 This example illustrates how to use  `terraform-drg-module` to create an hub and spoke configuration.
