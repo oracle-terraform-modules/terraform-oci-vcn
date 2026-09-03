@@ -10,6 +10,10 @@ Given a version number MAJOR.MINOR.PATCH:
 - MINOR version when adding functionality in a backwards compatible manner,
 - PATCH version when making backwards compatible bug fixes.
 
+# Unreleased
+
+- Pinned the nested `logging` module source to `?ref=v0.4.0` (was tracking `terraform-oci-logging`'s default branch unpinned, so every `terraform init` fetched arbitrary upstream HEAD)
+
 # 4.0.0 (June 18, 2026)
 
 - Added support for disabled VCN DNS resolution with null vcn_dns_label variable

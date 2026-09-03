@@ -72,7 +72,7 @@ locals {
 module "logging" {
 
   count  = var.enable_vcn_logging ? 1 : 0
-  source = "github.com/oracle-terraform-modules/terraform-oci-logging"
+  source = "github.com/oracle-terraform-modules/terraform-oci-logging?ref=v0.4.0"
 
   compartment_id         = var.compartment_id
   log_retention_duration = var.log_retention_duration
